@@ -107,72 +107,6 @@
   <div class="post-content">
     <header>
       
-      <time datetime="2015-03-10T04:16:09.000Z"><a href="/2015/03/10/article-5/">Tue, Mar 10 2015</a></time>
-
-  
-    <h1 class="title"><a href="/2015/03/10/article-5/">JavaScriptの「this」</a></h1>
-  
-
-
-
-  
-  <div class="tags">
-  	<i class="fa fa-tag"></i>
-    <a href="/tags/JavaScript/">JavaScript</a>
-  </div>
-
-<div class="clear"></div>
-      
-    </header>
-    <div class="entry">
-      
-        <p>通勤中に見ていたサイトに記載されていた、JavaScriptの「this」。</p>
-<h3 id="これはなんぞや">これはなんぞや</h3><p>新米の私の解釈では、Javaのthisはその記述があるクラスを指すものとしています（これじゃ甘い？）。</p>
-<p>しかしJavaScriptにはクラスというものはありません(らしい)。はて、ではどういうことか</p>
-<p>調べると、</p>
-<ul>
-<li>関数内のthis</li>
-<li>メソッド内のthis</li>
-</ul>
-<p>上記二つで違った意味を持つもののようです。</p>
-<h2 id="関数内のthis">関数内のthis</h2><p>関数とは、「function 名前(識別子) (){}」で宣言したもので、オブジェクトの一種です。つまり、定義されたプログラムを実行するだけでなく、メソッドやプロパティを持ち、またそれらを操作する事ができます。</p>
-<h2 id="メソッド内のthis">メソッド内のthis</h2><p>メソッドとは関数オブジェクトの参照が代入されているプロパティです。プロパティの中で関数オブジェクトの参照を持ったものをメソッドと呼びます。(あんまり整理になっていない)</p>
-
-      
-    </div>
-    <footer>
-      
-        <div class="alignleft">
-            <a href="/2015/03/10/article-5/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
-        </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
       <time datetime="2015-03-06T08:24:30.000Z"><a href="/2015/03/06/article-4/">Fri, Mar 6 2015</a></time>
 
   
@@ -812,6 +746,116 @@ where句での指定がない場合、テーブル内の全てのデータが削
       
         <div class="alignleft">
             <a href="/2015/02/19/article10/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2015-02-19T13:36:25.000Z"><a href="/2015/02/19/article9/">Thu, Feb 19 2015</a></time>
+
+  
+    <h1 class="title"><a href="/2015/02/19/article9/">MacでMysqlを使う！データベースの操作</a></h1>
+  
+
+
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <p>DB &amp; TABLE</p>
+<ul>
+<li>データベースの操作</li>
+<li>テーブルの操作（基本？）</li>
+</ul>
+<p>参考ページは「<a href="http://www.dbonline.jp/mysql/" target="_blank" rel="external">DBonline</a>」<br>自分なりにまとめて記す。</p>
+<h2 id="データベースの操作">データベースの操作</h2><ol>
+<li><p>データベースの作成</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&#62; create database DATABSE_NAME</span><br></pre></td></tr></table></figure>
+<p> で作成できます。<br> 既存のデータベース名でも「IF NOT EXISTS」って付けるとエラーは吐かれない。・・・でも上書きとかも何もされないで終わるし、意味あるのかな・・・・。</p>
+</li>
+<li><p>データベースの確認<br> 作成済みのデータベースの走査は下記コマンド。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&#62; show databases;&#10;+--------------------+&#10;| Database           |&#10;+--------------------+&#10;| information_schema |&#10;| goods              |&#10;| mysql              |&#10;| performance_schema |&#10;| test               |&#10;+--------------------+&#10;5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p> information_schema とperformance_schemaはmysql側で作る管理用？のデータベース。<br> こうすれば中も見られる。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&#62; SELECT * FROM INFORMATION_SCHEMA.SCHEMATA;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>データベースの削除</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&#62; drop database DATABSE_NAME;</span><br></pre></td></tr></table></figure>
+<p> なんちゃない。</p>
+</li>
+<li><p>データベースへ接続</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&#62; use DATABSE_NAME;&#10;Database changed</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<pre><code>SQL文では「データベース名.テーブル名」の形で指定するが、<span class="keyword">use</span>でデータベースを指定して    おくと、テーブル名の指定だけで済む。もちろん「データベース名.テーブル名」で入力しても    問題なし。
+</code></pre><ol>
+<li><p>接続中のデータベースの確認</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&#62; select database();&#10;+------------+&#10;| database() |&#10;+------------+&#10;| test       |&#10;+------------+&#10;1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>スキップ事項<br> -  文字セット</p>
+<ul>
+<li>データベースの属性</li>
+</ul>
+</li>
+</ol>
+<h2 id="テーブルの操作">テーブルの操作</h2><ol>
+<li><p>テーブルの作成</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&#62; create table DB_NAME.TABLE_NAME (COLUMN_NAME TYPE, &#12539;&#12539;&#12539;);</span><br></pre></td></tr></table></figure>
+<p> こんな形で書いく。もちろん、カラムの指定が何もないと、エラーが出る。<br> useでデータベースを指定していれば、DB_NAMEは省略OK。</p>
+</li>
+</ol>
+<pre><code>mysql &gt; create table test.testTable <span class="params">(column1 int, column2 varchar<span class="params">(<span class="number">20</span>)</span>)</span>;
+Query OK, <span class="number">0</span> rows affected <span class="params">(<span class="number">0.06</span> sec)</span>
+</code></pre><ol>
+<li><p>テーブルの確認、走査</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&#62; show tables from test;&#10;+----------------+&#10;| Tables_in_test |&#10;+----------------+&#10;| testTable      |&#10;+----------------+&#10;1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p> 例にもよって、useでデータベースを指定していれば、from以降は不要。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&#62; show tables like &#39;PATTERN&#39;;&#10;&#12392;&#12363;&#10;mysql&#62; show tables from DB_NAME like &#39;PATTERN&#39;;</span><br></pre></td></tr></table></figure>
+<p> LIKE句を使うと、取得テーブルを絞り込むことができる。</p>
+</li>
+<li><p>テーブルの詳細確認</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&#62; show table status from test;&#10;+------------+--------+---------+....&#10;| Name       | Engine | Version | ...&#10;+------------+--------+---------+....&#12288;&#12288;&#12288;(&#38263;&#12356;&#12363;&#12425;&#30053;)&#10;| testTable  | InnoDB |      10 | ...&#9;&#10;| testTable2 | InnoDB |      10 | ...&#10;+------------+--------+---------+....&#10;2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>カラムの詳細確認</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&#62; show columns from test.testTable;&#10;+---------+-------------+------+-----+---------+-------+&#10;| Field   | Type        | Null | Key | Default | Extra |&#10;+---------+-------------+------+-----+---------+-------+&#10;| column1 | int(11)     | YES  |     | NULL    |       |&#10;| column2 | varchar(20) | YES  |     | NULL    |       |&#10;+---------+-------------+------+-----+---------+-------+&#10;2 rows in set (0.01 sec)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>テーブルの削除</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> mysql&#62; drop table test.testTable2;&#10;Query OK, 0 rows affected (0.01 sec)</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2015/02/19/article9/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
         </div>
         
         
