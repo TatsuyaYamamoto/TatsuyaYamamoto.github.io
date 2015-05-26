@@ -1,0 +1,262 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>JavaScriptで東◯的な弾幕ゲームを作るvol.1 | 新米SWエンジニアのそこんところ</title>
+  <meta name="author" content="Tatsuya Yamamoto">
+  
+  <meta name="description" content="目次
+はじめに
+連載バックナンバー
+今日のゴール
+勉強したこと(忘れたことも)
+作ったもの
+ソースコード
+
+はじめにプログラミングを勉強している者として何かを作らなければと頭を捻った結果、JavaScriptでゲームを作ることにしました。本連載記事はその徒然なるままの作業記録です。
+参考サイトをテキストに某同人弾幕ゲーム的なものを目指します。どこまで機能を実装出来るかは・・・・未定で。
+参考サイト：javascriptで作るシューティングゲーム的な何か">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="JavaScriptで東◯的な弾幕ゲームを作るvol.1"/>
+  <meta property="og:site_name" content="新米SWエンジニアのそこんところ"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="新米SWエンジニアのそこんところ" type="application/atom+xml">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css">
+<link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-368771XX-X']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+<body>
+  <header id="header" class='normal_mode'>
+    <nav id="main-nav">
+  <ul class='container'>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/1970/01/01/about/">About</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/1970/01/01/tags/">Tags</a></li>
+    
+      <li><a href="/categories/project/">Project</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+  </header>
+  <div id="content" class="container">
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2015-03-19T15:32:33.000Z"><a href="/2015/03/20/article-14/">Fri, Mar 20 2015</a></time>
+
+  
+    <h1 class="title">JavaScriptで東◯的な弾幕ゲームを作るvol.1</h1>
+  
+
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/EastProject/">EastProject</a>, <a href="/tags/JavaScript/">JavaScript</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <h2 id="目次">目次</h2><ul>
+<li>はじめに</li>
+<li>連載バックナンバー</li>
+<li>今日のゴール</li>
+<li>勉強したこと(忘れたことも)</li>
+<li>作ったもの</li>
+<li>ソースコード</li>
+</ul>
+<h2 id="はじめに">はじめに</h2><p>プログラミングを勉強している者として何かを作らなければと頭を捻った結果、JavaScriptでゲームを作ることにしました。本連載記事はその徒然なるままの作業記録です。</p>
+<p>参考サイトをテキストに某同人弾幕ゲーム的なものを目指します。どこまで機能を実装出来るかは・・・・未定で。</p>
+<p>参考サイト：<a href="http://qiita.com/doxas/items/9debec7e1f0c19bc8daa" target="_blank" rel="external">javascriptで作るシューティングゲーム的な何か</a></p>
+<a id="more"></a>
+<h2 id="連載バックナンバー">連載バックナンバー</h2><p>タグ：<a href="/tags/EastProject/">EastProject</a></p>
+<p>続きのリンクはこちらで(<del>初回にバックナンバーもクソもない</del>)</p>
+<h2 id="今日のゴール">今日のゴール</h2><ul>
+<li>ゲームの土台を組む<ul>
+<li>表示の土台となるhtmlファイルcssファイルを仮組みする</li>
+<li>十字キーのイベントと座標の表示を行う</li>
+</ul>
+</li>
+</ul>
+<h2 id="新しく勉強したこと(忘れたことも)">新しく勉強したこと(忘れたことも)</h2><ul>
+<li>JavaScript<ul>
+<li>getElementById</li>
+<li>addEventListener</li>
+<li>innerHTML</li>
+<li>setTimeout</li>
+<li>arguments.callee</li>
+<li>event.keyCode</li>
+</ul>
+</li>
+<li>html</li>
+<li>css</li>
+</ul>
+<h2 id="作ったもの">作ったもの</h2><p><a href="https://tatsuyayamamoto.github.io/EastProject/history/EastProject_v1/">東◯的弾幕ゲームv0.10</a></p>
+<p><img src="/2015/03/20/article-14/1.png" alt="まだ土台だけ"></p>
+<h2 id="ソースコード">ソースコード</h2><ul>
+<li><p>index.html</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;!DOCTYPE html&#62;&#10;&#60;html&#62;&#10;&#60;head&#62;&#10;    &#60;meta charset=&#34;utf-8&#34;&#62;&#10;    &#60;link rel=&#34;stylesheet&#34; type=&#34;text/css&#34; href=&#34;main.css&#34;&#62;&#10;    &#60;script src= &#34;common.js&#34;&#62;&#60;/script&#62;&#10;    &#60;script src= &#34;main.js&#34;&#62;&#60;/script&#62;&#10;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;    &#60;div id=&#34;header&#34;&#62;&#10;        &#60;h1&#62;&#26481;&#12398;&#26041;&#12398;Project&#60;/h1&#62;&#10;    &#60;/div&#62;&#10;    &#60;div id=&#34;mainColumn&#34;&#62;&#10;    &#9;&#60;canvas id=&#34;screen&#34;&#62;&#60;/canvas&#62;&#10;    &#60;/div&#62;&#10;    &#60;div id=&#34;subColumn&#34;&#62;&#10;    &#9;&#60;h2&#62;Infomation&#60;/h2&#62;&#10;    &#9;coordinates of the point :&#10;        &#60;p id=&#34;info_coordinates&#34;&#62;&#60;/p&#62;&#10;        key code :&#10;        &#60;p id=&#34;info_keyCode&#34;&#62;&#60;/p&#62;&#10;    &#60;/div&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>main.css</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">body&#123;&#10;&#9;width: 600px;&#10;&#9;margin-left: auto;&#10;&#9;margin-right: auto;&#10;&#9;font-family:  &#34;&#28216;&#12468;&#12471;&#12483;&#12463;&#34;, &#34;Yu Gothic&#34;, YuGothic, sans-serif;&#10;&#9;border: 2px solid gray;&#10;&#125;&#10;&#10;canvas&#123;&#10;&#9;border: 2px solid gray;&#10;&#9;width: 360px;&#10;&#9;height: 480px;&#10;&#10;&#125;&#10;#header&#123;&#10;&#9;text-align: center;&#10;&#125;&#10;#mainColumn&#123;&#10;&#9;border: 2px solid gray;&#10;&#9;text-align: center;&#10;&#9;width: 400px;&#10;&#9;float: left;&#10;&#125;&#10;#subColumn&#123;&#10;&#9;border: 2px solid gray;&#10;&#9;float: left;&#10;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>main.js</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;//global---------------------------------------&#10;var screen;&#10;var info_keyCode, info_coordinates;&#10;var keyCode = &#34;nothing&#34;;&#10;var fps = 1000 / 30;&#10;var playerPoint = new Point();&#10;&#10;//&#25551;&#30011;&#20966;&#29702;---------------------------------------&#10;window.onload = function()&#123;&#10;&#10;&#9;// &#12473;&#12463;&#12522;&#12540;&#12531;&#12398;&#21021;&#26399;&#21270;&#10;    screen = document.getElementById(&#39;screen&#39;);&#10;&#10;&#9;//&#12452;&#12505;&#12531;&#12488;&#12398;&#30331;&#37682;&#10;&#9;window.addEventListener(&#34;keydown&#34;, keyDown, true);&#10;&#10;    //&#12456;&#12524;&#12513;&#12531;&#12488;&#10;    info_keyCode = document.getElementById(&#39;info_keyCode&#39;);&#10;    info_coordinates = document.getElementById(&#39;info_coordinates&#39;);&#10;&#10;    //screen&#12398;&#25551;&#30011;&#10;    (function()&#123;&#10;&#10;        // information&#34920;&#35352;&#10;        info_coordinates.innerHTML =  playerPoint.x + &#34; : &#34; +playerPoint.y ;&#10;        info_keyCode.innerHTML = keyCode;&#10;&#10;        //&#29694;&#22312;&#23455;&#34892;&#12375;&#12390;&#12356;&#12427;&#38306;&#25968;&#12434;&#23455;&#34892;&#10;&#9;&#9;setTimeout(arguments.callee, fps);&#10;    &#125;)();&#10;&#10;&#125;&#10;&#10;//event&#20966;&#29702;---------------------------------------&#10;&#10;//keycode&#12434;&#21462;&#24471;&#12375;&#12390;&#12289;&#38306;&#25968;&#12434;&#23455;&#34892;&#12373;&#12379;&#12427; &#10;function keyDown(event)&#123;&#10;    keyCode = event.keyCode;&#10;    //&#21313;&#23383;&#12461;&#12540;&#10;    if(keyCode &#62;= 37 &#38;&#38; keyCode &#60;= 40)&#123;&#10;    &#9;playerMove(keyCode);&#10;    &#125;&#10;&#125;&#10;&#10;//&#12503;&#12524;&#12452;&#12516;&#12540;&#12398;&#24231;&#27161;&#12434;keyCode&#12395;&#21512;&#12431;&#12379;&#12390;&#22793;&#26356;&#10;function playerMove(keyCode)&#123;&#10;&#9;if(keyCode == 37)&#123;&#10;&#9;    playerPoint.x --;&#10;&#9;&#125;else if(keyCode == 39)&#123;&#10;&#9;    playerPoint.x ++;&#10;&#9;&#125;else if(keyCode == 38)&#123;&#10;&#9;    playerPoint.y --;&#10;&#9;&#125;else if(keyCode == 40)&#123;&#10;&#9;    playerPoint.y ++;&#10;&#9;&#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>common.js</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//&#24231;&#27161;&#31649;&#29702;&#29992;&#12467;&#12531;&#12473;&#12488;&#12521;&#12463;&#12479;&#10;function Point()&#123;&#10;&#9;this.x = 0;&#10;&#9;this.y = 0;&#10;&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+          
+          <div class="clearfix"></div>
+          <nav id="pagination">
+  
+    <a href="/2015/03/20/article-15/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>Next</a>
+  
+  
+    <a href="/2015/03/19/article-13/" class="alignright next">Prev<i class="fa fa-long-arrow-right"></i></a>
+  
+  <div class="clearfix"></div>
+</nav>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  
+</section>
+
+
+
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  &copy; 2015 Tatsuya Yamamoto
+  
+</div>
+Powered by <a href="http://zespia.tw/hexo/" title="Hexo" target="_blank" rel="external">Hexo</a> and <a href="http://pages.github.com/" title="GitHub Pages" target="_blank" rel="external">GitHub Pages</a>
+
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery.imagesloaded.min.js" type="text/javascript"></script>
+<script src="/js/gallery.js" type="text/javascript"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js" type="text/javascript"></script>
+
+
+
+
+    <script type="text/javascript">
+        (function(){
+
+            $(window).scroll(function(){
+
+                var scrollTop = $(window).scrollTop();
+                if ( scrollTop >200 ){
+                    $("#main-nav").removeClass('normal_mode').addClass('top_mode');
+                } else{
+                    $("#main-nav").removeClass('top_mode').addClass('normal_mode');
+                }
+
+            });
+
+        })();
+    </script>
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox({
+      'titlePosition': 'inside'
+    });
+  })(jQuery);
+  </script>
+
+
+
+
+<script type="text/javascript">
+  
+  $(function(){
+
+    $('.title').hover(
+      function() {      
+        $(this).stop().animate(
+          {'marginLeft': '10px'}, 200
+        );   
+      }, 
+      function() {       
+        $(this).stop().animate({'marginLeft': '0px'}, 200);      
+      
+    });   
+
+  });
+
+</script>
+
+
+</body>
+</html>

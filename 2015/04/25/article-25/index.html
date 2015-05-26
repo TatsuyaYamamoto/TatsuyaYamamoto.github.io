@@ -1,0 +1,220 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Bitmapオブジェクトのプロパティは読み込みが完了してから取得する | 新米SWエンジニアのそこんところ</title>
+  <meta name="author" content="Tatsuya Yamamoto">
+  
+  <meta name="description" content="タイトルだけでこの記事は終了です。お疲れ様でした。
+CreateJSのBitmapオブジェクトを使って読み込んだ画像のwidth、heightが取得できなくてやたら長い時間をかけてしまったので備忘録を。
+画像読み込みの完了前にイメージのプロパティを参照しても、ダメということです。
+前も同じようなことで引っかかったような・・・・">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Bitmapオブジェクトのプロパティは読み込みが完了してから取得する"/>
+  <meta property="og:site_name" content="新米SWエンジニアのそこんところ"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="新米SWエンジニアのそこんところ" type="application/atom+xml">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css">
+<link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-368771XX-X']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+<body>
+  <header id="header" class='normal_mode'>
+    <nav id="main-nav">
+  <ul class='container'>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/1970/01/01/about/">About</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/1970/01/01/tags/">Tags</a></li>
+    
+      <li><a href="/categories/project/">Project</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+  </header>
+  <div id="content" class="container">
+    <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2015-04-25T13:19:53.000Z"><a href="/2015/04/25/article-25/">Sat, Apr 25 2015</a></time>
+
+  
+    <h1 class="title">Bitmapオブジェクトのプロパティは読み込みが完了してから取得する</h1>
+  
+
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/CreateJS/">CreateJS</a>, <a href="/tags/Javascript/">Javascript</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <p>タイトルだけでこの記事は終了です。お疲れ様でした。</p>
+<p>CreateJSのBitmapオブジェクトを使って読み込んだ画像のwidth、heightが取得できなくてやたら長い時間をかけてしまったので備忘録を。</p>
+<p>画像読み込みの完了前にイメージのプロパティを参照しても、ダメということです。</p>
+<p>前も同じようなことで引っかかったような・・・・</p>
+<a id="more"></a>
+<p>以下のコードでは、BUTTUN_TMP.pngという画像ファイルをBitmapクラスに送っています。<br>そして座標管理用に作ったpositionメソッドにBitmapオブジェクトと表示させる座標を送って、座標のプロパティを設定しています。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var BUTTON_TMP_1 = new createjs.Bitmap(&#34;img/BUTTUN_TMP.png&#34;);&#10;position(BUTTON_TMP_1, GAMESCREAN_WIDTH/2, (GAMESCREAN_HEIGHT/2) + 100);&#10;&#10;function position(target, x, y)&#123;&#10;&#9;target.x = x;&#10;&#9;target.y = y;&#10;&#9;target.regX = target.image.width/2;&#10;&#9;target.regY = target.image.height/2;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>Bitmapオブジェクトの座標の基点は画像ファイルの左上端です。画像を配置するときに少々不便なので(中央に置くとか)、regX、regYプロパティに画像ファイルの幅の数値の半分を代入することで基点を画像ファイルの中央にしようとしています。</p>
+<p>んが、反映されない・・・・。</p>
+<p>target.image.widthを表示すると”0”になっている・・・・。なんでやねん</p>
+<p>undifinedになっていないから、プロパティの指定自体は間違っていないはずです。・・・・・・・が、上記のコードだと、指定の画像ファイルの読み込みが完了する前にwidthプロパティを参照しようとしているため、”0”になっているようでした。</p>
+<p>ってことで、onloadを使って、読み込みが完了しだい、positionメソッドの処理を行うようにします。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var BUTTON_TMP_1 = new createjs.Bitmap(&#34;img/BUTTUN_TMP.png&#34;);&#10;BUTTON_TMP_1.image.onload = function()&#123;&#10;&#9;position(BUTTON_TMP_1, GAMESCREAN_WIDTH/2, (GAMESCREAN_HEIGHT/2) + 100);&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>うーん、なかなかブサイクな感じ、、、、。</p>
+<p>createJSにはリードを助けてくれるpreloadJS(だっけ？)というものがあるそうなので、この後ぜひそこら辺を調べて活用しようと思います。</p>
+<p>でも同じようなことしてるのに、onloadなんて気にしてないソースコードを載せているブログがあるのは何故だ・・・・本当にそのコードはいいのか。。。。。わからん</p>
+
+      
+    </div>
+    <footer>
+      
+          
+          <div class="clearfix"></div>
+          <nav id="pagination">
+  
+    <a href="/2015/04/26/article-26/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>Next</a>
+  
+  
+    <a href="/2015/04/25/article-29/" class="alignright next">Prev<i class="fa fa-long-arrow-right"></i></a>
+  
+  <div class="clearfix"></div>
+</nav>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  
+</section>
+
+
+
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div>
+  
+  &copy; 2015 Tatsuya Yamamoto
+  
+</div>
+Powered by <a href="http://zespia.tw/hexo/" title="Hexo" target="_blank" rel="external">Hexo</a> and <a href="http://pages.github.com/" title="GitHub Pages" target="_blank" rel="external">GitHub Pages</a>
+
+<div class="clearfix"></div></footer>
+  
+<script src="/js/jquery.imagesloaded.min.js" type="text/javascript"></script>
+<script src="/js/gallery.js" type="text/javascript"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js" type="text/javascript"></script>
+
+
+
+
+    <script type="text/javascript">
+        (function(){
+
+            $(window).scroll(function(){
+
+                var scrollTop = $(window).scrollTop();
+                if ( scrollTop >200 ){
+                    $("#main-nav").removeClass('normal_mode').addClass('top_mode');
+                } else{
+                    $("#main-nav").removeClass('top_mode').addClass('normal_mode');
+                }
+
+            });
+
+        })();
+    </script>
+
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox({
+      'titlePosition': 'inside'
+    });
+  })(jQuery);
+  </script>
+
+
+
+
+<script type="text/javascript">
+  
+  $(function(){
+
+    $('.title').hover(
+      function() {      
+        $(this).stop().animate(
+          {'marginLeft': '10px'}, 200
+        );   
+      }, 
+      function() {       
+        $(this).stop().animate({'marginLeft': '0px'}, 200);      
+      
+    });   
+
+  });
+
+</script>
+
+
+</body>
+</html>
