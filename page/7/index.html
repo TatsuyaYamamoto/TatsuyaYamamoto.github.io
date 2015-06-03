@@ -45,11 +45,11 @@
     
       <li><a href="/">Home</a></li>
     
-      <li><a href="/1970/about/">About</a></li>
+      <li><a href="/1970/01/01/about/">About</a></li>
     
       <li><a href="/archives">Archives</a></li>
     
-      <li><a href="/1970/tags/">Tags</a></li>
+      <li><a href="/1970/01/01/tags/">Tags</a></li>
     
       <li><a href="/categories/project/">Project</a></li>
     
@@ -88,6 +88,458 @@
 </ul>
 	</div>
 </div>
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2015-02-18T01:10:44.000Z"><a href="/2015/02/18/article7/">Wed, Feb 18 2015</a></time>
+
+  
+    <h1 class="title"><a href="/2015/02/18/article7/">Apacheを使ってMac内にWebサーバーを構築！</a></h1>
+  
+
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/Apache/">Apache</a>, <a href="/tags/Mac/">Mac</a>, <a href="/tags/Server-side/">Server-side</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <p>Webサイトを作る場合、直接ブラウザでファイルを開くのではなく、サーバー内に設置したファイルをhttp通信で取得して、ブラウザで確認します（先輩の受け売り）。</p>
+<p>てことで、手元のMacにローカルサーバを作って、それ経由でウェブコンテンツを確認できる環境を作ります。</p>
+<h2 id="Apache_HTTP_server">Apache HTTP server</h2><p>構築・・・といっても、MacにはApacheが標準で入っています。便利！</p>
+<p>バージョンを確認してみます。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apachectl -v&#10;Server version: Apache/2.4.9 (Unix)&#10;Server built:   Sep  9 2014 14:48:20&#10;&#10;//&#12414;&#12383;&#12399;&#10;$ httpd -v&#10;Server version: Apache/2.4.9 (Unix)&#10;Server built:   Sep  9 2014 14:48:20</span><br></pre></td></tr></table></figure>
+<h2 id="Apacheの操作">Apacheの操作</h2><ol>
+<li><p>Apacheの起動</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ /usr/sbin/apachectl start&#10;This operation requires root.</span><br></pre></td></tr></table></figure>
+<p> 管理者権限じゃないと怒られましたので、少々面倒ですがsudoをつけて・・・</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apachectl start</span><br></pre></td></tr></table></figure>
+<p> これでOK-!!</p>
+<p> ブラウザで「localhost」にアクセスすると・・・。</p>
+<p> <img src="/2015/02/18/article7/1.png" alt="ApacheCheck"></p>
+<p> ↑働いとるー！</p>
+</li>
+</ol>
+<ol>
+<li><p>Apacheの停止</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo /usr/sbin/apachectl stop</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>Apacheの再起動</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo /usr/sbin/apachectl restart</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="Apacheの設定ファイル">Apacheの設定ファイル</h2><p>Apacheの設定ファイルは、Apacheのディレクトリ内の「httpd.conf」。</p>
+<p>このファイルはテキストファイルであり、ディレクティブ（Apacheを設定するコマンドを意味する用語）がたくさんコメントアウトされたものも含め書かれています。</p>
+<p>このファイルには重要な項目が沢山らしいので、別記事でフォーカスをあてます。</p>
+<p>とりあえず今回チェックするのはドキュメントルートの場所。localhostで接続したIt worksのページがどこに存在しているかを調べます。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">less /etc/apache2/httpd.conf&#10;&#10;...&#65288;&#30053;&#65289;&#10;&#10;# DocumentRoot: The directory out of which you will serve your&#10;# documents. By default, all requests are taken from this directory, but&#10;# symbolic links and aliases may be used to point to other locations.&#10;#&#10;DocumentRoot &#34;/Library/WebServer/Documents&#34;&#10;&#10;...&#65288;&#30053;&#65289;</span><br></pre></td></tr></table></figure>
+<p>「/Library/WebServer/Documents」だそうです。</p>
+<h2 id="Apacheを使って”（・８・）ホノカチャン！”">Apacheを使って”（・８・）ホノカチャン！”</h2><p>ドキュメントルートのページが「It works」では味気ないので、前説で調べたドキュメントルートにあるindexファイルを変更してみます。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cd /Library/WebServer/Documents/&#10;$ ls&#10;PoweredByMacOSX.gif&#9;&#9;index.html&#10;PoweredByMacOSXLarge.gif&#9;index.html.en</span><br></pre></td></tr></table></figure>
+<p>このindex.html.enが「<a href="http://localhost」で表示されるページです。「en」はEnglishのen?最後に「jp」とかをつけてアクセス元の言語設定によって返すページを変更する・・・なんてことも出来るらしいけど、今の僕にはキャパオーバー。また今度。" target="_blank" rel="external">http://localhost」で表示されるページです。「en」はEnglishのen?最後に「jp」とかをつけてアクセス元の言語設定によって返すページを変更する・・・なんてことも出来るらしいけど、今の僕にはキャパオーバー。また今度。</a></p>
+<p>新しく「index.html」を作ってこのディレクトリに載せました！</p>
+<p>早速ブラウザで「localhost」にアクセスすると・・・。</p>
+<p><img src="Apache_useApacheOnMac/2.png" alt="ApacheCheck"></p>
+<p>↑ちゅーーん！！</p>
+
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2015/02/18/article7/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2015-02-18T01:09:30.000Z"><a href="/2015/02/18/article6/">Wed, Feb 18 2015</a></time>
+
+  
+    <h1 class="title"><a href="/2015/02/18/article6/">ApacheとTomcatってなんだし！</a></h1>
+  
+
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/Apache/">Apache</a>, <a href="/tags/server-side/">server-side</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <p>気持ちがはずむし～（大嘘）</p>
+<p>開発現場の当たり前を知らない新米の僕は「Apache」と「tomcat」の混在に非常に苦しめらました。</p>
+<p><img src="/2015/02/18/article6/1.jpg" alt="tomcatとapache"></p>
+<p>だって</p>
+<ul>
+<li><p>tomcat</p>
+<p>  Apache Tomcatは、Java ServletやJavaServer Pages (JSP) を実行するためのWebコンテナ（サ    ーブレットコンテナ、サーブレットエンジン）である。<br>   Apache Tomcat - ウィキペディア<br>  ja.wikipedia.org/wiki/Apache_Tomcat</p>
+</li>
+</ul>
+<ul>
+<li><p>apache</p>
+<p>  単にApacheとも称されている。 開発は、Apacheソフトウェア財団のApache HTTPサーバプロジェクトで    行われている。 Apache Licenseの下でソースコードが公開および配布されており、代表的なオープンソ    ースソフトウェアの一つである。<br>  Apache HTTP Server - ウィキペディア<br>  ja.wikipedia.org/wiki/Apache_HTTP_Server</p>
+</li>
+</ul>
+<p>・・・だよ？</p>
+<p>WebコンテナとHTTPサーバだから全然違うじゃん・・・というのもありますが、新人にはこのApacheという省略の仕方は卑怯だ。だってtomcatもApacheじゃん！</p>
+<p><img src="/2015/02/18/server-side_apacheAndTomcat/2.jpg" alt="tomcatとapache"></p>
+<p>そして名前もさることながら、tomcatにWebサーバー機能があるという・・・・なんだし！tomcatでjavaアプリケーションを動かしならwebサーバーとして使えばいいじゃん！と思うわけです。</p>
+<p>実際使い方もクリソツ。htmlファイルやらなんやらを設置して、localhostで見る・・・ってだけでもうごちゃごちゃになります。（実際は置くものもポートも違うのだけれど・・・）</p>
+<h2 id="TomcatとApacheの連携の理由">TomcatとApacheの連携の理由</h2><p>こんな具体的な疑問が出るだけでも自分の成長を実感することが出来ることは置いておいて、２つをわざわざ連携させて使用する理由を調べました。</p>
+<p>TomcatはJavaアプリケーションをサーバー側で動かす「Webアプリケーションサーバー」です。前述のとおり、これにはWebサーバ機能も有しますが、このWebサーバ機能は主に開発とデバッグ用に用意されたものらしく、性能に難があるらしいです。（この性能に関しては本記事では割愛）</p>
+<p>そこでApacheの出番。こちらはアクセスしてきたクライアントへ何らかのサービスを提供するためのWebサーバソフトウェア。Webアプリケーションサーバーの必要がない、HTMLや画像などの静的コンテンツはより高速なWebサーバーに処理させることで、動的コンテンツのみをアプリケーションサーバー（Tomcat）へ集中させることが出来ます。</p>
+<p>なるほどね〜（・８・）</p>
+
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2015/02/18/article6/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2015-02-17T12:11:03.000Z"><a href="/2015/02/17/article5/">Tue, Feb 17 2015</a></time>
+
+  
+    <h1 class="title"><a href="/2015/02/17/article5/">GitHubPageとページジェネレーター(HEXO)でブログをやる!!(HEXO編)</a></h1>
+  
+
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/Git/">Git</a>, <a href="/tags/HEXO/">HEXO</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <h1 id="markdownでブログを書きたい！！">markdownでブログを書きたい！！</h1><p>と僕は思いました、<a href="/2015/02/16/introGitHubPages/">前回</a>(二期なのでビックリマークは２つ)。</p>
+<p>前回まででGitHubPagesの設定を完了させ、公にウェブページを公開する準備が出来ました。あとはブログを作って、それをデプロイするだけです<del>(だけというボリュームじゃない)</del>。</p>
+<p>今回のブログシステムの第一要求は</p>
+<h3 id="「MarkDownで記入した記事でブログを公開する」">「MarkDownで記入した記事でブログを公開する」</h3><p>です。</p>
+<p>そのために<strong>HEXO</strong>というサイトジェネレーターを採用しました。</p>
+<p>HEXOの選択の理由はNode.js製のページジェネレータだから。JavaScript超入門者の僕としては、将来的にこれをガンガンいじれるようになったら勉強になるかなという腹底算段。<del>というかRubyとか新しく勉強出来ないよ。</del></p>
+<p>それではHEXOを導入していきます。</p>
+<p><strong>→前の記事</strong><a href="/2015/02/16/introGitHubPages/">GitHubPageとページジェネレーター(HEXO)でブログをやる！(GitHubPages編))</a></p>
+<h2 id="ブログ公開までの流れ">ブログ公開までの流れ</h2><ol>
+<li>GitHubPagesの準備</li>
+<li>公開鍵の設定</li>
+<li>ページジェネレーター(HEXO)の準備　←今日はここから!!</li>
+<li>新しい記事を作成する</li>
+<li>公開用ページ作成、設置</li>
+</ol>
+<h2 id="ページジェネレーター(HEXO)の準備">ページジェネレーター(HEXO)の準備</h2><ol>
+<li><p>nvmのインストール</p>
+<p> Node Version ManagerをGitからインストールします。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone git://github.com/creationix/nvm.git ~/.nvm</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>nvmをコマンド</p>
+<p> パスが通っていないので、nvmコマンドを登録します。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ source ~/.nvm/nvm.sh</span><br></pre></td></tr></table></figure>
+<p> バージョンを確認してみる</p>
+</li>
+</ol>
+<pre><code><span class="comment"><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nvm --version&#10;0.23.3</span><br></pre></td></tr></table></figure></span>
+</code></pre><ol>
+<li><p>NodeJSのインストール</p>
+<p> インストールが可能なバージョン確認を確認します。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm ls-remote&#10;   &#12539;&#12539;&#12539;&#65288;&#30053;&#65289;&#10;v0.11.14&#10;v0.11.15&#10;v0.11.16&#10;v0.12.0&#10;iojs-v1.0.0&#10;iojs-v1.0.1&#10;iojs-v1.0.2&#10;   &#12539;&#12539;&#12539;&#65288;&#30053;&#65289;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<pre><code>偶数版が安定版らしいので、それをいんすと
+
+
+<span class="comment"><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nvm install v0.11.16&#10;########################################### 100.0%&#10;Now using node v0.11.16</span><br></pre></td></tr></table></figure></span>
+</code></pre><ol>
+<li><p>HEXOを導入する</p>
+<p> Node Package Managerはnvmのインストールに合わせて導入されます。パスも通されているので、コマンドもすぐ使えます。早速HEXOをインストールしましょう。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>ブログを作成</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init diary&#10;[info] Copying data&#10;[info] You are almost done! Don&#39;t forget to run `npm install` before you start blogging with Hexo!</span><br></pre></td></tr></table></figure>
+<p> 入力した名前のフォルダが作成されるので、管理しやすいディレクトリで打つ。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cd diary&#10;$ npm install</span><br></pre></td></tr></table></figure>
+<p> init後のアナウンス通り、忘れずにインストールを行います。（これ何やってるんだ？）やらないと他のhexoコマンドがエラーになります。</p>
+</li>
+</ol>
+<ol>
+<li><p>さっそくブログを確認</p>
+<p> HEXOで作成したブログはローカルサーバー内で確認することが出来ます。コマンドでserverを作動させて</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server&#10;[info] Hexo is running at http://localhost:4000/. Press Ctrl+C to stop.</span><br></pre></td></tr></table></figure>
+<p> <a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a>へアクセス！初期テーマファイルと初期ページファイル(markdown)で作成されたページを見られます。</p>
+<p> 確認が終わったら、「ctrl+c」で終了。これでサーバーが停止します。</p>
+</li>
+</ol>
+<h2 id="GitHubPagesへのデプロイの設定">GitHubPagesへのデプロイの設定</h2><ol>
+<li><p>設置先リポジトリの設定</p>
+<p> ページ作成で生成されたsampleBlog/_config.ymlを編集します。<br> Deploymentの項を設置予定ページの情報を記入します()今回はGitHub)。エンコードはUTF-8にしないとエラーが出るみたい。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># Deployment&#10;## Docs: http://hexo.io/docs/deployment.html&#10;deploy:&#10;type:</span><br></pre></td></tr></table></figure>
+<p> ↑を</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># Deployment&#10;## Docs: http://hexo.io/docs/deployment.html&#10;deploy:&#10;type: github&#10;repo: git@github.com:TatsuyaYamamoto/TatusyaYamamoto.github.io.git&#10;branch: master</span><br></pre></td></tr></table></figure>
+<p> ↑こんな感じにする。</p>
+<p> リポジトリ名はGitHubのページからコピペ。ブランチ名は特にこだわりがない限りmasterでいいでしょう。（仕様上他のがダメかは分かんない）</p>
+</li>
+<li><p>公開鍵の作成、登録</p>
+<p> GitHubへのデプロイに際して必要のようです。pushとかは出来るんだけれど、何故だろう。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen&#10;Generating public/private rsa key pair.</span><br></pre></td></tr></table></figure>
+<p> コマンド入力後に聞かれる質問は適当にenter連打でOK!</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ~/.ssh/id_rsa.pub | pbcopy</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<pre><code>作成された公開鍵の文字列をコピーして、GitHub内 [<span class="link_label">settings &gt; SSH keys</span>](<span class="link_url">https://github.com/settings/ssh</span>) で登録します。Titleは分かりやすいやつを適当に。
+</code></pre><h2 id="新しい記事を作成する">新しい記事を作成する</h2><p>さっそく新しい記事を作成してみましょう。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new firstArticle</span><br></pre></td></tr></table></figure>
+<p>new以降に書いたものがファイル、記事タイトルになります。ファイル名はそのまま記事のURLとしても使用されるので、英語で書くようにしましょう。記事タイトルはこの後編集します。</p>
+<p>今回作成されたfirstArticle.md</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">title: firstArticle&#10;date: 2015-02-18 00:30:02&#10;tags:&#10;---</span><br></pre></td></tr></table></figure>
+<ul>
+<li>titleは日本語で書きなおす。</li>
+<li>dateは好きな時間にいじり放題</li>
+<li>tagsには好きなタグを記入します。</li>
+<li>—-以下に記事を書く！</li>
+</ul>
+<h2 id="公開用ページ作成、設置">公開用ページ作成、設置</h2><p>設定も完了し記事も書いたので、早速GitHubPagesへページをデプロイしましょう。</p>
+<p>まずはhtmlファイルを作成します。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>そしてデプロイ</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>簡単！やった―！</p>
+<p>ちなみに上記２つのコマンドは「hexo g」「hexo d」省略、または「$ hexo d -g」で一度に行うことも出来る！更にやったー！</p>
+<p>一度ページファイルを削除したい場合は</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br></pre></td></tr></table></figure>
+<p>これでdb.jsonとpublicフォルダが削除されます。</p>
+<h2 id="定期的に更新する">定期的に更新する</h2><p>これが一番大変。ｳｵｵｵ</p>
+
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2015/02/17/article5/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2015-02-16T13:12:23.000Z"><a href="/2015/02/16/article4/">Mon, Feb 16 2015</a></time>
+
+  
+    <h1 class="title"><a href="/2015/02/16/article4/">GitHubPageとページジェネレーター(HEXO)でブログをやる！(GitHubPages編)</a></h1>
+  
+
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/Git/">Git</a>, <a href="/tags/HEXO/">HEXO</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <h1 id="markdownでブログを書きたい！">markdownでブログを書きたい！</h1><p>と僕は思いました。仕事中に手を出したmarkdown方式もなかなか快適であり、これでエンジニアブログの記事を書きたいと思って調査。無料のブログサービスでは、はてなブログがmarkdownの編集機能を持っていますが、ブラウザでの更新の煩わしさがどうしても拭い切れない・・・。</p>
+<p>―――んで、見つけたのがGithubPagesとHEXOでのブログ運営。MarkDownで書いた記事をhtmlファイルに変換して公開する・・・というものです。これはいいじゃないか！</p>
+<p><img src="/2015/02/16/article4/1.png" alt="かわ・・いい？"></p>
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2015/02/16/article4/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2015-02-15T17:10:25.000Z"><a href="/2015/02/16/article16/">Mon, Feb 16 2015</a></time>
+
+  
+    <h1 class="title"><a href="/2015/02/16/article16/">Apacheでファイル一覧を表示させないようにする</a></h1>
+  
+
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/Apache/">Apache</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <p>　DirectoryIndexディレクティブで指定したデフォルトファイル（index.htmlなど）が存在しないディレクトリにWebブラウザでアクセスすると、Apacheの設定によってはそのディレクトリのファイル一覧を表示する。</p>
+<p>これはApacheの設定ファイルhttpd.conf内の</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Options Indexes</span><br></pre></td></tr></table></figure>
+<p>によって、表示が許可されています。僕のmacではデフォルトでIndexesの記入がなかったので、許可されていませんでした。</p>
+<p>試しに許可して動作を確認します。</p>
+<p>ドキュメントルート内にtestフォルダを作り、index.html以外のファイルを幾つか作成しました。</p>
+<p><img src="/2015/02/16/article16/1.png" alt="サンプルファイル"></p>
+<p>httpd.conf内、250行付近のコマンドを変更します。Options内に”Indexes”を追記。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Options FollowSymLinks Multiviews Indexes</span><br></pre></td></tr></table></figure>
+<p>ブラウザからtestフォルダをアクセスしてみると・・・。</p>
+<p><img src="/2015/02/16/article16/2.png" alt="ブラウザ"></p>
+<p>見られました。これはセキュリティ的にもあれですね。追記したものを消しちゃってもいいのですが、拒否を明記する意味で、以下のように変更しました。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Options FollowSymLinks Multiviews -Indexes</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2015/02/16/article16/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
 
 
   <article class="post">
@@ -389,118 +841,13 @@
 
 
 
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-      <time datetime="1969-12-31T15:00:00.000Z"><a href="/1970/01/01/1970-project/">Thu, Jan 1 1970</a></time>
-
-  
-    <h1 class="title"><a href="/1970/01/01/1970-project/">仮project</a></h1>
-  
-
-
-  
-  <div class="categories">
-  	<i class="fa fa-folder-open"></i>
-    <a href="/categories/project/">project</a>
-  </div>
-
-
-<div class="clear"></div>
-      
-    </header>
-    <div class="entry">
-      
-        
-      
-    </div>
-    <footer>
-      
-        <div class="alignleft">
-            <a href="/1970/01/01/1970-project/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
-        </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-      <time datetime="1969-12-31T15:00:00.000Z"><a href="/1970/01/01/1970-about/">Thu, Jan 1 1970</a></time>
-
-  
-    <h1 class="title"><a href="/1970/01/01/1970-about/">このサイトについて</a></h1>
-  
-
-
-
-<div class="clear"></div>
-      
-    </header>
-    <div class="entry">
-      
-        <p>こんなの→　<img src="logo.png" alt="わたしです。"></p>
-<p>穀潰し新入社員の僕が、物理屋から使えないSWエンジニア、そしてちょっとはマシなエンジニアへ成長していく記録、というか勉強したことの備忘録です。</p>
-<p>全くの(IT的な意味での)初心者がSWエンジニアになるために何をするか。何を知らないか（全部だけど）を書いていきます。ウオオオ</p>
-
-      
-    </div>
-    <footer>
-      
-        <div class="alignleft">
-            <a href="/1970/01/01/1970-about/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
-        </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
     <a href="/page/6/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>上一頁</a>
   
+  
+    <a href="/page/8/" class="alignright next">下一頁<i class="fa fa-long-arrow-right"></i></a>
   
   <div class="clearfix"></div>
 </nav>

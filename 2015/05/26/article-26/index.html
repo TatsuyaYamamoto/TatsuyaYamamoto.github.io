@@ -48,11 +48,11 @@
     
       <li><a href="/">Home</a></li>
     
-      <li><a href="/1970/about/">About</a></li>
+      <li><a href="/1970/01/01/about/">About</a></li>
     
       <li><a href="/archives">Archives</a></li>
     
-      <li><a href="/1970/tags/">Tags</a></li>
+      <li><a href="/1970/01/01/tags/">Tags</a></li>
     
       <li><a href="/categories/project/">Project</a></li>
     
@@ -104,7 +104,7 @@
 <p>Homebrewでインストールをします。やー！</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install nodebrew</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nodebrew help&#10;nodebrew 0.8.0</span><br></pre></td></tr></table></figure>
-<p>次はNode.jsのインストール。今インストールできるバージョンを確認して、</p>
+<h2 id="Node-jsの導入">Node.jsの導入</h2><p>次はNode.jsのインストール。今インストールできるバージョンを確認して、</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nodebrew ls-remote</span><br></pre></td></tr></table></figure>
 <p>それ！！</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nodebrew install-binary v0.12.4</span><br></pre></td></tr></table></figure>
@@ -117,11 +117,13 @@
 <p>あ、PATHの追記を忘れてました。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=$HOME/.nodebrew/current/bin:$PATH</span><br></pre></td></tr></table></figure>
 <p>↑これを.bash_profileに書いて読み込んで、、、、出来た！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nodebrew&#10;nodebrew 0.8.0</span><br></pre></td></tr></table></figure>
 <h2 id="Node-jsをREPLで起動する">Node.jsをREPLで起動する</h2><p>さっそくNode.jsを使ってみます。まずはREPL（Read eval print loop)。</p>
 <p>REPLとは、対話的実行環境で対話的にJavaScriptコードを記述して、都度都度その結果を見ることが出来ます。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ node&#10;&#62; text = &#34;&#12397;&#12416;&#12356;&#34;&#10;&#39;&#12397;&#12416;&#12356;&#39;&#10;&#62; text&#10;&#39;&#12397;&#12416;&#12356;&#39;&#10;&#62; number = 123&#10;123&#10;&#62; number&#10;123&#10;&#62; sample = text + number&#10;&#39;&#12397;&#12416;&#12356;123&#39;&#10;&#62; sample&#10;&#39;&#12397;&#12416;&#12356;123&#39;</span><br></pre></td></tr></table></figure>
 <p>変数を定義すれば、すぐにそれを評価出来ます。</p>
 <h2 id="jsファイルを使った、モジュールによるWebサーバーの起動">jsファイルを使った、モジュールによるWebサーバーの起動</h2><p><a href="http://www.atmarkit.co.jp/ait/articles/1501/09/news040.html" target="_blank" rel="external">参考ページ</a></p>
+<p>モジュールを読み込むだけで、Webサーバーだけじゃないいろんなサーバーになるなんて、素敵やん！わけわからないけど！</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//http&#12398;&#12514;&#12472;&#12517;&#12540;&#12523;&#12434;&#12452;&#12531;&#12509;&#12540;&#12488;&#12375;&#12390;&#10;var http = require(&#39;http&#39;);&#10; &#10;//Web&#12469;&#12540;&#12496;&#12540;&#12398;&#35373;&#23450;&#10;http.createServer(function (req, res) &#123;&#10;  res.writeHead(200, &#123;&#39;Content-Type&#39;: &#39;text/plain&#39;&#125;);&#10;  res.end(&#34;&#12371;&#12395;&#12419;&#12395;&#12419;&#12385;&#12431;&#34;);&#10;&#125;).listen(3000);</span><br></pre></td></tr></table></figure>
 <h4 id="今回は準備まで！">今回は準備まで！</h4>
       
