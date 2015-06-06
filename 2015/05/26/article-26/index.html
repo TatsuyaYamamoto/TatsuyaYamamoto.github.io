@@ -113,11 +113,6 @@
 <p>使用するNode.jsのバージョン(current)を指定しないといけないようです。これは切り替えが便利！</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nodebrew use v0.12.4&#10;use v0.12.4&#10;$ nodebrew ls&#10;v0.12.4&#10;&#10;current: v0.12.4</span><br></pre></td></tr></table></figure>
 <p>これでv0.12.4が使えます！</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ node &#10;-bash: /usr/local/bin/node: No such file or directory</span><br></pre></td></tr></table></figure>
-<p>あ、PATHの追記を忘れてました。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=$HOME/.nodebrew/current/bin:$PATH</span><br></pre></td></tr></table></figure>
-<p>↑これを.bash_profileに書いて読み込んで、、、、出来た！</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nodebrew&#10;nodebrew 0.8.0</span><br></pre></td></tr></table></figure>
 <h2 id="Node-jsをREPLで起動する">Node.jsをREPLで起動する</h2><p>さっそくNode.jsを使ってみます。まずはREPL（Read eval print loop)。</p>
 <p>REPLとは、対話的実行環境で対話的にJavaScriptコードを記述して、都度都度その結果を見ることが出来ます。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ node&#10;&#62; text = &#34;&#12397;&#12416;&#12356;&#34;&#10;&#39;&#12397;&#12416;&#12356;&#39;&#10;&#62; text&#10;&#39;&#12397;&#12416;&#12356;&#39;&#10;&#62; number = 123&#10;123&#10;&#62; number&#10;123&#10;&#62; sample = text + number&#10;&#39;&#12397;&#12416;&#12356;123&#39;&#10;&#62; sample&#10;&#39;&#12397;&#12416;&#12356;123&#39;</span><br></pre></td></tr></table></figure>
