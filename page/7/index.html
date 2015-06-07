@@ -107,6 +107,240 @@
   <div class="post-content">
     <header>
       
+      <time datetime="2015-02-19T13:36:25.000Z"><a href="/2015/02/19/article9/">Thu, Feb 19 2015</a></time>
+
+  
+    <h1 class="title"><a href="/2015/02/19/article9/">MacでMysqlを使う！データベースの操作</a></h1>
+  
+
+
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <p>DB &amp; TABLE</p>
+<ul>
+<li>データベースの操作</li>
+<li>テーブルの操作（基本？）</li>
+</ul>
+<p>参考ページは「<a href="http://www.dbonline.jp/mysql/" target="_blank" rel="external">DBonline</a>」<br>自分なりにまとめて記す。</p>
+<h2 id="データベースの操作">データベースの操作</h2><ol>
+<li><p>データベースの作成</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&#62; create database DATABSE_NAME</span><br></pre></td></tr></table></figure>
+<p> で作成できます。<br> 既存のデータベース名でも「IF NOT EXISTS」って付けるとエラーは吐かれない。・・・でも上書きとかも何もされないで終わるし、意味あるのかな・・・・。</p>
+</li>
+<li><p>データベースの確認<br> 作成済みのデータベースの走査は下記コマンド。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&#62; show databases;&#10;+--------------------+&#10;| Database           |&#10;+--------------------+&#10;| information_schema |&#10;| goods              |&#10;| mysql              |&#10;| performance_schema |&#10;| test               |&#10;+--------------------+&#10;5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p> information_schema とperformance_schemaはmysql側で作る管理用？のデータベース。<br> こうすれば中も見られる。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&#62; SELECT * FROM INFORMATION_SCHEMA.SCHEMATA;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>データベースの削除</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&#62; drop database DATABSE_NAME;</span><br></pre></td></tr></table></figure>
+<p> なんちゃない。</p>
+</li>
+<li><p>データベースへ接続</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&#62; use DATABSE_NAME;&#10;Database changed</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<pre><code>SQL文では「データベース名.テーブル名」の形で指定するが、<span class="keyword">use</span>でデータベースを指定して    おくと、テーブル名の指定だけで済む。もちろん「データベース名.テーブル名」で入力しても    問題なし。
+</code></pre><ol>
+<li><p>接続中のデータベースの確認</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&#62; select database();&#10;+------------+&#10;| database() |&#10;+------------+&#10;| test       |&#10;+------------+&#10;1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>スキップ事項<br> -  文字セット</p>
+<ul>
+<li>データベースの属性</li>
+</ul>
+</li>
+</ol>
+<h2 id="テーブルの操作">テーブルの操作</h2><ol>
+<li><p>テーブルの作成</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&#62; create table DB_NAME.TABLE_NAME (COLUMN_NAME TYPE, &#12539;&#12539;&#12539;);</span><br></pre></td></tr></table></figure>
+<p> こんな形で書いく。もちろん、カラムの指定が何もないと、エラーが出る。<br> useでデータベースを指定していれば、DB_NAMEは省略OK。</p>
+</li>
+</ol>
+<pre><code>mysql &gt; create table test.testTable <span class="params">(column1 int, column2 varchar<span class="params">(<span class="number">20</span>)</span>)</span>;
+Query OK, <span class="number">0</span> rows affected <span class="params">(<span class="number">0.06</span> sec)</span>
+</code></pre><ol>
+<li><p>テーブルの確認、走査</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&#62; show tables from test;&#10;+----------------+&#10;| Tables_in_test |&#10;+----------------+&#10;| testTable      |&#10;+----------------+&#10;1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p> 例にもよって、useでデータベースを指定していれば、from以降は不要。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&#62; show tables like &#39;PATTERN&#39;;&#10;&#12392;&#12363;&#10;mysql&#62; show tables from DB_NAME like &#39;PATTERN&#39;;</span><br></pre></td></tr></table></figure>
+<p> LIKE句を使うと、取得テーブルを絞り込むことができる。</p>
+</li>
+<li><p>テーブルの詳細確認</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&#62; show table status from test;&#10;+------------+--------+---------+....&#10;| Name       | Engine | Version | ...&#10;+------------+--------+---------+....&#12288;&#12288;&#12288;(&#38263;&#12356;&#12363;&#12425;&#30053;)&#10;| testTable  | InnoDB |      10 | ...&#9;&#10;| testTable2 | InnoDB |      10 | ...&#10;+------------+--------+---------+....&#10;2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>カラムの詳細確認</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&#62; show columns from test.testTable;&#10;+---------+-------------+------+-----+---------+-------+&#10;| Field   | Type        | Null | Key | Default | Extra |&#10;+---------+-------------+------+-----+---------+-------+&#10;| column1 | int(11)     | YES  |     | NULL    |       |&#10;| column2 | varchar(20) | YES  |     | NULL    |       |&#10;+---------+-------------+------+-----+---------+-------+&#10;2 rows in set (0.01 sec)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>テーブルの削除</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> mysql&#62; drop table test.testTable2;&#10;Query OK, 0 rows affected (0.01 sec)</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2015/02/19/article9/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2015-02-19T13:35:04.000Z"><a href="/2015/02/19/article8/">Thu, Feb 19 2015</a></time>
+
+  
+    <h1 class="title"><a href="/2015/02/19/article8/">MacでMysqlを使う！導入編</a></h1>
+  
+
+
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <ul>
+<li>mysqlの導入</li>
+<li>mysqlへのログイン</li>
+<li>SQLのデータ型</li>
+</ul>
+<p>参考ページは「<a href="http://www.dbonline.jp/mysql/" target="_blank" rel="external">DBonline</a>」<br>自分なりにまとめて記す。</p>
+<h2 id="mysqlの導入">mysqlの導入</h2><p>homebrewを使う。<br>homebrewについては別記事、またはgoogle先生でどうぞ。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install mysql</span><br></pre></td></tr></table></figure>
+<p>ちょっと長いけれど、コーヒー飲みながら待機。</p>
+<p>インストールが完了したら、下記コマンドでバージョンチェック</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew info mysql</span><br></pre></td></tr></table></figure>
+<p>私は「mysql: stable 5.6.21」だった。</p>
+<h2 id="mysqlへのログイン">mysqlへのログイン</h2><ol>
+<li><p>まずはmysqlを立ち上げる。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysql.server start&#10;Starting MySQL&#10;. SUCCESS!</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<pre><code>その他mysqlサーバーの操作に関しては、下記の通り。
+
+<span class="comment"><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysql.server&#10;Usage: mysql.server  &#123;start|stop|restart|reload|force-reload|status&#125;  [ MySQL server &#9;options ]</span><br></pre></td></tr></table></figure></span>
+</code></pre><ol>
+<li><p>サーバを立ち上げたらログイン</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysql</span><br></pre></td></tr></table></figure>
+<p> または</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysql -u root</span><br></pre></td></tr></table></figure>
+<p> 前者は一般？権限、後者は見たままroot権限でのログイン。root権限で行わないと、データベースの作成等が行えないので注意。</p>
+</li>
+</ol>
+<ol>
+<li><p>rootユーザーのパスワードの設定</p>
+<p> 下記コマンドでroot権限にパスワードを設定しておく。セキュリティ面そうだけど、これをしておかないとデータベースの作成が出来ないっぽい。やっておこう。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysqladmin -u root password &#65308;&#12497;&#12473;&#12527;&#12540;&#12489;&#65310;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>パスワードをコマンドで付与</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysql -u root -p</span><br></pre></td></tr></table></figure>
+<p> これでログイン前にパスワードの質問がくる。設定した通りに入力。</p>
+</li>
+</ol>
+<h2 id="SQLのデータ型">SQLのデータ型</h2><p>データベースを実際にいじる前にさらっておこう。</p>
+<ol>
+<li>数値型<ul>
+<li>int<ul>
+<li>他に「tinynt」「smallint」「mediumint」</li>
+</ul>
+</li>
+<li>float</li>
+<li>double</li>
+</ul>
+</li>
+<li><p>文字列型</p>
+<p> (M)は最大文字数を入力する。</p>
+<ul>
+<li>CHAR(M)<ul>
+<li>M個文字を格納出来る<strong>固定長</strong>の文字列。</li>
+<li>指定文字数に対して余った分には<strong>スペースが入る。</strong></li>
+<li>Mを記入しない場合は1文字の文字列。</li>
+</ul>
+</li>
+<li>VARCHAR(M)<br>  <em> M個文字を格納出来る<em>*可変長</em></em>の文字列。<ul>
+<li>Mは0～255の範囲で指定</li>
+<li>格納する文字列の最後にスペースが入っていても<strong>削除されて</strong>格納される。</li>
+</ul>
+</li>
+<li>TEXT<ul>
+<li>最大長が 65535バイトの可変長文字列。</li>
+<li>テキストデータを格納する。</li>
+</ul>
+</li>
+<li>BLOB<ul>
+<li>バイナリデータを格納する。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2015/02/19/article8/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
       <time datetime="2015-02-18T13:08:06.000Z"><a href="/2015/02/18/article15/">Wed, Feb 18 2015</a></time>
 
   
@@ -712,138 +946,6 @@
       
         <div class="alignleft">
             <a href="/2015/02/11/article2/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
-        </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-      <time datetime="2015-02-03T17:14:07.000Z"><a href="/2015/02/04/article1/">Wed, Feb 4 2015</a></time>
-
-  
-    <h1 class="title"><a href="/2015/02/04/article1/">android端末を接続してADBが使えないとき</a></h1>
-  
-
-
-
-  
-  <div class="tags">
-  	<i class="fa fa-tag"></i>
-    <a href="/tags/android/">android</a>
-  </div>
-
-<div class="clear"></div>
-      
-    </header>
-    <div class="entry">
-      
-        <p>androidアプリにて不具合を見つけたとき、その原因を探るためにADB(Android Debug Bridge)を使用します(今日知った)。</p>
-<p>しかしこのADB、端末によっては認識させるための設定が必要な場合が・・・</p>
-<p>以下その備忘録</p>
-<ol>
-<li>adbを実行するユーザのホームディレクトリにある.androidというディレクトリ(C:\Users\ユーザ名.android)内に「adb_usb.ini」というファイルを作成し</li>
-<li><p>「0cd x0A5C」と書く</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#covia&#10;0X0A5C</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<pre><code><span class="comment"><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#SHARP&#10;0x04DD</span><br></pre></td></tr></table></figure></span>
-
-取得したデータは、標準出力へ送られる。
-</code></pre><ol>
-<li><p>ADBを再起動するために「adb kill-server」を実行する</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /Applications/eclipse/sdk/platform-tools&#10;adb kill-server&#10;adb start-server</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>読み込まれる！</p>
-</li>
-</ol>
-
-      
-    </div>
-    <footer>
-      
-        <div class="alignleft">
-            <a href="/2015/02/04/article1/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
-        </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-      <time datetime="1969-12-31T15:00:00.000Z"><a href="/1970/01/01/EastProject/">Thu, Jan 1 1970</a></time>
-
-  
-    <h1 class="title"><a href="/1970/01/01/EastProject/">EastProject</a></h1>
-  
-
-
-  
-  <div class="categories">
-  	<i class="fa fa-folder-open"></i>
-    <a href="/categories/project/">project</a>
-  </div>
-
-
-<div class="clear"></div>
-      
-    </header>
-    <div class="entry">
-      
-        <h2 id="東◯的な弾幕ゲーム">東◯的な弾幕ゲーム</h2><p>作成中</p>
-<h2 id="作業記録記事">作業記録記事</h2><p>タグ検索；<a href="/tags/EastProject/">EastProject</a></p>
-<p>作成中のゲームも各記事に置いてあります。</p>
-
-      
-    </div>
-    <footer>
-      
-        <div class="alignleft">
-            <a href="/1970/01/01/EastProject/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
         </div>
         
         
