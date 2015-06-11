@@ -3,13 +3,28 @@
 <head>
   <meta charset="utf-8">
   
-  <title>ほのかー！作成記(敵出現機能追加) | 新米SWエンジニアのそこんところ</title>
+  <title>ほのCar！作成記(敵出現機能追加) | 新米SWエンジニアのそこんところ</title>
   <meta name="author" content="Tatsuya Yamamoto">
+  
+  <meta name="description" content="目次
+はじめに
+連載バックナンバー
+今日のゴール
+勉強したこと(忘れたことも)
+作ったもの
+紆余曲折
+ソースコード
+
+はじめに前回のゲームではJavaScriptとCanvasの基本を勉強してきましたが、さすがにゲームは人様にプレイしてもらうものだし・・・・ということで、ゲームとして(中身も外見も)リッチなものを作る！というのが次のゲームのコンセプト。
+外見のリッチは、画像と音声を再生させる機能で実現することで狙います。
+中身のリッチは、スマホ対応、画面遷移、ゲーム性(難易度の調整)、ツイッター連携、を実現することで狙います。
+学習のコンセプトとして、適宜にライブラリを利用することを設定しました。必要な機能は適宜、ライブラリを使って実現します。
+本連載記事は上記のコンセプトにもがき苦しむ、徒然なるままの作業記録です。">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="ほのかー！作成記(敵出現機能追加)"/>
+  <meta property="og:title" content="ほのCar！作成記(敵出現機能追加)"/>
   <meta property="og:site_name" content="新米SWエンジニアのそこんところ"/>
 
   
@@ -78,17 +93,62 @@
       <time datetime="2015-06-07T13:18:49.000Z"><a href="/2015/06/07/article-7/">Sun, Jun 7 2015</a></time>
 
   
-    <h1 class="title">ほのかー！作成記(敵出現機能追加)</h1>
+    <h1 class="title">ほのCar！作成記(敵出現機能追加)</h1>
   
 
 
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/CreateJS/">CreateJS</a>, <a href="/tags/JavaScript/">JavaScript</a>, <a href="/tags/ほのCar！/">ほのCar！</a>
+  </div>
 
 <div class="clear"></div>
       
     </header>
     <div class="entry">
       
-        
+        <h2 id="目次">目次</h2><ul>
+<li>はじめに</li>
+<li>連載バックナンバー</li>
+<li>今日のゴール</li>
+<li>勉強したこと(忘れたことも)</li>
+<li>作ったもの</li>
+<li>紆余曲折</li>
+<li>ソースコード</li>
+</ul>
+<h2 id="はじめに">はじめに</h2><p><a href="http://tatsuyayamamoto.github.io/1970/01/01/EastProject/">前回のゲーム</a>ではJavaScriptとCanvasの基本を勉強してきましたが、さすがにゲームは人様にプレイしてもらうものだし・・・・ということで、ゲームとして(中身も外見も)リッチなものを作る！というのが次のゲームのコンセプト。</p>
+<p>外見のリッチは、画像と音声を再生させる機能で実現することで狙います。</p>
+<p>中身のリッチは、スマホ対応、画面遷移、ゲーム性(難易度の調整)、ツイッター連携、を実現することで狙います。</p>
+<p>学習のコンセプトとして、適宜にライブラリを利用することを設定しました。必要な機能は適宜、ライブラリを使って実現します。</p>
+<p>本連載記事は上記のコンセプトにもがき苦しむ、徒然なるままの作業記録です。</p>
+<a id="more"></a>
+<h2 id="連載バックナンバー">連載バックナンバー</h2><p>タグ：<a href="/tags/EastProject/">ほのCar！</a></p>
+<p>各記事のまとめはタグまかせ</p>
+<h2 id="今日のゴール">今日のゴール</h2><p>敵を出現させるアルゴリズムこそがセンスでしょうか。定番が分からない。</p>
+<h3 id="ボタンの画像自身を(描画的な意味で)オブジェクト化する">ボタンの画像自身を(描画的な意味で)オブジェクト化する</h3><ul>
+<li>前回のゲーム作成では行わなかった、スマホ操作に合わせたUIを作成します。</li>
+<li>画像の表示にはimageオブジェクトが必要なのですが、Canvasの描画状は「１枚の絵」です。</li>
+<li>そのため、「画像をタッチ」というロジックが簡単に実装出来ません。</li>
+<li>素のCanvasでは(基本的に)座標しか扱えないため、「画像(ボタン)をタッチ」を実現するには、1. 画像を表示して、2. 画像の表示範囲に合わせた座標範囲を別で決める。3. その範囲を操作可能なエリアにして、そこをタッチ！・・・と途方も無いロジックでタッチ操作をする羽目になります。</li>
+</ul>
+<h3 id="CreateJS">CreateJS</h3><ul>
+<li>上の難題を解消するためには、画像を描画的にオブジェクトとして定義して、「画像をタッチ」を実現させます。</li>
+<li>そのためにライブラリを導入します。</li>
+<li>なんとなく見つけたCreateJSを使います。</li>
+</ul>
+<h2 id="新しく勉強したこと(忘れたことも)">新しく勉強したこと(忘れたことも)</h2><ul>
+<li>CreateJS</li>
+<li>PreLoadJS</li>
+<li>TweenJS</li>
+</ul>
+<p>学習した点が多すぎるので、別記事にそれぞれのポイントを書きます。</p>
+<h2 id="作ったもの">作ったもの</h2><p><a href="http://tatsuyayamamoto.github.io/honocar/">ほのかー！</a></p>
+<p>ボタンが描画されている範囲でタッチ(クリックが有効になっています)</p>
+<h2 id="紆余曲折">紆余曲折</h2><p>多すぎる・・・・。学習内容にリンクしているので、そちらに譲ることにします。あ、画像とイベントを紐付けるためのCreateJSに行き着くまでが大変でした。</p>
+<h2 id="ソースコード">ソースコード</h2><p>今回の実装の主旨からはそれますが、ゲームを構成するjsファイルをまとめておきます。この骨組みは今後も変わらない予定。</p>
+<h3 id="main-js">main.js</h3>
       
     </div>
     <footer>
@@ -96,6 +156,8 @@
           
           <div class="clearfix"></div>
           <nav id="pagination">
+  
+    <a href="/2015/06/08/article-8/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>Next</a>
   
   
     <a href="/2015/06/04/article-4/" class="alignright next">Prev<i class="fa fa-long-arrow-right"></i></a>

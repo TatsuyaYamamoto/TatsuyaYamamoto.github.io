@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>android端末を接続してADBが使えないとき | 新米SWエンジニアのそこんところ</title>
+  <title>Javaでチャットサーバーを作る計画(1.計画) | 新米SWエンジニアのそこんところ</title>
   <meta name="author" content="Tatsuya Yamamoto">
   
-  <meta name="description" content="androidアプリにて不具合を見つけたとき、その原因を探るためにADB(Android Debug Bridge)を使用します(今日知った)。
-しかしこのADB、端末によっては認識させるための設定が必要な場合が・・・
-以下その備忘録
-
-adbを実行するユーザのホームディレクトリにある.androi">
+  <meta name="description" content="社内勉強家にて、TCPでエコーサーバを作ろう！という話が出たので、ちょいちょいとネットワーク周りを(鬼基礎から)勉強しているこの頃。
+どうせアプリ作るなら、色気出したいぞ！！と、気合だけはいっちょ前なので、チャットサーバーを作って見ようと思います。
+といっても、いきなりそんなもん作れるほど現実甘くないのは、昨年からいやという程学んでます。
+ソケット通信？なんぞや？から始まった本件の勉強ですが、とりあえず必要そうな機能(開発)を幾つかに頭で分けることが出来るところまで来たので、まずは一番近いマイルストーンまで到達することを目標にします。
+マイルストーンを元にそれぞれの勉強をして、実装を行って、最終的にチャットサーバーまで持っていきます！">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="android端末を接続してADBが使えないとき"/>
+  <meta property="og:title" content="Javaでチャットサーバーを作る計画(1.計画)"/>
   <meta property="og:site_name" content="新米SWエンジニアのそこんところ"/>
 
   
@@ -81,10 +81,10 @@ adbを実行するユーザのホームディレクトリにある.androi">
   <div class="post-content">
     <header>
       
-      <time datetime="2015-02-03T17:14:07.000Z"><a href="/2015/02/04/article1/">Wed, Feb 4 2015</a></time>
+      <time datetime="2015-06-10T12:36:18.000Z"><a href="/2015/06/10/article-10/">Wed, Jun 10 2015</a></time>
 
   
-    <h1 class="title">android端末を接続してADBが使えないとき</h1>
+    <h1 class="title">Javaでチャットサーバーを作る計画(1.計画)</h1>
   
 
 
@@ -92,7 +92,7 @@ adbを実行するユーザのホームディレクトリにある.androi">
   
   <div class="tags">
   	<i class="fa fa-tag"></i>
-    <a href="/tags/android/">android</a>
+    <a href="/tags/ChatServer-project/">ChatServer-project</a>, <a href="/tags/Java/">Java</a>
   </div>
 
 <div class="clear"></div>
@@ -100,25 +100,29 @@ adbを実行するユーザのホームディレクトリにある.androi">
     </header>
     <div class="entry">
       
-        <p>androidアプリにて不具合を見つけたとき、その原因を探るためにADB(Android Debug Bridge)を使用します(今日知った)。</p>
-<p>しかしこのADB、端末によっては認識させるための設定が必要な場合が・・・</p>
-<p>以下その備忘録</p>
-<ol>
-<li>adbを実行するユーザのホームディレクトリにある.androidというディレクトリ(C:\Users\ユーザ名.android)内に「adb_usb.ini」というファイルを作成し</li>
-<li><p>「0cd x0A5C」と書く</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#covia&#10;0X0A5C</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<pre><code><span class="comment"><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#SHARP&#10;0x04DD</span><br></pre></td></tr></table></figure></span>
-
-取得したデータは、標準出力へ送られる。
-</code></pre><ol>
-<li><p>ADBを再起動するために「adb kill-server」を実行する</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /Applications/eclipse/sdk/platform-tools&#10;adb kill-server&#10;adb start-server</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>読み込まれる！</p>
-</li>
-</ol>
+        <p>社内勉強家にて、TCPでエコーサーバを作ろう！という話が出たので、ちょいちょいとネットワーク周りを(鬼基礎から)勉強しているこの頃。</p>
+<p>どうせアプリ作るなら、色気出したいぞ！！と、気合だけはいっちょ前なので、チャットサーバーを作って見ようと思います。</p>
+<p>といっても、いきなりそんなもん作れるほど現実甘くないのは、昨年からいやという程学んでます。</p>
+<p>ソケット通信？なんぞや？から始まった本件の勉強ですが、とりあえず必要そうな機能(開発)を幾つかに頭で分けることが出来るところまで来たので、まずは一番近いマイルストーンまで到達することを目標にします。</p>
+<p>マイルストーンを元にそれぞれの勉強をして、実装を行って、最終的にチャットサーバーまで持っていきます！</p>
+<a id="more"></a>
+<p>今回は初回らしく、計画のみ書きます。</p>
+<h2 id="開発の流れ(理想)">開発の流れ(理想)</h2><h3 id="1-_TCPサーバーを構築して、ソケット通信ができるようになる。">1. TCPサーバーを構築して、ソケット通信ができるようになる。</h3><ul>
+<li>ユーザーのコネクション要求に対してソケットを作成する</li>
+<li>書き込みをそのまま返すエコーサーバー</li>
+</ul>
+<h3 id="2-_複数のユーザーのコネクションに対応出来るようになる。">2. 複数のユーザーのコネクションに対応出来るようになる。</h3><ul>
+<li>ユーザーにソケットを作成して、複数のリクエストに対応出来るサーバーを作る(マルチスレッド？)</li>
+<li>ユーザー毎の通信はない(エコーが共有されない)</li>
+</ul>
+<h3 id="3-_任意のユーザーの書き込みがブロードキャストできる">3. 任意のユーザーの書き込みがブロードキャストできる</h3><ul>
+<li>サーバーに送った文字列が、サーバーを接続しているすべてのユーザーに送られる</li>
+</ul>
+<h3 id="4-_特定のユーザーに向けて、文字列を送れるようにする">4. 特定のユーザーに向けて、文字列を送れるようにする</h3><ul>
+<li>文字列と宛先の要素をサーバーに送れるようにする</li>
+<li>宛先に従ったユーザーのみに、文字列を送信する</li>
+</ul>
+<p>こんなもんですかねぇ・・・・ザルな予感がぷんぷんしますが、とりあえず、こんな感じで、行こうかと思います。がんばろー（・８・）</p>
 
       
     </div>
@@ -128,10 +132,8 @@ adbを実行するユーザのホームディレクトリにある.androi">
           <div class="clearfix"></div>
           <nav id="pagination">
   
-    <a href="/2015/02/11/article2/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>Next</a>
   
-  
-    <a href="/1970/01/01/tags/" class="alignright next">Prev<i class="fa fa-long-arrow-right"></i></a>
+    <a href="/2015/06/08/article-8/" class="alignright next">Prev<i class="fa fa-long-arrow-right"></i></a>
   
   <div class="clearfix"></div>
 </nav>
