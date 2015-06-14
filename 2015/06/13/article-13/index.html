@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>ほのかー！作成記 (1. ボタン画像をオブジェクト化する) | 新米SWエンジニアのそこんところ</title>
+  <title>ほのCar！作成記(twitter機能実装) | 新米SWエンジニアのそこんところ</title>
   <meta name="author" content="Tatsuya Yamamoto">
   
   <meta name="description" content="目次
@@ -24,7 +24,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="ほのかー！作成記 (1. ボタン画像をオブジェクト化する)"/>
+  <meta property="og:title" content="ほのCar！作成記(twitter機能実装)"/>
   <meta property="og:site_name" content="新米SWエンジニアのそこんところ"/>
 
   
@@ -90,10 +90,10 @@
   <div class="post-content">
     <header>
       
-      <time datetime="2015-05-24T14:33:15.000Z"><a href="/2015/05/24/article-24/">Sun, May 24 2015</a></time>
+      <time datetime="2015-06-13T03:27:41.000Z"><a href="/2015/06/13/article-13/">Sat, Jun 13 2015</a></time>
 
   
-    <h1 class="title">ほのかー！作成記 (1. ボタン画像をオブジェクト化する)</h1>
+    <h1 class="title">ほのCar！作成記(twitter機能実装)</h1>
   
 
 
@@ -126,81 +126,21 @@
 <a id="more"></a>
 <h2 id="連載バックナンバー">連載バックナンバー</h2><p>タグ：<a href="/tags/EastProject/">ほのCar！</a></p>
 <p>各記事のまとめはタグまかせ</p>
-<h2 id="今日のゴール">今日のゴール</h2><p>今回のゲーム作成はむしろこれがやりたかったがため・・・・</p>
-<h3 id="ボタンの画像自身を(描画的な意味で)オブジェクト化する">ボタンの画像自身を(描画的な意味で)オブジェクト化する</h3><ul>
-<li>前回のゲーム作成では行わなかった、スマホ操作に合わせたUIを作成します。</li>
-<li>画像の表示にはimageオブジェクトが必要なのですが、Canvasの描画状は「１枚の絵」です。</li>
-<li>そのため、「画像をタッチ」というロジックが簡単に実装出来ません。</li>
-<li>素のCanvasでは(基本的に)座標しか扱えないため、「画像(ボタン)をタッチ」を実現するには、1. 画像を表示して、2. 画像の表示範囲に合わせた座標範囲を別で決める。3. その範囲を操作可能なエリアにして、そこをタッチ！・・・と途方も無いロジックでタッチ操作をする羽目になります。</li>
-</ul>
-<h3 id="CreateJS">CreateJS</h3><ul>
-<li>上の難題を解消するためには、画像を描画的にオブジェクトとして定義して、「画像をタッチ」を実現させます。</li>
-<li>そのためにライブラリを導入します。</li>
-<li>なんとなく見つけたCreateJSを使います。</li>
+<h2 id="今日のゴール">今日のゴール</h2><p>やっぱりブラウザゲームならお手軽にツイッターに点数報告出来ないとね</p>
+<h3 id="点数に対応したコメントが入力されている、ツイートページにリンクさせる">点数に対応したコメントが入力されている、ツイートページにリンクさせる</h3><ul>
+<li>ゲームのポイントの変数を使って、ツイート分を設定</li>
+<li>ゲームタイトルのハッシュタグを付ける</li>
+<li>ゲームのURLを貼る</li>
 </ul>
 <h2 id="新しく勉強したこと(忘れたことも)">新しく勉強したこと(忘れたことも)</h2><ul>
-<li>CreateJS</li>
-<li>PreLoadJS</li>
-<li>TweenJS</li>
+<li>twitter intent</li>
 </ul>
-<p>学習した点が多すぎるので、別記事にそれぞれのポイントを書きます。</p>
+<p><a href="">こちらの記事でまとめました</a></p>
 <h2 id="作ったもの">作ったもの</h2><p><a href="http://tatsuyayamamoto.github.io/honocar/">ほのかー！</a></p>
 <p>ボタンが描画されている範囲でタッチ(クリックが有効になっています)</p>
-<p><img src="./1.png" alt="ゲーム画面"></p>
-<p>左右のボタン画像をたっちするとホノカチャンが動きます。やったー！</p>
-<p>車が大変な出現しているところは次回以降に修正で・・・。</p>
 <h2 id="紆余曲折">紆余曲折</h2><p>多すぎる・・・・。学習内容にリンクしているので、そちらに譲ることにします。あ、画像とイベントを紐付けるためのCreateJSに行き着くまでが大変でした。</p>
 <h2 id="ソースコード">ソースコード</h2><p>今回の実装の主旨からはそれますが、ゲームを構成するjsファイルをまとめておきます。この骨組みは今後も変わらない予定。</p>
-<h3 id="main-js">main.js</h3><p>メイン・・・と言っても、ゲームの基本要素の初期化と最初の画面の関数を実行するクラス。</p>
-<ul>
-<li>ゲームの基本要素の初期化<ul>
-<li>Canvasの2Dコンテキストの登録(CreateJSでは”ステージ”を作成する)</li>
-<li>ウィンドウサイズを読み取って、画像の拡大率を計算(使用する画像の大きさ調整用)</li>
-<li>スマホでのスライドスクロール禁止<ul>
-<li>jQueryを使った</li>
-<li>これウェブゲームには大事</li>
-</ul>
-</li>
-<li>タッチイベントの有効化<ul>
-<li>PCではクリック。スマホではタッチ。が同義のイベントとして登録できるように</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="common-js">common.js</h3><p>変数宣言、定数宣言、共通利用する関数を記述するjsファイル</p>
-<p>変数宣言、定数宣言は特に真新しくないけれど、今回新しく作成したのが<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;</span><br></pre></td></tr></table></figure></p>
-<p>function initGameScreenScale(){</p>
-<pre><code><span class="keyword">if</span>(<span class="built_in">window</span>.innerHeight/<span class="built_in">window</span>.innerWidth &lt; GAMESCREAN_HEIGHT/GAMESCREAN_WIDTH){
-    gameScreenScale = <span class="built_in">window</span>.innerHeight/GAMESCREAN_HEIGHT;
-}<span class="keyword">else</span>{
-    gameScreenScale = <span class="built_in">window</span>.innerWidth/GAMESCREAN_WIDTH;
-}
-
-gameScrean.height = GAMESCREAN_HEIGHT*gameScreenScale;
-gameScrean.width = GAMESCREAN_WIDTH*gameScreenScale;
-</code></pre><p>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;###gameEngine.js&#10;&#10;&#12466;&#12540;&#12512;&#20966;&#29702;&#12434;&#25285;&#12358;js&#12501;&#12449;&#12452;&#12523;&#12290;&#12373;&#12377;&#12364;&#12395;&#20966;&#29702;&#20869;&#23481;&#12364;&#22810;&#12356;&#12398;&#12391;&#12289;&#29420;&#31435;&#12373;&#12379;&#12390;&#12356;&#12414;&#12377;&#12290;&#10;&#10;###stateMachine.js&#10;&#10;&#21508;&#30011;&#38754;(&#29366;&#24907;)&#12434;&#25345;&#12388;js&#12501;&#12449;&#12452;&#12523;&#12290;&#12371;&#12371;&#12398;&#38306;&#25968;&#12363;&#12425;&#21508;&#30011;&#38754;&#12398;&#20966;&#29702;&#12364;&#38283;&#22987;&#12375;&#12289;&#20182;&#12398;&#30011;&#38754;(&#29366;&#24907;)&#12408;&#36983;&#31227;&#12375;&#12414;&#12377;&#12290;&#10;&#10;&#12392;&#12426;&#12354;&#12360;&#12378;&#20316;&#25104;&#12375;&#12383;&#12364;&#19979;&#12398;6&#12388;&#12290;&#12371;&#12428;&#12391;&#20844;&#38283;&#12377;&#12427;&#12466;&#12540;&#12512;&#12398;&#30011;&#38754;&#25968;&#12392;&#12375;&#12390;&#12399;&#21313;&#20998;&#12391;&#12375;&#12423;&#12358;&#12290;</span><br></pre></td></tr></table></figure></p>
-<p>//ロード画面—————————————————————<br>function loadState(){</p>
-<p>}<br>//TOP画面—————————————————————<br>function topState(){</p>
-<p>}<br>//操作説明画面—————————————————————<br>function howToPlayState(){  </p>
-<p>}<br>//クレジット画面—————————————————————<br>function creditState(){</p>
-<p>}<br>//ゲーム画面—————————————————————<br>function gameState(){</p>
-<p>}<br>//GAMEOVER画面—————————————————————<br>function gameOverState(){</p>
-<p>}<br>```</p>
-<h3 id="content-js">content.js</h3><p>使用する素材をロードするjsファイル。主にPreLoadJSのロード機能が集中しています。</p>
-<h3 id="character-js">character.js</h3><p>登場人物をまとめるjsファイル</p>
-<p>現在の登場人物はプレイキャラクターと敵キャラクター</p>
-<ul>
-<li>プレイヤ<ul>
-<li>honoka</li>
-</ul>
-</li>
-<li>敵<ul>
-<li>car</li>
-</ul>
-</li>
-</ul>
-
+<h3 id="main-js">main.js</h3>
       
     </div>
     <footer>
@@ -209,10 +149,10 @@ gameScrean.width = GAMESCREAN_WIDTH*gameScreenScale;
           <div class="clearfix"></div>
           <nav id="pagination">
   
-    <a href="/2015/05/25/article-25/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>Next</a>
+    <a href="/2015/06/14/article-14/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>Next</a>
   
   
-    <a href="/2015/05/22/article-22/" class="alignright next">Prev<i class="fa fa-long-arrow-right"></i></a>
+    <a href="/2015/06/11/article-11/" class="alignright next">Prev<i class="fa fa-long-arrow-right"></i></a>
   
   <div class="clearfix"></div>
 </nav>

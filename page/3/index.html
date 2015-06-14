@@ -107,6 +107,190 @@
   <div class="post-content">
     <header>
       
+      <time datetime="2015-05-15T12:29:15.000Z"><a href="/2015/05/15/article-15/">Fri, May 15 2015</a></time>
+
+  
+    <h1 class="title"><a href="/2015/05/15/article-15/">スプライトシートからアニメーションをつくる(EaselJS, ShoesBox)</a></h1>
+  
+
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/EaselJS/">EaselJS</a>, <a href="/tags/ShoesBox/">ShoesBox</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <ol>
+<li>スプライトシートを作成する</li>
+<li>EaseJSでアニメーションを実装する</li>
+</ol>
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2015/05/15/article-15/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2015-05-07T12:19:57.000Z"><a href="/2015/05/07/article-7/">Thu, May 7 2015</a></time>
+
+  
+    <h1 class="title"><a href="/2015/05/07/article-7/">Tickerクラスでタイマーを管理する(EaselJS)</a></h1>
+  
+
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/CreateJS/">CreateJS</a>, <a href="/tags/Javascript/">Javascript</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <p>ゲームは時間経過とともに変化(描画、プレイヤー操作、各フェーズの処理)していくので、時間管理を行うする処理を盛り込まないといけません。</p>
+<p>・・・・ほんとかな？勝手にそう考えました。</p>
+<p>ライブラリを使用しないで素のJavascriptでゲームを構築していたときは、以下のとおり、無名関数を”setTimeoutメソッド”でループさせ、処理の最後に”変数frameCount”をインクリメントすることで、時間進行を表していました。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(function()&#123;&#10;&#9;if(true)&#123;&#10;&#9;&#9;//&#20309;&#12363;&#20966;&#29702;&#10;&#9;&#9;//&#32368;&#12426;&#36820;&#12375;&#10;&#9;&#9;setTimeout(arguments.callee, FPS);&#10;&#9;&#9;//&#12501;&#12524;&#12540;&#12512;&#25968;&#22679;&#21152;&#10;&#9;&#9;frameCount++;&#10;&#9;&#125;else&#123;&#10;&#9;&#9;gameOverState();&#10;&#9;&#125;&#10;&#125;)();</span><br></pre></td></tr></table></figure>
+<p>現在ゲーム作成用に導入しているEaselJSには時間管理を行う”Tickerクラス”というものがあるらしいので、早速調べてみました。(内部的にはsetTimeoutを一元管理してるそうです)</p>
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2015/05/07/article-7/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2015-05-07T03:14:39.000Z"><a href="/2015/05/07/article-6/">Thu, May 7 2015</a></time>
+
+  
+    <h1 class="title"><a href="/2015/05/07/article-6/">CreateJSにスマホブラウザ内のイベントを登録する</a></h1>
+  
+
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/CreateJS/">CreateJS</a>, <a href="/tags/Javascript/">Javascript</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <p>clickイベントを登録したCanvas要素を設置したhtmlファイルをスマホのブラウザで開いて、指定要素をタップすると、暗転していて選択を行ってしまいます(↓参考画像)。</p>
+<p><img src="/2015/05/07/1.png" alt="暗転イメージ"></p>
+<p>Canvasを画像の描画のみで使用していれば特に不都合は起きないのですが、Canvas要素内でのユーザーの操作を要求する場合、この挙動はイライラします。</p>
+<p>CreateJSのイベント処理はPCでのイベントが基本になっているようで、touchstartの操作も行えません。</p>
+<p>clickイベントでタップ操作を処理するわけですが、タップした指を話した瞬間にイベント処理が行われます。</p>
+<ol>
+<li>タップ開始</li>
+<li>canvasを選択？(画面は暗転)</li>
+<li>指を離す</li>
+<li>イベント処理開始</li>
+</ol>
+<p>上記のような流れのため、すぐに指を離したとしてもユーザーの期待したタイミングでの動作が行えないため、いまいちなコンテンツに成り下がってしまいます。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (createjs.Touch.isSupported()) &#123;&#10;  createjs.Touch.enable(gameStage);&#10;&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2015/05/07/article-6/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
       <time datetime="2015-05-06T02:00:40.000Z"><a href="/2015/05/06/article/">Wed, May 6 2015</a></time>
 
   
@@ -267,10 +451,10 @@
   <div class="post-content">
     <header>
       
-      <time datetime="2015-04-25T13:19:53.000Z"><a href="/2015/04/25/article-25/">Sat, Apr 25 2015</a></time>
+      <time datetime="2015-04-25T13:19:53.000Z"><a href="/2015/04/25/article-29/">Sat, Apr 25 2015</a></time>
 
   
-    <h1 class="title"><a href="/2015/04/25/article-25/">Bitmapオブジェクトのプロパティは読み込みが完了してから取得する</a></h1>
+    <h1 class="title"><a href="/2015/04/25/article-29/">SoundJSを使って効果音を再生する</a></h1>
   
 
 
@@ -286,16 +470,14 @@
     </header>
     <div class="entry">
       
-        <p>タイトルだけでこの記事は終了です。お疲れ様でした。</p>
-<p>CreateJSのBitmapオブジェクトを使って読み込んだ画像のwidth、heightが取得できなくてやたら長い時間をかけてしまったので備忘録を。</p>
-<p>画像読み込みの完了前にイメージのプロパティを参照しても、ダメということです。</p>
-<p>前も同じようなことで引っかかったような・・・・</p>
+        <p>ゲームを作っているならば、効果音を再生しなければならないでしょう！</p>
+<p>という訳で、現在作成中のゲームで使用しているライブラリ「CreateJS」に含まれている「SoundJS」を導入してみたので、使い方のメモをします。<br>
       
     </div>
     <footer>
       
         <div class="alignleft">
-            <a href="/2015/04/25/article-25/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+            <a href="/2015/04/25/article-29/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
         </div>
         
         
@@ -325,10 +507,10 @@
   <div class="post-content">
     <header>
       
-      <time datetime="2015-04-25T13:19:53.000Z"><a href="/2015/04/25/article-29/">Sat, Apr 25 2015</a></time>
+      <time datetime="2015-04-25T13:19:53.000Z"><a href="/2015/04/25/article-25/">Sat, Apr 25 2015</a></time>
 
   
-    <h1 class="title"><a href="/2015/04/25/article-29/">SoundJSを使って効果音を再生する</a></h1>
+    <h1 class="title"><a href="/2015/04/25/article-25/">Bitmapオブジェクトのプロパティは読み込みが完了してから取得する</a></h1>
   
 
 
@@ -344,14 +526,16 @@
     </header>
     <div class="entry">
       
-        <p>ゲームを作っているならば、効果音を再生しなければならないでしょう！</p>
-<p>という訳で、現在作成中のゲームで使用しているライブラリ「CreateJS」に含まれている「SoundJS」を導入してみたので、使い方のメモをします。<br>
+        <p>タイトルだけでこの記事は終了です。お疲れ様でした。</p>
+<p>CreateJSのBitmapオブジェクトを使って読み込んだ画像のwidth、heightが取得できなくてやたら長い時間をかけてしまったので備忘録を。</p>
+<p>画像読み込みの完了前にイメージのプロパティを参照しても、ダメということです。</p>
+<p>前も同じようなことで引っかかったような・・・・</p>
       
     </div>
     <footer>
       
         <div class="alignleft">
-            <a href="/2015/04/25/article-29/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+            <a href="/2015/04/25/article-25/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
         </div>
         
         
@@ -470,188 +654,6 @@
       
         <div class="alignleft">
             <a href="/2015/04/19/article-17/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
-        </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-      <time datetime="2015-04-16T12:51:16.000Z"><a href="/2015/04/16/article-16/">Thu, Apr 16 2015</a></time>
-
-  
-    <h1 class="title"><a href="/2015/04/16/article-16/">bashファイルの種類はいくつ？</a></h1>
-  
-
-
-
-  
-  <div class="tags">
-  	<i class="fa fa-tag"></i>
-    <a href="/tags/Unix-Linux/">Unix/Linux</a>
-  </div>
-
-<div class="clear"></div>
-      
-    </header>
-    <div class="entry">
-      
-        <p>業務でエンカウントした手順書にbashファイルに書き加える作業がありました。</p>
-<p>ん？</p>
-<p>.bashrc？</p>
-<p>俺、~/.bash_profileしか知らない・・・・(参照:<a href="/2015/02/19/article11/">パスを通す？環境変数？….bashファイル？</a>)</p>
-<p>複数個あるらしいこのbashファイルにはどんな種類があるのか、、、</p>
-      
-    </div>
-    <footer>
-      
-        <div class="alignleft">
-            <a href="/2015/04/16/article-16/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
-        </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-      <time datetime="2015-04-10T14:50:34.000Z"><a href="/2015/04/10/article-10/">Fri, Apr 10 2015</a></time>
-
-  
-    <h1 class="title"><a href="/2015/04/10/article-10/">配列とArrayListの違い</a></h1>
-  
-
-
-
-  
-  <div class="tags">
-  	<i class="fa fa-tag"></i>
-    <a href="/tags/Java/">Java</a>
-  </div>
-
-<div class="clear"></div>
-      
-    </header>
-    <div class="entry">
-      
-        <p>なにげなーく使っていた配列ですが</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String moji[] = new String[5]</span><br></pre></td></tr></table></figure>
-<p>ちょいちょい聞いていたArrayListって同じ”array”だけど説明できないなーと思い、そこんところを調べます。<br>
-      
-    </div>
-    <footer>
-      
-        <div class="alignleft">
-            <a href="/2015/04/10/article-10/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
-        </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-      <time datetime="2015-04-07T11:21:07.000Z"><a href="/2015/04/07/article-07/">Tue, Apr 7 2015</a></time>
-
-  
-    <h1 class="title"><a href="/2015/04/07/article-07/">JavaScriptで東◯的な弾幕ゲームを作るvol.8</a></h1>
-  
-
-
-
-  
-  <div class="tags">
-  	<i class="fa fa-tag"></i>
-    <a href="/tags/EastProject/">EastProject</a>, <a href="/tags/JavaScript/">JavaScript</a>
-  </div>
-
-<div class="clear"></div>
-      
-    </header>
-    <div class="entry">
-      
-        <h2 id="目次">目次</h2><ul>
-<li>はじめに</li>
-<li>連載バックナンバー</li>
-<li>今日のゴール</li>
-<li>勉強したこと(忘れたことも)</li>
-<li>作ったもの</li>
-<li>紆余曲折</li>
-<li>ソースコード</li>
-</ul>
-<h2 id="はじめに">はじめに</h2><p>プログラミングを勉強している者として何かを作らなければと頭を捻った結果、JavaScriptでゲームを作ることにしました。本連載記事はその徒然なるままの作業記録です。</p>
-<p>参考サイトをテキストに(最初だけ)某同人弾幕ゲーム的なものを目指します。どこまで機能を実装出来るかは・・・・未定で。</p>
-<p>参考サイト：<a href="http://qiita.com/doxas/items/9debec7e1f0c19bc8daa">javascriptで作るシューティングゲーム的な何か</a></p>
-      
-    </div>
-    <footer>
-      
-        <div class="alignleft">
-            <a href="/2015/04/07/article-07/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
         </div>
         
         

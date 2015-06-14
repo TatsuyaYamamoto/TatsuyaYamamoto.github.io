@@ -107,6 +107,286 @@
   <div class="post-content">
     <header>
       
+      <time datetime="2015-02-17T12:11:03.000Z"><a href="/2015/02/17/article5/">Tue, Feb 17 2015</a></time>
+
+  
+    <h1 class="title"><a href="/2015/02/17/article5/">GitHubPageとページジェネレーター(HEXO)でブログをやる!!(HEXO編)</a></h1>
+  
+
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/Git/">Git</a>, <a href="/tags/HEXO/">HEXO</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <h1 id="markdownでブログを書きたい！！">markdownでブログを書きたい！！</h1><p>と僕は思いました、<a href="/2015/02/16/introGitHubPages/">前回</a>(二期なのでビックリマークは２つ)。</p>
+<p>前回まででGitHubPagesの設定を完了させ、公にウェブページを公開する準備が出来ました。あとはブログを作って、それをデプロイするだけです<del>(だけというボリュームじゃない)</del>。</p>
+<p>今回のブログシステムの第一要求は</p>
+<h3 id="「MarkDownで記入した記事でブログを公開する」">「MarkDownで記入した記事でブログを公開する」</h3><p>です。</p>
+<p>そのために<strong>HEXO</strong>というサイトジェネレーターを採用しました。</p>
+<p>HEXOの選択の理由はNode.js製のページジェネレータだから。JavaScript超入門者の僕としては、将来的にこれをガンガンいじれるようになったら勉強になるかなという腹底算段。<del>というかRubyとか新しく勉強出来ないよ。</del></p>
+<p>それではHEXOを導入していきます。</p>
+<p><strong>→前の記事</strong><a href="/2015/02/16/introGitHubPages/">GitHubPageとページジェネレーター(HEXO)でブログをやる！(GitHubPages編))</a></p>
+<h2 id="ブログ公開までの流れ">ブログ公開までの流れ</h2><ol>
+<li>GitHubPagesの準備</li>
+<li>公開鍵の設定</li>
+<li>ページジェネレーター(HEXO)の準備　←今日はここから!!</li>
+<li>新しい記事を作成する</li>
+<li>公開用ページ作成、設置</li>
+</ol>
+<h2 id="ページジェネレーター(HEXO)の準備">ページジェネレーター(HEXO)の準備</h2><ol>
+<li><p>nvmのインストール</p>
+<p> Node Version ManagerをGitからインストールします。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone git://github.com/creationix/nvm.git ~/.nvm</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>nvmをコマンド</p>
+<p> パスが通っていないので、nvmコマンドを登録します。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ source ~/.nvm/nvm.sh</span><br></pre></td></tr></table></figure>
+<p> バージョンを確認してみる</p>
+</li>
+</ol>
+<pre><code><span class="comment"><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nvm --version&#10;0.23.3</span><br></pre></td></tr></table></figure></span>
+</code></pre><ol>
+<li><p>NodeJSのインストール</p>
+<p> インストールが可能なバージョン確認を確認します。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm ls-remote&#10;   &#12539;&#12539;&#12539;&#65288;&#30053;&#65289;&#10;v0.11.14&#10;v0.11.15&#10;v0.11.16&#10;v0.12.0&#10;iojs-v1.0.0&#10;iojs-v1.0.1&#10;iojs-v1.0.2&#10;   &#12539;&#12539;&#12539;&#65288;&#30053;&#65289;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<pre><code>偶数版が安定版らしいので、それをいんすと
+
+
+<span class="comment"><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nvm install v0.11.16&#10;########################################### 100.0%&#10;Now using node v0.11.16</span><br></pre></td></tr></table></figure></span>
+</code></pre><ol>
+<li><p>HEXOを導入する</p>
+<p> Node Package Managerはnvmのインストールに合わせて導入されます。パスも通されているので、コマンドもすぐ使えます。早速HEXOをインストールしましょう。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>ブログを作成</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init diary&#10;[info] Copying data&#10;[info] You are almost done! Don&#39;t forget to run `npm install` before you start blogging with Hexo!</span><br></pre></td></tr></table></figure>
+<p> 入力した名前のフォルダが作成されるので、管理しやすいディレクトリで打つ。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cd diary&#10;$ npm install</span><br></pre></td></tr></table></figure>
+<p> init後のアナウンス通り、忘れずにインストールを行います。（これ何やってるんだ？）やらないと他のhexoコマンドがエラーになります。</p>
+</li>
+</ol>
+<ol>
+<li><p>さっそくブログを確認</p>
+<p> HEXOで作成したブログはローカルサーバー内で確認することが出来ます。コマンドでserverを作動させて</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server&#10;[info] Hexo is running at http://localhost:4000/. Press Ctrl+C to stop.</span><br></pre></td></tr></table></figure>
+<p> <a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a>へアクセス！初期テーマファイルと初期ページファイル(markdown)で作成されたページを見られます。</p>
+<p> 確認が終わったら、「ctrl+c」で終了。これでサーバーが停止します。</p>
+</li>
+</ol>
+<h2 id="GitHubPagesへのデプロイの設定">GitHubPagesへのデプロイの設定</h2><ol>
+<li><p>設置先リポジトリの設定</p>
+<p> ページ作成で生成されたsampleBlog/_config.ymlを編集します。<br> Deploymentの項を設置予定ページの情報を記入します()今回はGitHub)。エンコードはUTF-8にしないとエラーが出るみたい。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># Deployment&#10;## Docs: http://hexo.io/docs/deployment.html&#10;deploy:&#10;type:</span><br></pre></td></tr></table></figure>
+<p> ↑を</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># Deployment&#10;## Docs: http://hexo.io/docs/deployment.html&#10;deploy:&#10;type: github&#10;repo: git@github.com:TatsuyaYamamoto/TatusyaYamamoto.github.io.git&#10;branch: master</span><br></pre></td></tr></table></figure>
+<p> ↑こんな感じにする。</p>
+<p> リポジトリ名はGitHubのページからコピペ。ブランチ名は特にこだわりがない限りmasterでいいでしょう。（仕様上他のがダメかは分かんない）</p>
+</li>
+<li><p>公開鍵の作成、登録</p>
+<p> GitHubへのデプロイに際して必要のようです。pushとかは出来るんだけれど、何故だろう。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen&#10;Generating public/private rsa key pair.</span><br></pre></td></tr></table></figure>
+<p> コマンド入力後に聞かれる質問は適当にenter連打でOK!</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ~/.ssh/id_rsa.pub | pbcopy</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<pre><code>作成された公開鍵の文字列をコピーして、GitHub内 [<span class="link_label">settings &gt; SSH keys</span>](<span class="link_url">https://github.com/settings/ssh</span>) で登録します。Titleは分かりやすいやつを適当に。
+</code></pre><h2 id="新しい記事を作成する">新しい記事を作成する</h2><p>さっそく新しい記事を作成してみましょう。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new firstArticle</span><br></pre></td></tr></table></figure>
+<p>new以降に書いたものがファイル、記事タイトルになります。ファイル名はそのまま記事のURLとしても使用されるので、英語で書くようにしましょう。記事タイトルはこの後編集します。</p>
+<p>今回作成されたfirstArticle.md</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">title: firstArticle&#10;date: 2015-02-18 00:30:02&#10;tags:&#10;---</span><br></pre></td></tr></table></figure>
+<ul>
+<li>titleは日本語で書きなおす。</li>
+<li>dateは好きな時間にいじり放題</li>
+<li>tagsには好きなタグを記入します。</li>
+<li>—-以下に記事を書く！</li>
+</ul>
+<h2 id="公開用ページ作成、設置">公開用ページ作成、設置</h2><p>設定も完了し記事も書いたので、早速GitHubPagesへページをデプロイしましょう。</p>
+<p>まずはhtmlファイルを作成します。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>そしてデプロイ</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>簡単！やった―！</p>
+<p>ちなみに上記２つのコマンドは「hexo g」「hexo d」省略、または「$ hexo d -g」で一度に行うことも出来る！更にやったー！</p>
+<p>一度ページファイルを削除したい場合は</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br></pre></td></tr></table></figure>
+<p>これでdb.jsonとpublicフォルダが削除されます。</p>
+<h2 id="定期的に更新する">定期的に更新する</h2><p>これが一番大変。ｳｵｵｵ</p>
+
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2015/02/17/article5/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2015-02-16T13:12:23.000Z"><a href="/2015/02/16/article4/">Mon, Feb 16 2015</a></time>
+
+  
+    <h1 class="title"><a href="/2015/02/16/article4/">GitHubPageとページジェネレーター(HEXO)でブログをやる！(GitHubPages編)</a></h1>
+  
+
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/Git/">Git</a>, <a href="/tags/HEXO/">HEXO</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <h1 id="markdownでブログを書きたい！">markdownでブログを書きたい！</h1><p>と僕は思いました。仕事中に手を出したmarkdown方式もなかなか快適であり、これでエンジニアブログの記事を書きたいと思って調査。無料のブログサービスでは、はてなブログがmarkdownの編集機能を持っていますが、ブラウザでの更新の煩わしさがどうしても拭い切れない・・・。</p>
+<p>―――んで、見つけたのがGithubPagesとHEXOでのブログ運営。MarkDownで書いた記事をhtmlファイルに変換して公開する・・・というものです。これはいいじゃないか！</p>
+<p><img src="/2015/02/16/article4/1.png" alt="かわ・・いい？"></p>
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2015/02/16/article4/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2015-02-15T17:10:25.000Z"><a href="/2015/02/16/article16/">Mon, Feb 16 2015</a></time>
+
+  
+    <h1 class="title"><a href="/2015/02/16/article16/">Apacheでファイル一覧を表示させないようにする</a></h1>
+  
+
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/Apache/">Apache</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <p>　DirectoryIndexディレクティブで指定したデフォルトファイル（index.htmlなど）が存在しないディレクトリにWebブラウザでアクセスすると、Apacheの設定によってはそのディレクトリのファイル一覧を表示する。</p>
+<p>これはApacheの設定ファイルhttpd.conf内の</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Options Indexes</span><br></pre></td></tr></table></figure>
+<p>によって、表示が許可されています。僕のmacではデフォルトでIndexesの記入がなかったので、許可されていませんでした。</p>
+<p>試しに許可して動作を確認します。</p>
+<p>ドキュメントルート内にtestフォルダを作り、index.html以外のファイルを幾つか作成しました。</p>
+<p><img src="/2015/02/16/article16/1.png" alt="サンプルファイル"></p>
+<p>httpd.conf内、250行付近のコマンドを変更します。Options内に”Indexes”を追記。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Options FollowSymLinks Multiviews Indexes</span><br></pre></td></tr></table></figure>
+<p>ブラウザからtestフォルダをアクセスしてみると・・・。</p>
+<p><img src="/2015/02/16/article16/2.png" alt="ブラウザ"></p>
+<p>見られました。これはセキュリティ的にもあれですね。追記したものを消しちゃってもいいのですが、拒否を明記する意味で、以下のように変更しました。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Options FollowSymLinks Multiviews -Indexes</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2015/02/16/article16/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
       <time datetime="2015-02-11T17:09:21.000Z"><a href="/2015/02/12/article3/">Thu, Feb 12 2015</a></time>
 
   
@@ -299,6 +579,63 @@
   <div class="post-content">
     <header>
       
+      <time datetime="1970-01-01T15:00:00.000Z"><a href="/1970/01/02/honocar/">Fri, Jan 2 1970</a></time>
+
+  
+    <h1 class="title"><a href="/1970/01/02/honocar/">ほのCar！</a></h1>
+  
+
+
+  
+  <div class="categories">
+  	<i class="fa fa-folder-open"></i>
+    <a href="/categories/project/">project</a>
+  </div>
+
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <h2 id="穂乃果ちゃんが車を避けるゲーム">穂乃果ちゃんが車を避けるゲーム</h2><p><a href="http://tatsuyayamamoto.github.io/honocar/">URL</a></p>
+<h2 id="作業記録記事">作業記録記事</h2><p>タグ検索；<a href="/tags/ほのCar！/">ほのCar！</a></p>
+
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/1970/01/02/honocar/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
       <time datetime="1969-12-31T15:00:00.000Z"><a href="/1970/01/01/tags/">Thu, Jan 1 1970</a></time>
 
   
@@ -319,113 +656,6 @@
       
         <div class="alignleft">
             <a href="/1970/01/01/tags/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
-        </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-      <time datetime="1969-12-31T15:00:00.000Z"><a href="/1970/01/01/project/">Thu, Jan 1 1970</a></time>
-
-  
-    <h1 class="title"><a href="/1970/01/01/project/">仮project</a></h1>
-  
-
-
-  
-  <div class="categories">
-  	<i class="fa fa-folder-open"></i>
-    <a href="/categories/project/">project</a>
-  </div>
-
-
-<div class="clear"></div>
-      
-    </header>
-    <div class="entry">
-      
-        
-      
-    </div>
-    <footer>
-      
-        <div class="alignleft">
-            <a href="/1970/01/01/project/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
-        </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-      <time datetime="1969-12-31T15:00:00.000Z"><a href="/1970/01/01/about/">Thu, Jan 1 1970</a></time>
-
-  
-    <h1 class="title"><a href="/1970/01/01/about/">このサイトについて</a></h1>
-  
-
-
-
-<div class="clear"></div>
-      
-    </header>
-    <div class="entry">
-      
-        <p>こんなの→　<img src="logo.png" alt="わたしです。"></p>
-<p>穀潰し新入社員の僕が、物理屋から使えないSWエンジニア、そしてちょっとはマシなエンジニアへ成長していく記録、というか勉強したことの備忘録です。</p>
-<p>全くの(IT的な意味での)初心者がSWエンジニアになるために何をするか。何を知らないか（全部だけど）を書いていきます。ウオオオ</p>
-
-      
-    </div>
-    <footer>
-      
-        <div class="alignleft">
-            <a href="/1970/01/01/about/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
         </div>
         
         
@@ -513,18 +743,12 @@
   <div class="post-content">
     <header>
       
-      <time datetime="1969-12-31T15:00:00.000Z"><a href="/1970/01/01/honocar/">Thu, Jan 1 1970</a></time>
+      <time datetime="1969-12-31T15:00:00.000Z"><a href="/1970/01/01/about/">Thu, Jan 1 1970</a></time>
 
   
-    <h1 class="title"><a href="/1970/01/01/honocar/">ほのCar！</a></h1>
+    <h1 class="title"><a href="/1970/01/01/about/">このサイトについて</a></h1>
   
 
-
-  
-  <div class="categories">
-  	<i class="fa fa-folder-open"></i>
-    <a href="/categories/project/">project</a>
-  </div>
 
 
 <div class="clear"></div>
@@ -532,15 +756,16 @@
     </header>
     <div class="entry">
       
-        <h2 id="穂乃果ちゃんが車を避けるゲーム">穂乃果ちゃんが車を避けるゲーム</h2><p><a href="http://tatsuyayamamoto.github.io/honocar/">URL</a></p>
-<h2 id="作業記録記事">作業記録記事</h2><p>タグ検索；<a href="/tags/ほのCar！/">ほのCar！</a></p>
+        <p>こんなの→　<img src="logo.png" alt="わたしです。"></p>
+<p>穀潰し新入社員の僕が、物理屋から使えないSWエンジニア、そしてちょっとはマシなエンジニアへ成長していく記録、というか勉強したことの備忘録です。</p>
+<p>全くの(IT的な意味での)初心者がSWエンジニアになるために何をするか。何を知らないか（全部だけど）を書いていきます。ウオオオ</p>
 
       
     </div>
     <footer>
       
         <div class="alignleft">
-            <a href="/1970/01/01/honocar/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+            <a href="/1970/01/01/about/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
         </div>
         
         

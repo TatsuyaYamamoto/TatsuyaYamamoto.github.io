@@ -107,6 +107,186 @@
   <div class="post-content">
     <header>
       
+      <time datetime="2015-05-31T15:00:00.000Z"><a href="/2015/06/01/article/">Mon, Jun 1 2015</a></time>
+
+  
+    <h1 class="title"><a href="/2015/06/01/article/">article</a></h1>
+  
+
+
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2015/06/01/article/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2015-05-29T14:02:11.000Z"><a href="/2015/05/29/article-29/">Fri, May 29 2015</a></time>
+
+  
+    <h1 class="title"><a href="/2015/05/29/article-29/">Node.jsでechoサーバー！</a></h1>
+  
+
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/Javascript/">Javascript</a>, <a href="/tags/Node-js/">Node.js</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2015/05/29/article-29/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2015-05-27T11:42:28.000Z"><a href="/2015/05/27/article-27/">Wed, May 27 2015</a></time>
+
+  
+    <h1 class="title"><a href="/2015/05/27/article-27/">開発者が語るNode.jsを・・・・・読む。(1)</a></h1>
+  
+
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/Javascript/">Javascript</a>, <a href="/tags/Node-js/">Node.js</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <p>最近暑いらしい、Node.jsを開発者自身が紹介した<a href="http://www.youtube.com/watch?v=jo_B4LTHi3I" target="_blank" rel="external">講演ビデオ</a>が公開されているらしく、それを”日本語”で要約したエントリーを読んでみました。</p>
+<ul>
+<li>参考エントリー<ul>
+<li><a href="http://www.publickey1.jp/blog/11/nodejs.html" target="_blank" rel="external">Node.jsとは何か、開発者ライアン・ダール氏が語る（前編）～ノンブロッキングとはどういうことか？</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="REPLで操作してみる">REPLで操作してみる</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ node&#10;&#62; 1+2&#10;3&#10;&#62; function add(a, b)&#123; return a+b; &#125;&#10;undefined&#10;&#62; add(2,2)&#10;4&#10;&#62; add(2,222)&#10;224&#10;&#62; add(&#34;2&#34;,222)&#10;&#39;2222&#39;</span><br></pre></td></tr></table></figure>
+<h3 id="jsファイルを使ってみる">jsファイルを使ってみる</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//hello-world.js&#10;&#10;setTimeout(function()&#123;&#10;&#9;console.log(&#34;&#12431;&#12540;&#12427;&#12393;&#34;);&#10;&#125;, 2000);&#10;&#10;console.log(&#34;&#12408;&#12429;&#12289;&#34;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ node hello-world.js &#10;&#12408;&#12429;&#12289;&#10;&#12431;&#12540;&#12427;&#12393;</span><br></pre></td></tr></table></figure>
+<h2 id="Node-jsの特徴">Node.jsの特徴</h2><p>asynchronousらしい。どういうこっちゃ・・・<a href="http://e-words.jp/w/%E9%9D%9E%E5%90%8C%E6%9C%9F.html" target="_blank" rel="external">なるほど？</a></p>
+<p>つまり、非同期処理のことですか(これもイマイチよく分かってない)。</p>
+<p>non-blockingとエントリーの頭にありましたが、要するに何かしらの処理が完了していなくても、完了しないと次に進めないところまで処理を進めて、完了していないとできない処理にたどりついた時に待機するってことですな。多分</p>
+<p>これがNode.jsの特徴・・・と(多分</p>
+<p>たしかに、上記の「へろ、わーるど」のサンプルプログラムではこのnon-blocking処理のお陰で、あとに記述されている”console.log(“へろ、”);”が先に出力されています。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setInterval(function()&#123;&#10;&#9;console.log(&#39;&#12431;&#12540;&#12427;&#12393;&#65281;&#39;)&#10;&#125;, 2000);&#10;&#10;console.log(&#39;&#12408;&#12429;&#12540;&#65281;&#39;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//hello-world2.js&#10;&#10;$ node hello-world2.js &#10;&#12408;&#12429;&#12540;&#65281;&#10;&#12431;&#12540;&#12427;&#12393;&#65281;&#10;&#12431;&#12540;&#12427;&#12393;&#65281;&#10;&#12431;&#12540;&#12427;&#12393;&#65281;&#10;&#12431;&#12540;&#12427;&#12393;&#65281;</span><br></pre></td></tr></table></figure>
+<p>2番目のスクリプトは終了せず動作し続け、プロンプトには戻らない。なぜか？<br>これはNodeの大事な一面を示している。<br>これはコールバックがネットワークコネクションなりインターバルタイマーなりの呼び出しをずっと待っていことができる、ということなのだ。</p>
+<h2 id="並列処理">並列処理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var http = require(&#39;http&#39;);&#10;&#10;var s = http.createServer(function(req, res)&#123;&#10;&#9;res.writeHead(200, &#123;&#39;context-type&#39;:&#39;text/plain&#39;&#125;);&#10;&#9;res.end(&#39;hey!world!&#39;);&#10;&#125;);&#10;&#10;s.listen(8888);</span><br></pre></td></tr></table></figure>
+<p><img src="http://tatsuyayamamoto.github.io/2015/05/27/article-27/1.png" alt="nodeでwebサーバー"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl -i http://localhost:8888/&#10;HTTP/1.1 200 OK&#10;context-type: text/plain&#10;Date: Wed, 27 May 2015 13:07:49 GMT&#10;Connection: keep-alive&#10;Transfer-Encoding: chunked</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2015/05/27/article-27/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
       <time datetime="2015-05-26T13:48:55.000Z"><a href="/2015/05/26/article-26/">Tue, May 26 2015</a></time>
 
   
@@ -489,190 +669,6 @@
       
         <div class="alignleft">
             <a href="/2015/05/19/article-19/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
-        </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-      <time datetime="2015-05-15T12:29:15.000Z"><a href="/2015/05/15/article-15/">Fri, May 15 2015</a></time>
-
-  
-    <h1 class="title"><a href="/2015/05/15/article-15/">スプライトシートからアニメーションをつくる(EaselJS, ShoesBox)</a></h1>
-  
-
-
-
-  
-  <div class="tags">
-  	<i class="fa fa-tag"></i>
-    <a href="/tags/EaselJS/">EaselJS</a>, <a href="/tags/ShoesBox/">ShoesBox</a>
-  </div>
-
-<div class="clear"></div>
-      
-    </header>
-    <div class="entry">
-      
-        <ol>
-<li>スプライトシートを作成する</li>
-<li>EaseJSでアニメーションを実装する</li>
-</ol>
-      
-    </div>
-    <footer>
-      
-        <div class="alignleft">
-            <a href="/2015/05/15/article-15/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
-        </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-      <time datetime="2015-05-07T12:19:57.000Z"><a href="/2015/05/07/article-7/">Thu, May 7 2015</a></time>
-
-  
-    <h1 class="title"><a href="/2015/05/07/article-7/">Tickerクラスでタイマーを管理する(EaselJS)</a></h1>
-  
-
-
-
-  
-  <div class="tags">
-  	<i class="fa fa-tag"></i>
-    <a href="/tags/CreateJS/">CreateJS</a>, <a href="/tags/Javascript/">Javascript</a>
-  </div>
-
-<div class="clear"></div>
-      
-    </header>
-    <div class="entry">
-      
-        <p>ゲームは時間経過とともに変化(描画、プレイヤー操作、各フェーズの処理)していくので、時間管理を行うする処理を盛り込まないといけません。</p>
-<p>・・・・ほんとかな？勝手にそう考えました。</p>
-<p>ライブラリを使用しないで素のJavascriptでゲームを構築していたときは、以下のとおり、無名関数を”setTimeoutメソッド”でループさせ、処理の最後に”変数frameCount”をインクリメントすることで、時間進行を表していました。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(function()&#123;&#10;&#9;if(true)&#123;&#10;&#9;&#9;//&#20309;&#12363;&#20966;&#29702;&#10;&#9;&#9;//&#32368;&#12426;&#36820;&#12375;&#10;&#9;&#9;setTimeout(arguments.callee, FPS);&#10;&#9;&#9;//&#12501;&#12524;&#12540;&#12512;&#25968;&#22679;&#21152;&#10;&#9;&#9;frameCount++;&#10;&#9;&#125;else&#123;&#10;&#9;&#9;gameOverState();&#10;&#9;&#125;&#10;&#125;)();</span><br></pre></td></tr></table></figure>
-<p>現在ゲーム作成用に導入しているEaselJSには時間管理を行う”Tickerクラス”というものがあるらしいので、早速調べてみました。(内部的にはsetTimeoutを一元管理してるそうです)</p>
-      
-    </div>
-    <footer>
-      
-        <div class="alignleft">
-            <a href="/2015/05/07/article-7/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
-        </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-      <time datetime="2015-05-07T03:14:39.000Z"><a href="/2015/05/07/article-6/">Thu, May 7 2015</a></time>
-
-  
-    <h1 class="title"><a href="/2015/05/07/article-6/">CreateJSにスマホブラウザ内のイベントを登録する</a></h1>
-  
-
-
-
-  
-  <div class="tags">
-  	<i class="fa fa-tag"></i>
-    <a href="/tags/CreateJS/">CreateJS</a>, <a href="/tags/Javascript/">Javascript</a>
-  </div>
-
-<div class="clear"></div>
-      
-    </header>
-    <div class="entry">
-      
-        <p>clickイベントを登録したCanvas要素を設置したhtmlファイルをスマホのブラウザで開いて、指定要素をタップすると、暗転していて選択を行ってしまいます(↓参考画像)。</p>
-<p><img src="/2015/05/07/1.png" alt="暗転イメージ"></p>
-<p>Canvasを画像の描画のみで使用していれば特に不都合は起きないのですが、Canvas要素内でのユーザーの操作を要求する場合、この挙動はイライラします。</p>
-<p>CreateJSのイベント処理はPCでのイベントが基本になっているようで、touchstartの操作も行えません。</p>
-<p>clickイベントでタップ操作を処理するわけですが、タップした指を話した瞬間にイベント処理が行われます。</p>
-<ol>
-<li>タップ開始</li>
-<li>canvasを選択？(画面は暗転)</li>
-<li>指を離す</li>
-<li>イベント処理開始</li>
-</ol>
-<p>上記のような流れのため、すぐに指を離したとしてもユーザーの期待したタイミングでの動作が行えないため、いまいちなコンテンツに成り下がってしまいます。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (createjs.Touch.isSupported()) &#123;&#10;  createjs.Touch.enable(gameStage);&#10;&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer>
-      
-        <div class="alignleft">
-            <a href="/2015/05/07/article-6/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
         </div>
         
         

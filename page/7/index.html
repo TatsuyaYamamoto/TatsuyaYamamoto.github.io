@@ -107,6 +107,215 @@
   <div class="post-content">
     <header>
       
+      <time datetime="2015-02-28T13:46:06.000Z"><a href="/2015/02/28/article14/">Sat, Feb 28 2015</a></time>
+
+  
+    <h1 class="title"><a href="/2015/02/28/article14/">Canvasを使ってみる(鬼基本、四角描画)</a></h1>
+  
+
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/canvas/">canvas</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <p>仕事先でもたま〜に耳にする「canvas」。<br>JavaScriptベースで図を描くことが出来る、html5の描画機能のことらしい。Javascriptをポチポチやっている者として、少し弄ってみるのもいいかも。</p>
+<p>―――ってことで、書いてみた。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//index.htmml&#10;&#10;&#60;html lang=&#34;ja&#34;&#62;&#10;&#60;head&#62;&#10;&#9;&#60;title&#62;&#12461;&#12515;&#12531;&#12496;&#12473;&#32244;&#32722;&#65297;&#60;/title&#62;&#10;&#9;&#60;meta charset=&#34;utf-8&#34;&#62;&#10;&#9;&#60;script src=&#34;main.js&#34;&#62;&#60;/script&#62;&#10;&#60;/head&#62;&#10;&#60;body&#62;&#10;&#9;&#60;h1&#62;&#12356;&#12391;&#12424;&#30011;&#20687;&#65281;&#60;/h1&#62;&#10;&#9;//&#12371;&#12371;&#12398;canvas&#12479;&#12464;&#12391;&#35373;&#32622;&#12290;&#10;&#9;&#60;canvas id=&#34;myCanvas&#34; width=&#34;300&#34; height=&#34;300&#34;&#62;&#60;/canvas&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//main.js&#10;&#10;//canvas&#12479;&#12464;&#20869;&#12398;id&#12395;&#23550;&#24540;&#12373;&#12379;&#12390;&#12289;&#10;var cnvs = document.getElementById(&#34;myCanvas&#34;);&#10;//getContext&#12391;&#28310;&#20633;&#23436;&#20102;&#12290;&#10;var cntxt = cnvs.getContext(&#39;2d&#39;);&#10;&#10;//canvas&#12479;&#12464;&#20869;&#12398;&#32294;&#27178;&#12434;&#21560;&#12387;&#12390;&#10;var w = cnvs.width;&#10;var h = cnvs.height;&#10;&#10;//&#10;cntxt.fillStyle = &#34;#ff0000&#34;;&#10;cntxt.fillRect(w * 0.1, h * 0.1, w * 0.8, h * 0.8);</span><br></pre></td></tr></table></figure>
+<p>どれどれ・・・・？</p>
+<p><img src="/2015/2/28/article14/1.png" alt="失敗"></p>
+<p>ふぉ？！！</p>
+<p>全く表示されていない・・・スペルミスもない、はず。</p>
+<p>safariでエラーの詳細を見てみると、「TypeError: null is not an object (evaluating ‘cnvs.getContext’)」とのこと。つまり、main.jsの最初で宣言した変数”cnvs”がnullなので、２行目のgetContexrメソッドが使えないそうです。</p>
+<p>はて、どういうことだ。canvasタグの要素をしっかり吸えていないということ・・・・？</p>
+<p>〜〜〜〜１時間半悩む〜〜〜〜〜</p>
+<p>あ、もしや・・・・。</p>
+<p><img src="2.png" alt="成功"></p>
+<p>出来た・・・・。どうやらCanvasタグの要素からJavascriptでオブジェクトを作るには、先にタグをブラウザが読み込んでからじゃないと行え見たいらしいです。</p>
+<p>（canvasだけじゃない・・・？今の私にはまだ分かりません(白目）)</p>
+<p>canvasタグが読み込まれたあとで、JavaScript内のgetElementByIdメソッドを走らせるために、イベントハンドラを使います(さっき名前を覚えた)。</p>
+<p>onloadでbody内を読み込み完了してから、そのメソッド内の処理(今回は四角の描写のコード)を行うようにすることで、無事成功しました。</p>
+<p>あぁ、超入門でこの調子は、先が思いやられます。</p>
+
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2015/02/28/article14/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2015-02-25T13:37:43.000Z"><a href="/2015/02/25/article13/">Wed, Feb 25 2015</a></time>
+
+  
+    <h1 class="title"><a href="/2015/02/25/article13/">Vagrantで仮想マシンをローカルに作る！(マシン作成)</a></h1>
+  
+
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/Server-side/">Server-side</a>, <a href="/tags/Sever/">Sever</a>, <a href="/tags/Vagrant/">Vagrant</a>, <a href="/tags/VirtualBox/">VirtualBox</a>, <a href="/tags/Virtualization/">Virtualization</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <p><img src="/2015/02/25/article13/1.png" alt="べんりなやつ"></p>
+<h2 id="boxファイルをDL、vagrantに追加">boxファイルをDL、vagrantに追加</h2><p>CentOS6.5のboxファイルを手に入れる。</p>
+<p><a href="https://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.5-x86_64-v20140504.box" target="_blank" rel="external">https://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.5-x86_64-v20140504.box</a></p>
+<p>適当なディレクトリに手に入れたboxファイルを入れて、下のコマンドを叩きます。第１項はboxファイルの登録名、第２項はboxファイルの場所を書きます。今回はそのまま「CentOS6.5」としました。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vagrant box add CentOS6.5 CentOS-6.5-x86_64-v20140504.box &#10;==&#62; box: Adding box &#39;CentOS6.5&#39; (v0) for provider: &#10;    box: Downloading: file:///Users/TATSUYA-PC4/server/CentOS-6.5-x86_64-v20140504.box&#10;==&#62; box: Successfully added box &#39;CentOS6.5&#39; (v0) for &#39;virtualbox&#39;!</span><br></pre></td></tr></table></figure>
+<p>boxファイルが読み込まれたものがリスト表示されます。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vagrant box list&#10;CentOS6.4 (virtualbox, 0)&#10;CentOS6.5 (virtualbox, 0)&#10;CentOS7   (virtualbox, 0)</span><br></pre></td></tr></table></figure>
+<h2 id="vagrantファイルの作成">vagrantファイルの作成</h2><p>いよいよ仮想マシンを作成します。initコマンドのあとに、仮想マシンの作成に使用するboxファイルの名前を指定します。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vagrant init centos6.5</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2015/02/25/article13/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+      <time datetime="2015-02-21T05:28:59.000Z"><a href="/2015/02/21/article12/">Sat, Feb 21 2015</a></time>
+
+  
+    <h1 class="title"><a href="/2015/02/21/article12/">Apacheの設定ファイル(http.conf)のそこんところ</a></h1>
+  
+
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/Apache/">Apache</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <p>WebサーバーのApacheの設定ファイル、「httpd.conf」を見ていきます。</p>
+<p>そこんところブログらしく、あっちこっちも見て行きません。とりあえず気になったところを</p>
+<h2 id="ServerRoot">ServerRoot</h2><p>Apacheをインストールした場所のパス。以降のディレクトリ指定で相対パスを利用する場合等に利用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># ServerRoot: The top of the directory tree under which the server&#39;s&#10;# configuration, error, and log files are kept.&#10;#&#10;# Do not add a slash at the end of the directory path.  If you point&#10;# ServerRoot at a non-local disk, be sure to specify a local disk on the&#10;# Mutex directive, if file-based mutexes are used.  If you wish to share the&#10;# same ServerRoot for multiple httpd daemons, you will need to change at&#10;# least PidFile.&#10;#&#10;ServerRoot &#34;/usr&#34;</span><br></pre></td></tr></table></figure>
+<p>以降の出てくるファイルのパス表記では、このディレクトリを起点とする相対パス表記されているものがチラホラ。基本デフォルトのまんまかな？</p>
+<h2 id="Listen">Listen</h2><p>特定のIPアドレスやポート番号だけを受け付ける指定。VirtualHostではここの設定のポート範囲内のみ使用できる</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># Listen: Allows you to bind Apache to specific IP addresses and/or&#10;# ports, instead of the default. See also the &#60;VirtualHost&#62;&#10;# directive.&#10;#&#10;# Change this to Listen on specific IP addresses as shown below to &#10;# prevent Apache from glomming onto all bound IP addresses.&#10;#&#10;#Listen 12.34.56.78:80&#10;Listen 80</span><br></pre></td></tr></table></figure>
+<h2 id="LoadModule">LoadModule</h2><p>ApacheにはWebサーバーとしてのコア機能以外にも、認証や圧縮転送など様々な付加機能がそれら付加機能をApacheはモジュールとして提供されており、選択可能なモジュール構造で様々なクライアントからのアクセスでも適材適所な機能を提供することが出来ます。</p>
+<p>現在使用されているモジュールを確認するには、</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apachectl -M&#10;//&#12414;&#12383;&#12399;&#10;$ httpd -M</span><br></pre></td></tr></table></figure>
+<p>各モジュール名の後ろには(static)または(shared)という記載があります。<br>Apacheのモジュールはstatic(静的)なものと、shared(動的？)なものに分けられます。Apacheのインストール時から組み込まれているstaticモジュールはモジュールの使用の有無にかかわらずApacheに組み込まれ続けるもの、一方sharedモジュールは設定ファイルで有効無効を切り替えられるます。</p>
+<h2 id="DocumentRoot">DocumentRoot</h2><p>ウェブサーバー(これ、Apache)がクライアントからのリクエストに対して応答するコンテンツを格納する場所を記述します。</p>
+<p>ルートディレクトリを指定しているので、例えばWebサーバーを持っている端末から「<a href="http://localhost/」でアクセスした結果は、このディレクトリ内のindex.htmlが表示されます。" target="_blank" rel="external">http://localhost/」でアクセスした結果は、このディレクトリ内のindex.htmlが表示されます。</a></p>
+<h2 id="DirectoryIndex">DirectoryIndex</h2><p>上記の通り、「<a href="http://localhost/」でアクセスした場合はDocumentRoot内のindex.htmlをレスポンスとして返します。" target="_blank" rel="external">http://localhost/」でアクセスした場合はDocumentRoot内のindex.htmlをレスポンスとして返します。</a></p>
+<p>ファイル名を指定しない(ディレクトリ名のみの)場合に返すファイルの名前をDirectoryIndexで指定します。index.html以外が良い場合はここを変更する。</p>
+<h2 id="IfModule">IfModule</h2><p><ifmodule>タグ内に書かれたモジュールが読み込まれた時にタグで挟まれた設定、処理を行われます。</ifmodule></p>
+<h2 id="Directory">Directory</h2><p><directory>タグ内で書かれたディレクトリの範囲のみに設定を反映させることが出来ます。</directory></p>
+<h2 id="AllowOverride">AllowOverride</h2><p>上位のディレクトリで設定したものを下位ディレクトリで変更することを許可するかを記述します。AllowOverride None の場合は、下位ディレクトリの設定で変更することはできません。一方、AllowOverride All の場合は変更することができます。</p>
+
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2015/02/21/article12/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
       <time datetime="2015-02-19T14:12:00.000Z"><a href="/2015/02/19/article11/">Thu, Feb 19 2015</a></time>
 
   
@@ -738,286 +947,6 @@ Query OK, <span class="number">0</span> rows affected <span class="params">(<spa
       
         <div class="alignleft">
             <a href="/2015/02/18/article6/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
-        </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-      <time datetime="2015-02-17T12:11:03.000Z"><a href="/2015/02/17/article5/">Tue, Feb 17 2015</a></time>
-
-  
-    <h1 class="title"><a href="/2015/02/17/article5/">GitHubPageとページジェネレーター(HEXO)でブログをやる!!(HEXO編)</a></h1>
-  
-
-
-
-  
-  <div class="tags">
-  	<i class="fa fa-tag"></i>
-    <a href="/tags/Git/">Git</a>, <a href="/tags/HEXO/">HEXO</a>
-  </div>
-
-<div class="clear"></div>
-      
-    </header>
-    <div class="entry">
-      
-        <h1 id="markdownでブログを書きたい！！">markdownでブログを書きたい！！</h1><p>と僕は思いました、<a href="/2015/02/16/introGitHubPages/">前回</a>(二期なのでビックリマークは２つ)。</p>
-<p>前回まででGitHubPagesの設定を完了させ、公にウェブページを公開する準備が出来ました。あとはブログを作って、それをデプロイするだけです<del>(だけというボリュームじゃない)</del>。</p>
-<p>今回のブログシステムの第一要求は</p>
-<h3 id="「MarkDownで記入した記事でブログを公開する」">「MarkDownで記入した記事でブログを公開する」</h3><p>です。</p>
-<p>そのために<strong>HEXO</strong>というサイトジェネレーターを採用しました。</p>
-<p>HEXOの選択の理由はNode.js製のページジェネレータだから。JavaScript超入門者の僕としては、将来的にこれをガンガンいじれるようになったら勉強になるかなという腹底算段。<del>というかRubyとか新しく勉強出来ないよ。</del></p>
-<p>それではHEXOを導入していきます。</p>
-<p><strong>→前の記事</strong><a href="/2015/02/16/introGitHubPages/">GitHubPageとページジェネレーター(HEXO)でブログをやる！(GitHubPages編))</a></p>
-<h2 id="ブログ公開までの流れ">ブログ公開までの流れ</h2><ol>
-<li>GitHubPagesの準備</li>
-<li>公開鍵の設定</li>
-<li>ページジェネレーター(HEXO)の準備　←今日はここから!!</li>
-<li>新しい記事を作成する</li>
-<li>公開用ページ作成、設置</li>
-</ol>
-<h2 id="ページジェネレーター(HEXO)の準備">ページジェネレーター(HEXO)の準備</h2><ol>
-<li><p>nvmのインストール</p>
-<p> Node Version ManagerをGitからインストールします。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone git://github.com/creationix/nvm.git ~/.nvm</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol>
-<li><p>nvmをコマンド</p>
-<p> パスが通っていないので、nvmコマンドを登録します。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ source ~/.nvm/nvm.sh</span><br></pre></td></tr></table></figure>
-<p> バージョンを確認してみる</p>
-</li>
-</ol>
-<pre><code><span class="comment"><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nvm --version&#10;0.23.3</span><br></pre></td></tr></table></figure></span>
-</code></pre><ol>
-<li><p>NodeJSのインストール</p>
-<p> インストールが可能なバージョン確認を確認します。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm ls-remote&#10;   &#12539;&#12539;&#12539;&#65288;&#30053;&#65289;&#10;v0.11.14&#10;v0.11.15&#10;v0.11.16&#10;v0.12.0&#10;iojs-v1.0.0&#10;iojs-v1.0.1&#10;iojs-v1.0.2&#10;   &#12539;&#12539;&#12539;&#65288;&#30053;&#65289;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<pre><code>偶数版が安定版らしいので、それをいんすと
-
-
-<span class="comment"><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nvm install v0.11.16&#10;########################################### 100.0%&#10;Now using node v0.11.16</span><br></pre></td></tr></table></figure></span>
-</code></pre><ol>
-<li><p>HEXOを導入する</p>
-<p> Node Package Managerはnvmのインストールに合わせて導入されます。パスも通されているので、コマンドもすぐ使えます。早速HEXOをインストールしましょう。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol>
-<li><p>ブログを作成</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init diary&#10;[info] Copying data&#10;[info] You are almost done! Don&#39;t forget to run `npm install` before you start blogging with Hexo!</span><br></pre></td></tr></table></figure>
-<p> 入力した名前のフォルダが作成されるので、管理しやすいディレクトリで打つ。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cd diary&#10;$ npm install</span><br></pre></td></tr></table></figure>
-<p> init後のアナウンス通り、忘れずにインストールを行います。（これ何やってるんだ？）やらないと他のhexoコマンドがエラーになります。</p>
-</li>
-</ol>
-<ol>
-<li><p>さっそくブログを確認</p>
-<p> HEXOで作成したブログはローカルサーバー内で確認することが出来ます。コマンドでserverを作動させて</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server&#10;[info] Hexo is running at http://localhost:4000/. Press Ctrl+C to stop.</span><br></pre></td></tr></table></figure>
-<p> <a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a>へアクセス！初期テーマファイルと初期ページファイル(markdown)で作成されたページを見られます。</p>
-<p> 確認が終わったら、「ctrl+c」で終了。これでサーバーが停止します。</p>
-</li>
-</ol>
-<h2 id="GitHubPagesへのデプロイの設定">GitHubPagesへのデプロイの設定</h2><ol>
-<li><p>設置先リポジトリの設定</p>
-<p> ページ作成で生成されたsampleBlog/_config.ymlを編集します。<br> Deploymentの項を設置予定ページの情報を記入します()今回はGitHub)。エンコードはUTF-8にしないとエラーが出るみたい。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># Deployment&#10;## Docs: http://hexo.io/docs/deployment.html&#10;deploy:&#10;type:</span><br></pre></td></tr></table></figure>
-<p> ↑を</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># Deployment&#10;## Docs: http://hexo.io/docs/deployment.html&#10;deploy:&#10;type: github&#10;repo: git@github.com:TatsuyaYamamoto/TatusyaYamamoto.github.io.git&#10;branch: master</span><br></pre></td></tr></table></figure>
-<p> ↑こんな感じにする。</p>
-<p> リポジトリ名はGitHubのページからコピペ。ブランチ名は特にこだわりがない限りmasterでいいでしょう。（仕様上他のがダメかは分かんない）</p>
-</li>
-<li><p>公開鍵の作成、登録</p>
-<p> GitHubへのデプロイに際して必要のようです。pushとかは出来るんだけれど、何故だろう。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen&#10;Generating public/private rsa key pair.</span><br></pre></td></tr></table></figure>
-<p> コマンド入力後に聞かれる質問は適当にenter連打でOK!</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ~/.ssh/id_rsa.pub | pbcopy</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<pre><code>作成された公開鍵の文字列をコピーして、GitHub内 [<span class="link_label">settings &gt; SSH keys</span>](<span class="link_url">https://github.com/settings/ssh</span>) で登録します。Titleは分かりやすいやつを適当に。
-</code></pre><h2 id="新しい記事を作成する">新しい記事を作成する</h2><p>さっそく新しい記事を作成してみましょう。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new firstArticle</span><br></pre></td></tr></table></figure>
-<p>new以降に書いたものがファイル、記事タイトルになります。ファイル名はそのまま記事のURLとしても使用されるので、英語で書くようにしましょう。記事タイトルはこの後編集します。</p>
-<p>今回作成されたfirstArticle.md</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">title: firstArticle&#10;date: 2015-02-18 00:30:02&#10;tags:&#10;---</span><br></pre></td></tr></table></figure>
-<ul>
-<li>titleは日本語で書きなおす。</li>
-<li>dateは好きな時間にいじり放題</li>
-<li>tagsには好きなタグを記入します。</li>
-<li>—-以下に記事を書く！</li>
-</ul>
-<h2 id="公開用ページ作成、設置">公開用ページ作成、設置</h2><p>設定も完了し記事も書いたので、早速GitHubPagesへページをデプロイしましょう。</p>
-<p>まずはhtmlファイルを作成します。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>そしてデプロイ</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>簡単！やった―！</p>
-<p>ちなみに上記２つのコマンドは「hexo g」「hexo d」省略、または「$ hexo d -g」で一度に行うことも出来る！更にやったー！</p>
-<p>一度ページファイルを削除したい場合は</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br></pre></td></tr></table></figure>
-<p>これでdb.jsonとpublicフォルダが削除されます。</p>
-<h2 id="定期的に更新する">定期的に更新する</h2><p>これが一番大変。ｳｵｵｵ</p>
-
-      
-    </div>
-    <footer>
-      
-        <div class="alignleft">
-            <a href="/2015/02/17/article5/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
-        </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-      <time datetime="2015-02-16T13:12:23.000Z"><a href="/2015/02/16/article4/">Mon, Feb 16 2015</a></time>
-
-  
-    <h1 class="title"><a href="/2015/02/16/article4/">GitHubPageとページジェネレーター(HEXO)でブログをやる！(GitHubPages編)</a></h1>
-  
-
-
-
-  
-  <div class="tags">
-  	<i class="fa fa-tag"></i>
-    <a href="/tags/Git/">Git</a>, <a href="/tags/HEXO/">HEXO</a>
-  </div>
-
-<div class="clear"></div>
-      
-    </header>
-    <div class="entry">
-      
-        <h1 id="markdownでブログを書きたい！">markdownでブログを書きたい！</h1><p>と僕は思いました。仕事中に手を出したmarkdown方式もなかなか快適であり、これでエンジニアブログの記事を書きたいと思って調査。無料のブログサービスでは、はてなブログがmarkdownの編集機能を持っていますが、ブラウザでの更新の煩わしさがどうしても拭い切れない・・・。</p>
-<p>―――んで、見つけたのがGithubPagesとHEXOでのブログ運営。MarkDownで書いた記事をhtmlファイルに変換して公開する・・・というものです。これはいいじゃないか！</p>
-<p><img src="/2015/02/16/article4/1.png" alt="かわ・・いい？"></p>
-      
-    </div>
-    <footer>
-      
-        <div class="alignleft">
-            <a href="/2015/02/16/article4/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
-        </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-      <time datetime="2015-02-15T17:10:25.000Z"><a href="/2015/02/16/article16/">Mon, Feb 16 2015</a></time>
-
-  
-    <h1 class="title"><a href="/2015/02/16/article16/">Apacheでファイル一覧を表示させないようにする</a></h1>
-  
-
-
-
-  
-  <div class="tags">
-  	<i class="fa fa-tag"></i>
-    <a href="/tags/Apache/">Apache</a>
-  </div>
-
-<div class="clear"></div>
-      
-    </header>
-    <div class="entry">
-      
-        <p>　DirectoryIndexディレクティブで指定したデフォルトファイル（index.htmlなど）が存在しないディレクトリにWebブラウザでアクセスすると、Apacheの設定によってはそのディレクトリのファイル一覧を表示する。</p>
-<p>これはApacheの設定ファイルhttpd.conf内の</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Options Indexes</span><br></pre></td></tr></table></figure>
-<p>によって、表示が許可されています。僕のmacではデフォルトでIndexesの記入がなかったので、許可されていませんでした。</p>
-<p>試しに許可して動作を確認します。</p>
-<p>ドキュメントルート内にtestフォルダを作り、index.html以外のファイルを幾つか作成しました。</p>
-<p><img src="/2015/02/16/article16/1.png" alt="サンプルファイル"></p>
-<p>httpd.conf内、250行付近のコマンドを変更します。Options内に”Indexes”を追記。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Options FollowSymLinks Multiviews Indexes</span><br></pre></td></tr></table></figure>
-<p>ブラウザからtestフォルダをアクセスしてみると・・・。</p>
-<p><img src="/2015/02/16/article16/2.png" alt="ブラウザ"></p>
-<p>見られました。これはセキュリティ的にもあれですね。追記したものを消しちゃってもいいのですが、拒否を明記する意味で、以下のように変更しました。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Options FollowSymLinks Multiviews -Indexes</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer>
-      
-        <div class="alignleft">
-            <a href="/2015/02/16/article16/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
         </div>
         
         
