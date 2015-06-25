@@ -107,6 +107,84 @@
   <div class="post-content">
     <header>
       
+      <time datetime="2015-02-18T01:09:30.000Z"><a href="/2015/02/18/article6/">Wed, Feb 18 2015</a></time>
+
+  
+    <h1 class="title"><a href="/2015/02/18/article6/">ApacheとTomcatってなんだし！</a></h1>
+  
+
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/Apache/">Apache</a>, <a href="/tags/server-side/">server-side</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <p>気持ちがはずむし～（大嘘）</p>
+<p>開発現場の当たり前を知らない新米の僕は「Apache」と「tomcat」の混在に非常に苦しめらました。</p>
+<p><img src="/2015/02/18/article6/1.jpg" alt="tomcatとapache"></p>
+<p>だって</p>
+<ul>
+<li><p>tomcat</p>
+<p>  Apache Tomcatは、Java ServletやJavaServer Pages (JSP) を実行するためのWebコンテナ（サ    ーブレットコンテナ、サーブレットエンジン）である。<br>   Apache Tomcat - ウィキペディア<br>  ja.wikipedia.org/wiki/Apache_Tomcat</p>
+</li>
+</ul>
+<ul>
+<li><p>apache</p>
+<p>  単にApacheとも称されている。 開発は、Apacheソフトウェア財団のApache HTTPサーバプロジェクトで    行われている。 Apache Licenseの下でソースコードが公開および配布されており、代表的なオープンソ    ースソフトウェアの一つである。<br>  Apache HTTP Server - ウィキペディア<br>  ja.wikipedia.org/wiki/Apache_HTTP_Server</p>
+</li>
+</ul>
+<p>・・・だよ？</p>
+<p>WebコンテナとHTTPサーバだから全然違うじゃん・・・というのもありますが、新人にはこのApacheという省略の仕方は卑怯だ。だってtomcatもApacheじゃん！</p>
+<p><img src="/2015/02/18/server-side_apacheAndTomcat/2.jpg" alt="tomcatとapache"></p>
+<p>そして名前もさることながら、tomcatにWebサーバー機能があるという・・・・なんだし！tomcatでjavaアプリケーションを動かしならwebサーバーとして使えばいいじゃん！と思うわけです。</p>
+<p>実際使い方もクリソツ。htmlファイルやらなんやらを設置して、localhostで見る・・・ってだけでもうごちゃごちゃになります。（実際は置くものもポートも違うのだけれど・・・）</p>
+<h2 id="TomcatとApacheの連携の理由">TomcatとApacheの連携の理由</h2><p>こんな具体的な疑問が出るだけでも自分の成長を実感することが出来ることは置いておいて、２つをわざわざ連携させて使用する理由を調べました。</p>
+<p>TomcatはJavaアプリケーションをサーバー側で動かす「Webアプリケーションサーバー」です。前述のとおり、これにはWebサーバ機能も有しますが、このWebサーバ機能は主に開発とデバッグ用に用意されたものらしく、性能に難があるらしいです。（この性能に関しては本記事では割愛）</p>
+<p>そこでApacheの出番。こちらはアクセスしてきたクライアントへ何らかのサービスを提供するためのWebサーバソフトウェア。Webアプリケーションサーバーの必要がない、HTMLや画像などの静的コンテンツはより高速なWebサーバーに処理させることで、動的コンテンツのみをアプリケーションサーバー（Tomcat）へ集中させることが出来ます。</p>
+<p>なるほどね〜（・８・）</p>
+
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2015/02/18/article6/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
       <time datetime="2015-02-17T12:11:03.000Z"><a href="/2015/02/17/article5/">Tue, Feb 17 2015</a></time>
 
   
@@ -726,63 +804,13 @@
 
 
 
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-      <time datetime="1969-12-31T15:00:00.000Z"><a href="/1970/01/01/about/">Thu, Jan 1 1970</a></time>
-
-  
-    <h1 class="title"><a href="/1970/01/01/about/">このサイトについて</a></h1>
-  
-
-
-
-<div class="clear"></div>
-      
-    </header>
-    <div class="entry">
-      
-        <p>こんなの→　<img src="logo.png" alt="わたしです。"></p>
-<p>穀潰し新入社員の僕が、物理屋から使えないSWエンジニア、そしてちょっとはマシなエンジニアへ成長していく記録、というか勉強したことの備忘録です。</p>
-<p>全くの(IT的な意味での)初心者がSWエンジニアになるために何をするか。何を知らないか（全部だけど）を書いていきます。ウオオオ</p>
-
-      
-    </div>
-    <footer>
-      
-        <div class="alignleft">
-            <a href="/1970/01/01/about/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
-        </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
     <a href="/page/7/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>上一頁</a>
   
+  
+    <a href="/page/9/" class="alignright next">下一頁<i class="fa fa-long-arrow-right"></i></a>
   
   <div class="clearfix"></div>
 </nav>

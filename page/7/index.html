@@ -107,6 +107,98 @@
   <div class="post-content">
     <header>
       
+      <time datetime="2015-03-02T14:34:20.000Z"><a href="/2015/03/02/article-1/">Mon, Mar 2 2015</a></time>
+
+  
+    <h1 class="title"><a href="/2015/03/02/article-1/">イベントハンドラ？JavaScriptでイベント処理をする！</a></h1>
+  
+
+
+
+  
+  <div class="tags">
+  	<i class="fa fa-tag"></i>
+    <a href="/tags/JavaScript/">JavaScript</a>
+  </div>
+
+<div class="clear"></div>
+      
+    </header>
+    <div class="entry">
+      
+        <p>html上でのユーザーの操作（イベント）に何か処理を紐付けるとき、イベントハンドラというものを使うそうです。クリックしたときの処理を書きたい場合は・・・</p>
+<ol>
+<li>HTMLの要素の属性として記述する</li>
+<li>ターゲットにaddEventListenerを登録する</li>
+</ol>
+<p>の２択（まだある？）。先日まで1の方法しか知りませんでした。<br>紐付けのコードが長い2の方法ですが、こちらは1と違って<strong>複数のハンドラを登録する</strong>ことが出来ます。</p>
+<p>今回、クリックイベントにフォーカスをあてて、そこんところを記述していきます。</p>
+<ol>
+<li><p>HTMLの要素の属性として記述する</p>
+<p> JavaScriptで関数を定義しておいて、</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function action()&#123;&#10;&#9;//&#33394;&#12293;&#20966;&#29702;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p> ボタンタグでボタンを配置し、属性としてonclickを記入します。属性値は定義しておいた関数名を書いておくことで、呼び出せます。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;button onclick=&#34;action()&#62;&#60;/button&#62;</span><br></pre></td></tr></table></figure>
+<p> これでクリックした時にaction()が処理されます。</p>
+</li>
+<li><p>ターゲットにaddEventListenerを登録する</p>
+<p> 一方、イベントリスナではボタンタグにid要素を追記します。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;button id=&#34;clickClick&#34;&#62;&#60;/button&#62;</span><br></pre></td></tr></table></figure>
+<p> id要素の属性を使って、ターゲットにイベントリスナを登録します。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var view = document.getElementById(&#34;clickClick&#34;);&#10;view.addEventListener(&#39;ckick&#39;, action, true);&#10;&#10;function action()&#123;&#10;&#9;//&#20966;&#29702;&#10;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<pre><code>「addEventListener()」に注目します。
+
+<span class="xml"><span class="comment"><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">addEventListener(type, listener [, useCapture]);</span><br></pre></td></tr></table></figure></span></span>
+
+
+<span class="bullet">* </span>typeは[<span class="link_label">イベントの種類</span>](<span class="link_url">https://developer.mozilla.org/ja/docs/Web/API/Event/type</span>)を記入する項。
+<span class="bullet">* </span>listenerはtypeで指定したイベントが発生するときに通知を受け取るオブジェクト
+<span class="bullet">* </span>useCaptureはイベントを受け取るタイミングを指定するらしいが、今よくわからない。また躓いたら調べよう。どうやら、
+
+<span class="code">    1. 親のtrue</span>
+<span class="code">    1. 子のtrue</span>
+<span class="code">    1. 子のfalse</span>
+<span class="code">    1. 親のfalse</span>
+
+の順番でイベントが発火するみたい。
+</code></pre>
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2015/03/02/article-1/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
       <time datetime="2015-02-28T13:46:06.000Z"><a href="/2015/02/28/article14/">Sat, Feb 28 2015</a></time>
 
   
@@ -869,84 +961,6 @@ Query OK, <span class="number">0</span> rows affected <span class="params">(<spa
       
         <div class="alignleft">
             <a href="/2015/02/18/article7/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
-        </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-      <time datetime="2015-02-18T01:09:30.000Z"><a href="/2015/02/18/article6/">Wed, Feb 18 2015</a></time>
-
-  
-    <h1 class="title"><a href="/2015/02/18/article6/">ApacheとTomcatってなんだし！</a></h1>
-  
-
-
-
-  
-  <div class="tags">
-  	<i class="fa fa-tag"></i>
-    <a href="/tags/Apache/">Apache</a>, <a href="/tags/server-side/">server-side</a>
-  </div>
-
-<div class="clear"></div>
-      
-    </header>
-    <div class="entry">
-      
-        <p>気持ちがはずむし～（大嘘）</p>
-<p>開発現場の当たり前を知らない新米の僕は「Apache」と「tomcat」の混在に非常に苦しめらました。</p>
-<p><img src="/2015/02/18/article6/1.jpg" alt="tomcatとapache"></p>
-<p>だって</p>
-<ul>
-<li><p>tomcat</p>
-<p>  Apache Tomcatは、Java ServletやJavaServer Pages (JSP) を実行するためのWebコンテナ（サ    ーブレットコンテナ、サーブレットエンジン）である。<br>   Apache Tomcat - ウィキペディア<br>  ja.wikipedia.org/wiki/Apache_Tomcat</p>
-</li>
-</ul>
-<ul>
-<li><p>apache</p>
-<p>  単にApacheとも称されている。 開発は、Apacheソフトウェア財団のApache HTTPサーバプロジェクトで    行われている。 Apache Licenseの下でソースコードが公開および配布されており、代表的なオープンソ    ースソフトウェアの一つである。<br>  Apache HTTP Server - ウィキペディア<br>  ja.wikipedia.org/wiki/Apache_HTTP_Server</p>
-</li>
-</ul>
-<p>・・・だよ？</p>
-<p>WebコンテナとHTTPサーバだから全然違うじゃん・・・というのもありますが、新人にはこのApacheという省略の仕方は卑怯だ。だってtomcatもApacheじゃん！</p>
-<p><img src="/2015/02/18/server-side_apacheAndTomcat/2.jpg" alt="tomcatとapache"></p>
-<p>そして名前もさることながら、tomcatにWebサーバー機能があるという・・・・なんだし！tomcatでjavaアプリケーションを動かしならwebサーバーとして使えばいいじゃん！と思うわけです。</p>
-<p>実際使い方もクリソツ。htmlファイルやらなんやらを設置して、localhostで見る・・・ってだけでもうごちゃごちゃになります。（実際は置くものもポートも違うのだけれど・・・）</p>
-<h2 id="TomcatとApacheの連携の理由">TomcatとApacheの連携の理由</h2><p>こんな具体的な疑問が出るだけでも自分の成長を実感することが出来ることは置いておいて、２つをわざわざ連携させて使用する理由を調べました。</p>
-<p>TomcatはJavaアプリケーションをサーバー側で動かす「Webアプリケーションサーバー」です。前述のとおり、これにはWebサーバ機能も有しますが、このWebサーバ機能は主に開発とデバッグ用に用意されたものらしく、性能に難があるらしいです。（この性能に関しては本記事では割愛）</p>
-<p>そこでApacheの出番。こちらはアクセスしてきたクライアントへ何らかのサービスを提供するためのWebサーバソフトウェア。Webアプリケーションサーバーの必要がない、HTMLや画像などの静的コンテンツはより高速なWebサーバーに処理させることで、動的コンテンツのみをアプリケーションサーバー（Tomcat）へ集中させることが出来ます。</p>
-<p>なるほどね〜（・８・）</p>
-
-      
-    </div>
-    <footer>
-      
-        <div class="alignleft">
-            <a href="/2015/02/18/article6/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
         </div>
         
         
