@@ -7,7 +7,16 @@
   <meta name="author" content="Tatsuya Yamamoto">
   
   <meta name="description" content="読んでいる本WebAPI The Good Parts
-今回のノート第1章　レスポンスデータの設計">
+目次(原文ママじゃない)
+WebAPIの概要
+APIエンドポイントとHTTPによるリクエスト
+HTTPレスポンス
+HTTPの仕様
+変更容易なWebAPI
+安全なAPI
+
+ノートバックナンバー
+今回のノート第1章　WebAPIの概要">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -85,9 +94,7 @@
   
     <li><a href="/categories/project/">project</a>&nbsp;<small>(2)</small></li>
   
-    <li><a href="/categories/study-note/">study note</a>&nbsp;<small>(0)</small></li>
-  
-    <li><a href="/categories/study-note/">study_note</a>&nbsp;<small>(2)</small></li>
+    <li><a href="/categories/study-note/">study_note</a>&nbsp;<small>(4)</small></li>
   
   </ul>
 </nav>
@@ -98,7 +105,7 @@
   <h3 class="title">Tags</h3>
   <ul>
   
-    <li><a href="/tags/API/">API</a>&nbsp;<small>(2)</small></li>
+    <li><a href="/tags/API/">API</a>&nbsp;<small>(4)</small></li>
   
     <li><a href="/tags/Apache/">Apache</a>&nbsp;<small>(6)</small></li>
   
@@ -124,7 +131,7 @@
   
     <li><a href="/tags/Http/">Http</a>&nbsp;<small>(2)</small></li>
   
-    <li><a href="/tags/Java/">Java</a>&nbsp;<small>(8)</small></li>
+    <li><a href="/tags/Java/">Java</a>&nbsp;<small>(10)</small></li>
   
     <li><a href="/tags/JavaScript/">JavaScript</a>&nbsp;<small>(20)</small></li>
   
@@ -138,11 +145,11 @@
   
     <li><a href="/tags/Node-js/">Node.js</a>&nbsp;<small>(5)</small></li>
   
-    <li><a href="/tags/Production/">Production</a>&nbsp;<small>(0)</small></li>
+    <li><a href="/tags/RESTful-Java-with-JAX-RS/">RESTful_Java_with_JAX-RS</a>&nbsp;<small>(2)</small></li>
   
     <li><a href="/tags/SAStruts/">SAStruts</a>&nbsp;<small>(1)</small></li>
   
-    <li><a href="/tags/Server-side/">Server-side</a>&nbsp;<small>(12)</small></li>
+    <li><a href="/tags/Server-side/">Server-side</a>&nbsp;<small>(14)</small></li>
   
     <li><a href="/tags/Sever/">Sever</a>&nbsp;<small>(1)</small></li>
   
@@ -212,8 +219,78 @@
   <section class="entry">
     
       <h2 id="読んでいる本">読んでいる本</h2><p><a href="http://www.amazon.co.jp/Web-API-The-Good-Parts/dp/4873116864" target="_blank" rel="external">WebAPI The Good Parts</a></p>
-<h2 id="今回のノート">今回のノート</h2><p>第1章　レスポンスデータの設計</p>
+<h3 id="目次(原文ママじゃない)">目次(原文ママじゃない)</h3><ol>
+<li>WebAPIの概要</li>
+<li>APIエンドポイントとHTTPによるリクエスト</li>
+<li>HTTPレスポンス</li>
+<li>HTTPの仕様</li>
+<li>変更容易なWebAPI</li>
+<li>安全なAPI</li>
+</ol>
+<p><a href="/tags/WebAPI_The_Good_Parts/">ノートバックナンバー</a></p>
+<h2 id="今回のノート">今回のノート</h2><p>第1章　WebAPIの概要</p>
 <a id="more"></a>
+<h3 id="1-_APIはいいぞ、どんどん公開しよう">1. APIはいいぞ、どんどん公開しよう</h3><ul>
+<li>イマドキのWebサービスはAPIを公開している<ul>
+<li>Amazon, Twitterは”無料”でAPIを公開している</li>
+<li>ユーザー、開発者が付加価値を与える</li>
+</ul>
+</li>
+<li>APIを前提にApp間の連携を期待したサービスもある<ul>
+<li>各機能を全て作らず(競合にならず)、連携させる</li>
+</ul>
+</li>
+<li>モバイルアプリをサーバーと連携させるためのWebAPI<ul>
+<li>HTTPでアクセスするのは同じ</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-_いろんな”API”がある">2. いろんな”API”がある</h3><ul>
+<li>ウェブサービスのデータの取得したり</li>
+<li>機能を利用したり</li>
+<li>ページに貼り付けるウィジェットだったり</li>
+<li>ページ遷移をしないでデータを取得させたり</li>
+<li>アプリケーション<ul>
+<li>クライアントとサーバの連携</li>
+<li>ソーシャルゲーム</li>
+<li>社内システム</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-_APIを公開するリスク・・・よりメリット！">3. APIを公開するリスク・・・よりメリット！</h3><ul>
+<li>ウェブサービスを作ったら全部APIで公開しよう！<ul>
+<li>コアじゃないものはやらなくていいかな、、、</li>
+</ul>
+</li>
+<li>リスクがないわけじゃない<ul>
+<li>でもそもそもまだ人気ないし</li>
+<li>人気あったらしっかり作れや</li>
+</ul>
+</li>
+<li>メリットはわんさか</li>
+</ul>
+<h3 id="4-_美しいWebAPIは大事">4. 美しいWebAPIは大事</h3><ul>
+<li>だって、開発者は使いやすいし</li>
+<li>設計変更も簡単になるし</li>
+<li>セキュリティ的にも有利だし</li>
+<li>他の開発者もみてるし、、、</li>
+</ul>
+<h3 id="5-_どうやれば美しくなるか">5. どうやれば美しくなるか</h3><ul>
+<li>仕様とデファクトスタンダートには従いましょ</li>
+</ul>
+<h3 id="6-_RESTなAPI">6. RESTなAPI</h3><ul>
+<li>本書ではRESTは置いときましょ<ul>
+<li>合致するところもあるし</li>
+<li>反することもあるし、、、</li>
+</ul>
+</li>
+</ul>
+<h3 id="7-_APIの設計思想">7. APIの設計思想</h3><ul>
+<li>不特定多数のへの公開か</li>
+<li>一部(限定じゃない)への公開か</li>
+<li>それぞれで想定は変わるよね</li>
+</ul>
+
     
   </section>
   <footer>

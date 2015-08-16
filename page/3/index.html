@@ -82,9 +82,7 @@
   
     <li><a href="/categories/project/">project</a>&nbsp;<small>(2)</small></li>
   
-    <li><a href="/categories/study-note/">study note</a>&nbsp;<small>(0)</small></li>
-  
-    <li><a href="/categories/study-note/">study_note</a>&nbsp;<small>(2)</small></li>
+    <li><a href="/categories/study-note/">study_note</a>&nbsp;<small>(4)</small></li>
   
   </ul>
 </nav>
@@ -95,7 +93,7 @@
   <h3 class="title">Tags</h3>
   <ul>
   
-    <li><a href="/tags/API/">API</a>&nbsp;<small>(2)</small></li>
+    <li><a href="/tags/API/">API</a>&nbsp;<small>(4)</small></li>
   
     <li><a href="/tags/Apache/">Apache</a>&nbsp;<small>(6)</small></li>
   
@@ -121,7 +119,7 @@
   
     <li><a href="/tags/Http/">Http</a>&nbsp;<small>(2)</small></li>
   
-    <li><a href="/tags/Java/">Java</a>&nbsp;<small>(8)</small></li>
+    <li><a href="/tags/Java/">Java</a>&nbsp;<small>(10)</small></li>
   
     <li><a href="/tags/JavaScript/">JavaScript</a>&nbsp;<small>(20)</small></li>
   
@@ -135,11 +133,11 @@
   
     <li><a href="/tags/Node-js/">Node.js</a>&nbsp;<small>(5)</small></li>
   
-    <li><a href="/tags/Production/">Production</a>&nbsp;<small>(0)</small></li>
+    <li><a href="/tags/RESTful-Java-with-JAX-RS/">RESTful_Java_with_JAX-RS</a>&nbsp;<small>(2)</small></li>
   
     <li><a href="/tags/SAStruts/">SAStruts</a>&nbsp;<small>(1)</small></li>
   
-    <li><a href="/tags/Server-side/">Server-side</a>&nbsp;<small>(12)</small></li>
+    <li><a href="/tags/Server-side/">Server-side</a>&nbsp;<small>(14)</small></li>
   
     <li><a href="/tags/Sever/">Sever</a>&nbsp;<small>(1)</small></li>
   
@@ -186,6 +184,130 @@
 </div></header>
     <section id="content" class="blog">
       
+  <article class="post">
+  <header>
+    
+  
+    <h1 class="title"><a href="/2015/06/11/article/">指定の文でツイートを共有する(Twitter Intent)</a></h1>
+  
+
+    
+      <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+    
+  </header>
+  <section class="entry">
+    
+      <p>ツイッターへのリンク(ボタン)だったり、任意のツイートをhtmlに埋め込むものはツイッターアカウントがあればすぐにそのタグやらが見つけられますが、、</p>
+<h4 id="予め指定した文やハッシュタグを相手にツイートさせるには・・・？">予め指定した文やハッシュタグを相手にツイートさせるには・・・？</h4><p>Twitter Intentというものを利用するらしいので、それをまとめて起きます。</p>
+<h2 id="Twitter_Intent">Twitter Intent</h2><p><a href="https://twitter.com/intent/tweet" target="_blank" rel="external">https://twitter.com/intent/tweet</a></p>
+<p>このURLで</p>
+<p><img src="1.png" alt=""></p>
+<p>このようなページも、</p>
+<p><a href="https://twitter.com/intent/tweet?hashtags=ほのCAR!&amp;text=科学の力ってすっげー！&amp;url=http://tatsuyayamamoto.github.io/" target="_blank" rel="external">https://twitter.com/intent/tweet?hashtags=ほのCAR!&amp;text=科学の力ってすっげー！&amp;url=http://tatsuyayamamoto.github.io/</a></p>
+<p>色々付け足すと、</p>
+<p><img src="2.png" alt=""></p>
+<p>色々変わります。</p>
+<h3 id="ツイート文">ツイート文</h3><p>text=(好きな文)</p>
+<h3 id="ハッシュタグ">ハッシュタグ</h3><p>hashtags=(好きなタグ)</p>
+<h3 id="URL">URL</h3><p>url=(お好きなサイト)</p>
+<h3 id="一度に使う">一度に使う</h3><p>それぞれの間に”&amp;”を付けるだけ！簡単！</p>
+
+    
+  </section>
+  <footer>
+    
+    <div class="clearfix"></div>
+    
+      <div class="alignleft widget">
+        
+        
+          <time datetime="2015-06-11T13:17:42.000Z"><a href="/2015/06/11/article/">Jun 11 2015</a></time>
+        
+        
+
+        
+  
+  <a href="/tags/Twitter/">#Twitter</a>
+
+
+      </div>
+      
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+
+
+  <article class="post">
+  <header>
+    
+  
+    <h1 class="title"><a href="/2015/06/10/article/">Javaでチャットサーバーを作る計画(1.計画)</a></h1>
+  
+
+    
+      <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+    
+  </header>
+  <section class="entry">
+    
+      <p>社内勉強家にて、TCPでエコーサーバを作ろう！という話が出たので、ちょいちょいとネットワーク周りを(鬼基礎から)勉強しているこの頃。</p>
+<p>どうせアプリ作るなら、色気出したいぞ！！と、気合だけはいっちょ前なので、チャットサーバーを作って見ようと思います。</p>
+<p>といっても、いきなりそんなもん作れるほど現実甘くないのは、昨年からいやという程学んでます。</p>
+<p>ソケット通信？なんぞや？から始まった本件の勉強ですが、とりあえず必要そうな機能(開発)を幾つかに頭で分けることが出来るところまで来たので、まずは一番近いマイルストーンまで到達することを目標にします。</p>
+<p>マイルストーンを元にそれぞれの勉強をして、実装を行って、最終的にチャットサーバーまで持っていきます！</p>
+    
+  </section>
+  <footer>
+    
+    <div class="clearfix"></div>
+    
+      <div class="alignleft widget">
+        
+        
+          <time datetime="2015-06-10T12:36:18.000Z"><a href="/2015/06/10/article/">Jun 10 2015</a></time>
+        
+        
+
+        
+  
+  <a href="/tags/ChatServer-project/">#ChatServer-project</a>, <a href="/tags/Java/">#Java</a>
+
+
+      </div>
+      
+        <div class="alignright">
+          <a href="/2015/06/10/article/#more" class="more-link">Read More</a>
+        </div>
+      
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+
+
   <article class="post">
   <header>
     
@@ -655,117 +777,6 @@
         
   
   <a href="/tags/Javascript/">#Javascript</a>, <a href="/tags/Node-js/">#Node.js</a>
-
-
-      </div>
-      
-    
-    <div class="clearfix"></div>
-  </footer>
-</article>
-
-
-
-  <article class="post">
-  <header>
-    
-  
-    <h1 class="title"><a href="/2015/05/26/article/">Node.jsをやる！！・・・・の準備(編)</a></h1>
-  
-
-    
-      <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-    
-  </header>
-  <section class="entry">
-    
-      <p>社内の勉強会で(私的には)唐突にやって来た、サーバーサイドの課題。「好きな言語でechoサーバーを作ってください」とな？</p>
-<p>とりあえず全部よく分からないけれど、今まで勉強してきたJavascriptを活かしてNode.jsに挑戦する絶好の機会では？・・・・・とのことで、早速やります。まずは準備を</p>
-    
-  </section>
-  <footer>
-    
-    <div class="clearfix"></div>
-    
-      <div class="alignleft widget">
-        
-        
-          <time datetime="2015-05-26T13:48:55.000Z"><a href="/2015/05/26/article/">May 26 2015</a></time>
-        
-        
-
-        
-  
-  <a href="/tags/Javascript/">#Javascript</a>, <a href="/tags/Node-js/">#Node.js</a>
-
-
-      </div>
-      
-        <div class="alignright">
-          <a href="/2015/05/26/article/#more" class="more-link">Read More</a>
-        </div>
-      
-    
-    <div class="clearfix"></div>
-  </footer>
-</article>
-
-
-
-  <article class="post">
-  <header>
-    
-  
-    <h1 class="title"><a href="/2015/05/25/article/">Javascriptのコールバック</a></h1>
-  
-
-    
-      <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-    
-  </header>
-  <section class="entry">
-    
-      <p>メモです。なるほどね！！</p>
-<p>リンク先を見るだけで十分。<a href="http://so-zou.jp/web-app/tech/programming/javascript/grammar/operator/equality-identity.htm" target="_blank" rel="external">ここ</a></p>
-<p>等値は、型は関係なくて、２つの値？が同じならtrue</p>
-<p>同値は、型も含めて、全く同じならtrueって感じかな？</p>
-
-    
-  </section>
-  <footer>
-    
-    <div class="clearfix"></div>
-    
-      <div class="alignleft widget">
-        
-        
-          <time datetime="2015-05-25T14:13:20.000Z"><a href="/2015/05/25/article/">May 25 2015</a></time>
-        
-        
-
-        
-  
-  <a href="/tags/Javascript/">#Javascript</a>
 
 
       </div>

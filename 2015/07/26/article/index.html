@@ -85,9 +85,7 @@ JDBCは、Java とリレーショナルデータベースの接続のためのAP
   
     <li><a href="/categories/project/">project</a>&nbsp;<small>(2)</small></li>
   
-    <li><a href="/categories/study-note/">study note</a>&nbsp;<small>(0)</small></li>
-  
-    <li><a href="/categories/study-note/">study_note</a>&nbsp;<small>(2)</small></li>
+    <li><a href="/categories/study-note/">study_note</a>&nbsp;<small>(4)</small></li>
   
   </ul>
 </nav>
@@ -98,7 +96,7 @@ JDBCは、Java とリレーショナルデータベースの接続のためのAP
   <h3 class="title">Tags</h3>
   <ul>
   
-    <li><a href="/tags/API/">API</a>&nbsp;<small>(2)</small></li>
+    <li><a href="/tags/API/">API</a>&nbsp;<small>(4)</small></li>
   
     <li><a href="/tags/Apache/">Apache</a>&nbsp;<small>(6)</small></li>
   
@@ -124,7 +122,7 @@ JDBCは、Java とリレーショナルデータベースの接続のためのAP
   
     <li><a href="/tags/Http/">Http</a>&nbsp;<small>(2)</small></li>
   
-    <li><a href="/tags/Java/">Java</a>&nbsp;<small>(8)</small></li>
+    <li><a href="/tags/Java/">Java</a>&nbsp;<small>(10)</small></li>
   
     <li><a href="/tags/JavaScript/">JavaScript</a>&nbsp;<small>(20)</small></li>
   
@@ -138,11 +136,11 @@ JDBCは、Java とリレーショナルデータベースの接続のためのAP
   
     <li><a href="/tags/Node-js/">Node.js</a>&nbsp;<small>(5)</small></li>
   
-    <li><a href="/tags/Production/">Production</a>&nbsp;<small>(0)</small></li>
+    <li><a href="/tags/RESTful-Java-with-JAX-RS/">RESTful_Java_with_JAX-RS</a>&nbsp;<small>(2)</small></li>
   
     <li><a href="/tags/SAStruts/">SAStruts</a>&nbsp;<small>(1)</small></li>
   
-    <li><a href="/tags/Server-side/">Server-side</a>&nbsp;<small>(12)</small></li>
+    <li><a href="/tags/Server-side/">Server-side</a>&nbsp;<small>(14)</small></li>
   
     <li><a href="/tags/Sever/">Sever</a>&nbsp;<small>(1)</small></li>
   
@@ -214,9 +212,9 @@ JDBCは、Java とリレーショナルデータベースの接続のためのAP
       <p>タイトル通り、WebAPIの作成に向けてJDBCを使ってMySQLをJavaで操作します。</p>
 <p>JDBCは、Java とリレーショナルデータベースの接続のためのAPI。Java においてSQLを使用して、リレーショナルデータベース管理システム (RDBMS) などと接続する機能を標準化（抽象化）している。</p>
 <a id="more"></a>
-<h2 id="1-_load">1. load</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class.forName(&#34;com.mysql.jdbc.Driver&#34;);</span><br></pre></td></tr></table></figure>
+<h2 id="1-_load">1. load</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</span><br></pre></td></tr></table></figure>
 <p>MySQLのドライバーを読み込みます。文字列なので、プロパティファイルから読み込ませるのがスマートかも？</p>
-<h2 id="2-_Connection">2. Connection</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Connection conn = DriverManager.getConnection(&#34;URL&#34;, &#34;USER&#34;, &#34;PASSWORD&#34;);</span><br></pre></td></tr></table></figure>
+<h2 id="2-_Connection">2. Connection</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Connection conn = DriverManager.getConnection(<span class="string">"URL"</span>, <span class="string">"USER"</span>, <span class="string">"PASSWORD"</span>);</span><br></pre></td></tr></table></figure>
 <p>DBの場所、ユーザー名、パスワードを引数にコネクションをはります。</p>
 <h2 id="3-_Statement">3. Statement</h2><p>上記のConnectionを使ってStatementを作成します。これは、「Connectionを使用してSQL文を送信するコンテナ」の役割を持ちます。</p>
 <p>Statementには種類があります。</p>
@@ -232,19 +230,19 @@ JDBCは、Java とリレーショナルデータベースの接続のためのAP
 </ol>
 <h3 id="Statement">Statement</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Statement stmt = conn.createStatement();</span><br><span class="line">ResultSet rs = stmt.executeQuery(<span class="string">"select count(*) from test.testTable"</span>);</span><br></pre></td></tr></table></figure>
 <h3 id="PreparedStatement">PreparedStatement</h3><p>一方で、PreparedStatementでは以下のように、</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from tabeleName where id=?</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">select</span> * <span class="keyword">from</span> tabeleName <span class="keyword">where</span> id=?</span></span><br></pre></td></tr></table></figure>
 <p>と書けます。”?”がバインド変数で、sql文実行前に代入することがきます(for文とかも回せる！)。また、データベースのキャッシュには上記の文字列が保存されため、?が様々な値を取った場合でも全てがキャッシュを利用できるので、高速化が期待できます。</p>
 <p>Statementは完全一致しないとキャッシュの効果は得られません。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">StringBuffer sql = new StringBuffer(&#34;SELECT * FROM user where id= ?&#34;);&#10;PreparedStatement stmt = conn.prepareStatement(sql.toString());&#10;stmt.setString(1, userId);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">StringBuffer sql = <span class="keyword">new</span> StringBuffer(<span class="string">"SELECT * FROM user where id= ?"</span>);</span><br><span class="line">PreparedStatement stmt = conn.prepareStatement(sql.toString());</span><br><span class="line">stmt.setString(<span class="number">1</span>, userId);</span><br></pre></td></tr></table></figure>
 <h2 id="ResltSet">ResltSet</h2><ul>
 <li><p>SQL文を実行する</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ResultSet rs = stmt.executeQuery(&#34;select count(*) from test.testTable&#34;);&#10;rs.next();&#10;int count = rs.getInt(1);</span><br></pre></td></tr></table></figure>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ResultSet rs = stmt.executeQuery(<span class="string">"select count(*) from test.testTable"</span>);</span><br><span class="line">rs.next();</span><br><span class="line"><span class="keyword">int</span> count = rs.getInt(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>prepareStatementで予めSQL文をセット指定していた場合</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">StringBuffer sql = new StringBuffer(&#34;SELECT * FROM user where id= ?&#34;);&#10;PreparedStatement stmt = conn.prepareStatement(sql.toString());&#10;stmt.setString(1, userId);&#10;ResultSet rs = stmt.executeQuery();&#10;while (rs.next()) &#123;&#10;&#9;user.put(&#34;userId&#34;, rs.getString(&#34;id&#34;));&#10;&#9;user.put(&#34;userName&#34;, rs.getString(&#34;name&#34;));&#10;&#125;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">StringBuffer sql = <span class="keyword">new</span> StringBuffer(<span class="string">"SELECT * FROM user where id= ?"</span>);</span><br><span class="line">PreparedStatement stmt = conn.prepareStatement(sql.toString());</span><br><span class="line">stmt.setString(<span class="number">1</span>, userId);</span><br><span class="line">ResultSet rs = stmt.executeQuery();</span><br><span class="line"><span class="keyword">while</span> (rs.next()) &#123;</span><br><span class="line">	user.put(<span class="string">"userId"</span>, rs.getString(<span class="string">"id"</span>));</span><br><span class="line">	user.put(<span class="string">"userName"</span>, rs.getString(<span class="string">"name"</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="JSON_Objectで返す">JSON Objectで返す</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">StringBuffer sql = new StringBuffer(&#34;SELECT * FROM user where id= ?&#34;);&#10;PreparedStatement stmt = null;&#10;ResultSet rs = null;&#10;JSONObject user = new JSONObject();&#10;try&#123;&#10;&#9;stmt = conn.prepareStatement(sql.toString());&#10;&#9;stmt.setString(1, userId);&#10;&#9;rs = stmt.executeQuery();&#10;&#9;while (rs.next()) &#123;&#10;&#9;&#9;user.put(&#34;user_Id&#34;, rs.getString(&#34;id&#34;));&#10;&#9;&#9;user.put(&#34;user_Name&#34;, rs.getString(&#34;name&#34;));&#10;&#9;&#125;&#10;&#9;return user;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="JSON_Objectで返す">JSON Objectで返す</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">StringBuffer sql = <span class="keyword">new</span> StringBuffer(<span class="string">"SELECT * FROM user where id= ?"</span>);</span><br><span class="line">PreparedStatement stmt = <span class="keyword">null</span>;</span><br><span class="line">ResultSet rs = <span class="keyword">null</span>;</span><br><span class="line">JSONObject user = <span class="keyword">new</span> JSONObject();</span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">	stmt = conn.prepareStatement(sql.toString());</span><br><span class="line">	stmt.setString(<span class="number">1</span>, userId);</span><br><span class="line">	rs = stmt.executeQuery();</span><br><span class="line">	<span class="keyword">while</span> (rs.next()) &#123;</span><br><span class="line">		user.put(<span class="string">"user_Id"</span>, rs.getString(<span class="string">"id"</span>));</span><br><span class="line">		user.put(<span class="string">"user_Name"</span>, rs.getString(<span class="string">"name"</span>));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> user;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="JSON_Arrayで返す">JSON Arrayで返す</h2>
     
   </section>

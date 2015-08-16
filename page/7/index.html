@@ -82,9 +82,7 @@
   
     <li><a href="/categories/project/">project</a>&nbsp;<small>(2)</small></li>
   
-    <li><a href="/categories/study-note/">study note</a>&nbsp;<small>(0)</small></li>
-  
-    <li><a href="/categories/study-note/">study_note</a>&nbsp;<small>(2)</small></li>
+    <li><a href="/categories/study-note/">study_note</a>&nbsp;<small>(4)</small></li>
   
   </ul>
 </nav>
@@ -95,7 +93,7 @@
   <h3 class="title">Tags</h3>
   <ul>
   
-    <li><a href="/tags/API/">API</a>&nbsp;<small>(2)</small></li>
+    <li><a href="/tags/API/">API</a>&nbsp;<small>(4)</small></li>
   
     <li><a href="/tags/Apache/">Apache</a>&nbsp;<small>(6)</small></li>
   
@@ -121,7 +119,7 @@
   
     <li><a href="/tags/Http/">Http</a>&nbsp;<small>(2)</small></li>
   
-    <li><a href="/tags/Java/">Java</a>&nbsp;<small>(8)</small></li>
+    <li><a href="/tags/Java/">Java</a>&nbsp;<small>(10)</small></li>
   
     <li><a href="/tags/JavaScript/">JavaScript</a>&nbsp;<small>(20)</small></li>
   
@@ -135,11 +133,11 @@
   
     <li><a href="/tags/Node-js/">Node.js</a>&nbsp;<small>(5)</small></li>
   
-    <li><a href="/tags/Production/">Production</a>&nbsp;<small>(0)</small></li>
+    <li><a href="/tags/RESTful-Java-with-JAX-RS/">RESTful_Java_with_JAX-RS</a>&nbsp;<small>(2)</small></li>
   
     <li><a href="/tags/SAStruts/">SAStruts</a>&nbsp;<small>(1)</small></li>
   
-    <li><a href="/tags/Server-side/">Server-side</a>&nbsp;<small>(12)</small></li>
+    <li><a href="/tags/Server-side/">Server-side</a>&nbsp;<small>(14)</small></li>
   
     <li><a href="/tags/Sever/">Sever</a>&nbsp;<small>(1)</small></li>
   
@@ -186,6 +184,129 @@
 </div></header>
     <section id="content" class="blog">
       
+  <article class="post">
+  <header>
+    
+  
+    <h1 class="title"><a href="/2015/03/20/article-14/">JavaScriptで東◯的な弾幕ゲームを作るvol.1</a></h1>
+  
+
+    
+      <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+    
+  </header>
+  <section class="entry">
+    
+      <h2 id="目次">目次</h2><ul>
+<li>はじめに</li>
+<li>連載バックナンバー</li>
+<li>今日のゴール</li>
+<li>勉強したこと(忘れたことも)</li>
+<li>作ったもの</li>
+<li>ソースコード</li>
+</ul>
+<h2 id="はじめに">はじめに</h2><p>プログラミングを勉強している者として何かを作らなければと頭を捻った結果、JavaScriptでゲームを作ることにしました。本連載記事はその徒然なるままの作業記録です。</p>
+<p>参考サイトをテキストに某同人弾幕ゲーム的なものを目指します。どこまで機能を実装出来るかは・・・・未定で。</p>
+<p>参考サイト：<a href="http://qiita.com/doxas/items/9debec7e1f0c19bc8daa">javascriptで作るシューティングゲーム的な何か</a></p>
+    
+  </section>
+  <footer>
+    
+    <div class="clearfix"></div>
+    
+      <div class="alignleft widget">
+        
+        
+          <time datetime="2015-03-19T15:32:33.000Z"><a href="/2015/03/20/article-14/">Mar 20 2015</a></time>
+        
+        
+
+        
+  
+  <a href="/tags/EastProject/">#EastProject</a>, <a href="/tags/JavaScript/">#JavaScript</a>
+
+
+      </div>
+      
+        <div class="alignright">
+          <a href="/2015/03/20/article-14/#more" class="more-link">Read More</a>
+        </div>
+      
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+
+
+  <article class="post">
+  <header>
+    
+  
+    <h1 class="title"><a href="/2015/03/19/article-13/">JavaScript 「prototype」で親を参照する！</a></h1>
+  
+
+    
+      <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+    
+  </header>
+  <section class="entry">
+    
+      <p>JavaScriptにはJavaのような”クラス”という概念がありません。そのため、スーパークラスのメソッドをサブクラスからｓ・・・というように</p>
+<p>JavaScriptの関数はオブジェクトなので、</p>
+<p>上記のようにKotoriコンストラクタをnewした場合、関数オブジェクトが作られます。</p>
+<p>では同じコンストラクタをいくつかnewしたとき</p>
+<p>この場合、それぞれで関数オブジェクトが生成されます。<br>ここで問題なのは、同じプロパティを持っているオブジェクトがいくつも生成されてしまっていることです。</p>
+<p>同じプロパティについては、それぞれのオブジェクトに持たせるより、親に持たせてそれを継承してもらった方がコストがかかりません。</p>
+<h2 id="prototypeでプロパティを継承する">prototypeでプロパティを継承する</h2><p>prototypeは</p>
+
+    
+  </section>
+  <footer>
+    
+    <div class="clearfix"></div>
+    
+      <div class="alignleft widget">
+        
+        
+          <time datetime="2015-03-18T15:29:17.000Z"><a href="/2015/03/19/article-13/">Mar 19 2015</a></time>
+        
+        
+
+        
+  
+  <a href="/tags/JavaScript/">#JavaScript</a>
+
+
+      </div>
+      
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+
+
   <article class="post">
   <header>
     
@@ -659,111 +780,6 @@
   
   <a href="/tags/JavaScript/">#JavaScript</a>
 
-
-      </div>
-      
-    
-    <div class="clearfix"></div>
-  </footer>
-</article>
-
-
-
-  <article class="post">
-  <header>
-    
-  
-    <h1 class="title"><a href="/2015/03/06/article-4/">dfのそこんところ(コマンド)</a></h1>
-  
-
-    
-      <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-    
-  </header>
-  <section class="entry">
-    
-      <p>dfはファイルシステムのディスクの使用状況を見ることが出来ます。Unixだと、マシンに接続されたデバイスもすべて（マウスとかも！）表示されるらしい。仕事先のサーバのチェックに使用していたので、メモ。</p>
-<p>手元のmacに使ってみると、、、</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ df -h&#10;Filesystem                        Size   Used  Avail Capacity  iused      ifree %iused  Mounted on&#10;/dev/disk1                       233Gi  160Gi   73Gi    69% 41904427   19087187   69%   /&#10;devfs                            193Ki  193Ki    0Bi   100%      666          0  100%   /dev&#10;map -hosts                         0Bi    0Bi    0Bi   100%        0          0  100%   /net&#10;map auto_home                      0Bi    0Bi    0Bi   100%        0          0  100%   /home&#10;//GUEST:******/BUFFALO-1  931Gi  274Gi  657Gi    30%        0 18446744073709551615    0%   /Volumes/BUFFALO-1&#10;/dev/disk2s1                      29Gi  3.7Gi   25Gi    13%        0          0  100%   /Volumes/NIKON D3200</span><br></pre></td></tr></table></figure>
-<p>-hで単位を付けて見やすくしてます。</p>
-<p>PCに接続されている、外付けHDDとSDカードが表示されてる！</p>
-<p>devfs, map -hosts map, auto_homeってなにこれ？</p>
-
-    
-  </section>
-  <footer>
-    
-    <div class="clearfix"></div>
-    
-      <div class="alignleft widget">
-        
-        
-          <time datetime="2015-03-06T08:24:30.000Z"><a href="/2015/03/06/article-4/">Mar 6 2015</a></time>
-        
-        
-
-        
-  
-  <a href="/tags/Unix-Linux/">#Unix/Linux</a>, <a href="/tags/command/">#command</a>
-
-
-      </div>
-      
-    
-    <div class="clearfix"></div>
-  </footer>
-</article>
-
-
-
-  <article class="post">
-  <header>
-    
-  
-    <h1 class="title"><a href="/2015/03/06/article-3/">headerparam</a></h1>
-  
-
-    
-      <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-    
-  </header>
-  <section class="entry">
-    
-      
-    
-  </section>
-  <footer>
-    
-    <div class="clearfix"></div>
-    
-      <div class="alignleft widget">
-        
-        
-          <time datetime="2015-03-06T01:09:48.000Z"><a href="/2015/03/06/article-3/">Mar 6 2015</a></time>
-        
-        
-
-        
 
       </div>
       

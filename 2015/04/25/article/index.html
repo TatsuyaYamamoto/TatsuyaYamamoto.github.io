@@ -3,16 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>SoundJSを使って音声ファイルを再生する | 新米SWエンジニアのそこんところ</title>
+  <title>Bitmapオブジェクトのプロパティは読み込みが完了してから取得する | 新米SWエンジニアのそこんところ</title>
   <meta name="author" content="Tatsuya Yamamoto">
   
-  <meta name="description" content="ゲームを作っているならば、効果音を再生しなければならないでしょう！
-という訳で、現在作成中のゲームで使用しているライブラリ「CreateJS」に含まれている「SoundJS」を導入してみたので、使い方のメモをします。">
+  <meta name="description" content="タイトルだけでこの記事は終了です。お疲れ様でした。
+CreateJSのBitmapオブジェクトを使って読み込んだ画像のwidth、heightが取得できなくてやたら長い時間をかけてしまったので備忘録を。
+画像読み込みの完了前にイメージのプロパティを参照しても、ダメということです。
+前も同じようなことで引っかかったような・・・・">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="SoundJSを使って音声ファイルを再生する"/>
+  <meta property="og:title" content="Bitmapオブジェクトのプロパティは読み込みが完了してから取得する"/>
   <meta property="og:site_name" content="新米SWエンジニアのそこんところ"/>
 
   
@@ -85,9 +87,7 @@
   
     <li><a href="/categories/project/">project</a>&nbsp;<small>(2)</small></li>
   
-    <li><a href="/categories/study-note/">study note</a>&nbsp;<small>(0)</small></li>
-  
-    <li><a href="/categories/study-note/">study_note</a>&nbsp;<small>(2)</small></li>
+    <li><a href="/categories/study-note/">study_note</a>&nbsp;<small>(4)</small></li>
   
   </ul>
 </nav>
@@ -98,7 +98,7 @@
   <h3 class="title">Tags</h3>
   <ul>
   
-    <li><a href="/tags/API/">API</a>&nbsp;<small>(2)</small></li>
+    <li><a href="/tags/API/">API</a>&nbsp;<small>(4)</small></li>
   
     <li><a href="/tags/Apache/">Apache</a>&nbsp;<small>(6)</small></li>
   
@@ -124,7 +124,7 @@
   
     <li><a href="/tags/Http/">Http</a>&nbsp;<small>(2)</small></li>
   
-    <li><a href="/tags/Java/">Java</a>&nbsp;<small>(8)</small></li>
+    <li><a href="/tags/Java/">Java</a>&nbsp;<small>(10)</small></li>
   
     <li><a href="/tags/JavaScript/">JavaScript</a>&nbsp;<small>(20)</small></li>
   
@@ -138,11 +138,11 @@
   
     <li><a href="/tags/Node-js/">Node.js</a>&nbsp;<small>(5)</small></li>
   
-    <li><a href="/tags/Production/">Production</a>&nbsp;<small>(0)</small></li>
+    <li><a href="/tags/RESTful-Java-with-JAX-RS/">RESTful_Java_with_JAX-RS</a>&nbsp;<small>(2)</small></li>
   
     <li><a href="/tags/SAStruts/">SAStruts</a>&nbsp;<small>(1)</small></li>
   
-    <li><a href="/tags/Server-side/">Server-side</a>&nbsp;<small>(12)</small></li>
+    <li><a href="/tags/Server-side/">Server-side</a>&nbsp;<small>(14)</small></li>
   
     <li><a href="/tags/Sever/">Sever</a>&nbsp;<small>(1)</small></li>
   
@@ -192,7 +192,7 @@
   <header>
     
   
-    <h1 class="title">SoundJSを使って音声ファイルを再生する</h1>
+    <h1 class="title">Bitmapオブジェクトのプロパティは読み込みが完了してから取得する</h1>
   
 
     
@@ -211,23 +211,22 @@
   </header>
   <section class="entry">
     
-      <p>ゲームを作っているならば、効果音を再生しなければならないでしょう！</p>
-<p>という訳で、現在作成中のゲームで使用しているライブラリ「CreateJS」に含まれている「SoundJS」を導入してみたので、使い方のメモをします。<br><a id="more"></a></p>
-<h2 id="とりあえず、音をだす">とりあえず、音をだす</h2><ol>
-<li><p>ライブラリに登録</p>
-<p> 今回、CDNを利用しました。</p>
-<p> <a href="http://code.createjs.com/" target="_blank" rel="external">公式HP</a>によると、</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//CreateJS&#20024;&#12372;&#12392;&#10;https://code.createjs.com/createjs-2014.12.12.min.js&#10;&#10;//SoundJS&#21336;&#20307;&#10;https://code.createjs.com/soundjs-0.6.0.min.js</span><br></pre></td></tr></table></figure>
-<p> 用途に応じて、htmlファイルに配置させます(どちらかでOK-!)。</p>
-</li>
-</ol>
-<ol>
-<li><p>インスタンスを作成する</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SOUND_SAMPLE = createjs.Sound.createInstance(./sample.mp3);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>再生！</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SOUND_SAMPLE.play();</span><br></pre></td></tr></table></figure></li>
-</ol>
+      <p>タイトルだけでこの記事は終了です。お疲れ様でした。</p>
+<p>CreateJSのBitmapオブジェクトを使って読み込んだ画像のwidth、heightが取得できなくてやたら長い時間をかけてしまったので備忘録を。</p>
+<p>画像読み込みの完了前にイメージのプロパティを参照しても、ダメということです。</p>
+<p>前も同じようなことで引っかかったような・・・・</p>
+<a id="more"></a>
+<p>以下のコードでは、BUTTUN_TMP.pngという画像ファイルをBitmapクラスに送っています。<br>そして座標管理用に作ったpositionメソッドにBitmapオブジェクトと表示させる座標を送って、座標のプロパティを設定しています。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var BUTTON_TMP_1 = new createjs.Bitmap(&#34;img/BUTTUN_TMP.png&#34;);&#10;position(BUTTON_TMP_1, GAMESCREAN_WIDTH/2, (GAMESCREAN_HEIGHT/2) + 100);&#10;&#10;function position(target, x, y)&#123;&#10;&#9;target.x = x;&#10;&#9;target.y = y;&#10;&#9;target.regX = target.image.width/2;&#10;&#9;target.regY = target.image.height/2;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>Bitmapオブジェクトの座標の基点は画像ファイルの左上端です。画像を配置するときに少々不便なので(中央に置くとか)、regX、regYプロパティに画像ファイルの幅の数値の半分を代入することで基点を画像ファイルの中央にしようとしています。</p>
+<p>んが、反映されない・・・・。</p>
+<p>target.image.widthを表示すると”0”になっている・・・・。なんでやねん</p>
+<p>undifinedになっていないから、プロパティの指定自体は間違っていないはずです。・・・・・・・が、上記のコードだと、指定の画像ファイルの読み込みが完了する前にwidthプロパティを参照しようとしているため、”0”になっているようでした。</p>
+<p>ってことで、onloadを使って、読み込みが完了しだい、positionメソッドの処理を行うようにします。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var BUTTON_TMP_1 = new createjs.Bitmap(&#34;img/BUTTUN_TMP.png&#34;);&#10;BUTTON_TMP_1.image.onload = function()&#123;&#10;&#9;position(BUTTON_TMP_1, GAMESCREAN_WIDTH/2, (GAMESCREAN_HEIGHT/2) + 100);&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>うーん、なかなかブサイクな感じ、、、、。</p>
+<p>createJSにはリードを助けてくれるpreloadJS(だっけ？)というものがあるそうなので、この後ぜひそこら辺を調べて活用しようと思います。</p>
+<p>でも同じようなことしてるのに、onloadなんて気にしてないソースコードを載せているブログがあるのは何故だ・・・・本当にそのコードはいいのか。。。。。わからん</p>
 
     
   </section>

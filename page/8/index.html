@@ -82,9 +82,7 @@
   
     <li><a href="/categories/project/">project</a>&nbsp;<small>(2)</small></li>
   
-    <li><a href="/categories/study-note/">study note</a>&nbsp;<small>(0)</small></li>
-  
-    <li><a href="/categories/study-note/">study_note</a>&nbsp;<small>(2)</small></li>
+    <li><a href="/categories/study-note/">study_note</a>&nbsp;<small>(4)</small></li>
   
   </ul>
 </nav>
@@ -95,7 +93,7 @@
   <h3 class="title">Tags</h3>
   <ul>
   
-    <li><a href="/tags/API/">API</a>&nbsp;<small>(2)</small></li>
+    <li><a href="/tags/API/">API</a>&nbsp;<small>(4)</small></li>
   
     <li><a href="/tags/Apache/">Apache</a>&nbsp;<small>(6)</small></li>
   
@@ -121,7 +119,7 @@
   
     <li><a href="/tags/Http/">Http</a>&nbsp;<small>(2)</small></li>
   
-    <li><a href="/tags/Java/">Java</a>&nbsp;<small>(8)</small></li>
+    <li><a href="/tags/Java/">Java</a>&nbsp;<small>(10)</small></li>
   
     <li><a href="/tags/JavaScript/">JavaScript</a>&nbsp;<small>(20)</small></li>
   
@@ -135,11 +133,11 @@
   
     <li><a href="/tags/Node-js/">Node.js</a>&nbsp;<small>(5)</small></li>
   
-    <li><a href="/tags/Production/">Production</a>&nbsp;<small>(0)</small></li>
+    <li><a href="/tags/RESTful-Java-with-JAX-RS/">RESTful_Java_with_JAX-RS</a>&nbsp;<small>(2)</small></li>
   
     <li><a href="/tags/SAStruts/">SAStruts</a>&nbsp;<small>(1)</small></li>
   
-    <li><a href="/tags/Server-side/">Server-side</a>&nbsp;<small>(12)</small></li>
+    <li><a href="/tags/Server-side/">Server-side</a>&nbsp;<small>(14)</small></li>
   
     <li><a href="/tags/Sever/">Sever</a>&nbsp;<small>(1)</small></li>
   
@@ -186,6 +184,111 @@
 </div></header>
     <section id="content" class="blog">
       
+  <article class="post">
+  <header>
+    
+  
+    <h1 class="title"><a href="/2015/03/06/article-4/">dfのそこんところ(コマンド)</a></h1>
+  
+
+    
+      <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+    
+  </header>
+  <section class="entry">
+    
+      <p>dfはファイルシステムのディスクの使用状況を見ることが出来ます。Unixだと、マシンに接続されたデバイスもすべて（マウスとかも！）表示されるらしい。仕事先のサーバのチェックに使用していたので、メモ。</p>
+<p>手元のmacに使ってみると、、、</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ df -h&#10;Filesystem                        Size   Used  Avail Capacity  iused      ifree %iused  Mounted on&#10;/dev/disk1                       233Gi  160Gi   73Gi    69% 41904427   19087187   69%   /&#10;devfs                            193Ki  193Ki    0Bi   100%      666          0  100%   /dev&#10;map -hosts                         0Bi    0Bi    0Bi   100%        0          0  100%   /net&#10;map auto_home                      0Bi    0Bi    0Bi   100%        0          0  100%   /home&#10;//GUEST:******/BUFFALO-1  931Gi  274Gi  657Gi    30%        0 18446744073709551615    0%   /Volumes/BUFFALO-1&#10;/dev/disk2s1                      29Gi  3.7Gi   25Gi    13%        0          0  100%   /Volumes/NIKON D3200</span><br></pre></td></tr></table></figure>
+<p>-hで単位を付けて見やすくしてます。</p>
+<p>PCに接続されている、外付けHDDとSDカードが表示されてる！</p>
+<p>devfs, map -hosts map, auto_homeってなにこれ？</p>
+
+    
+  </section>
+  <footer>
+    
+    <div class="clearfix"></div>
+    
+      <div class="alignleft widget">
+        
+        
+          <time datetime="2015-03-06T08:24:30.000Z"><a href="/2015/03/06/article-4/">Mar 6 2015</a></time>
+        
+        
+
+        
+  
+  <a href="/tags/Unix-Linux/">#Unix/Linux</a>, <a href="/tags/command/">#command</a>
+
+
+      </div>
+      
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+
+
+  <article class="post">
+  <header>
+    
+  
+    <h1 class="title"><a href="/2015/03/06/article-3/">headerparam</a></h1>
+  
+
+    
+      <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+    
+  </header>
+  <section class="entry">
+    
+      
+    
+  </section>
+  <footer>
+    
+    <div class="clearfix"></div>
+    
+      <div class="alignleft widget">
+        
+        
+          <time datetime="2015-03-06T01:09:48.000Z"><a href="/2015/03/06/article-3/">Mar 6 2015</a></time>
+        
+        
+
+        
+
+      </div>
+      
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+
+
   <article class="post">
   <header>
     
@@ -818,189 +921,6 @@ Query OK, <span class="number">0</span> rows affected <span class="params">(<spa
         
 
         
-
-      </div>
-      
-    
-    <div class="clearfix"></div>
-  </footer>
-</article>
-
-
-
-  <article class="post">
-  <header>
-    
-  
-    <h1 class="title"><a href="/2015/02/19/article/">MacでMysqlを使う！導入編</a></h1>
-  
-
-    
-      <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-    
-  </header>
-  <section class="entry">
-    
-      <ul>
-<li>mysqlの導入</li>
-<li>mysqlへのログイン</li>
-<li>SQLのデータ型</li>
-</ul>
-<p>参考ページは「<a href="http://www.dbonline.jp/mysql/" target="_blank" rel="external">DBonline</a>」<br>自分なりにまとめて記す。</p>
-<h2 id="mysqlの導入">mysqlの導入</h2><p>homebrewを使う。<br>homebrewについては別記事、またはgoogle先生でどうぞ。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install mysql</span><br></pre></td></tr></table></figure>
-<p>ちょっと長いけれど、コーヒー飲みながら待機。</p>
-<p>インストールが完了したら、下記コマンドでバージョンチェック</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew info mysql</span><br></pre></td></tr></table></figure>
-<p>私は「mysql: stable 5.6.21」だった。</p>
-<h2 id="mysqlへのログイン">mysqlへのログイン</h2><ol>
-<li><p>まずはmysqlを立ち上げる。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysql.server start&#10;Starting MySQL&#10;. SUCCESS!</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<pre><code>その他mysqlサーバーの操作に関しては、下記の通り。
-
-<span class="comment"><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysql.server&#10;Usage: mysql.server  &#123;start|stop|restart|reload|force-reload|status&#125;  [ MySQL server &#9;options ]</span><br></pre></td></tr></table></figure></span>
-</code></pre><ol>
-<li><p>サーバを立ち上げたらログイン</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysql</span><br></pre></td></tr></table></figure>
-<p> または</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysql -u root</span><br></pre></td></tr></table></figure>
-<p> 前者は一般？権限、後者は見たままroot権限でのログイン。root権限で行わないと、データベースの作成等が行えないので注意。</p>
-</li>
-</ol>
-<ol>
-<li><p>rootユーザーのパスワードの設定</p>
-<p> 下記コマンドでroot権限にパスワードを設定しておく。セキュリティ面そうだけど、これをしておかないとデータベースの作成が出来ないっぽい。やっておこう。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysqladmin -u root password &#65308;&#12497;&#12473;&#12527;&#12540;&#12489;&#65310;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>パスワードをコマンドで付与</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysql -u root -p</span><br></pre></td></tr></table></figure>
-<p> これでログイン前にパスワードの質問がくる。設定した通りに入力。</p>
-</li>
-</ol>
-<h2 id="SQLのデータ型">SQLのデータ型</h2><p>データベースを実際にいじる前にさらっておこう。</p>
-<ol>
-<li>数値型<ul>
-<li>int<ul>
-<li>他に「tinynt」「smallint」「mediumint」</li>
-</ul>
-</li>
-<li>float</li>
-<li>double</li>
-</ul>
-</li>
-<li><p>文字列型</p>
-<p> (M)は最大文字数を入力する。</p>
-<ul>
-<li>CHAR(M)<ul>
-<li>M個文字を格納出来る<strong>固定長</strong>の文字列。</li>
-<li>指定文字数に対して余った分には<strong>スペースが入る。</strong></li>
-<li>Mを記入しない場合は1文字の文字列。</li>
-</ul>
-</li>
-<li>VARCHAR(M)<br>  <em> M個文字を格納出来る<em>*可変長</em></em>の文字列。<ul>
-<li>Mは0～255の範囲で指定</li>
-<li>格納する文字列の最後にスペースが入っていても<strong>削除されて</strong>格納される。</li>
-</ul>
-</li>
-<li>TEXT<ul>
-<li>最大長が 65535バイトの可変長文字列。</li>
-<li>テキストデータを格納する。</li>
-</ul>
-</li>
-<li>BLOB<ul>
-<li>バイナリデータを格納する。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-
-    
-  </section>
-  <footer>
-    
-    <div class="clearfix"></div>
-    
-      <div class="alignleft widget">
-        
-        
-          <time datetime="2015-02-19T13:35:04.000Z"><a href="/2015/02/19/article/">Feb 19 2015</a></time>
-        
-        
-
-        
-
-      </div>
-      
-    
-    <div class="clearfix"></div>
-  </footer>
-</article>
-
-
-
-  <article class="post">
-  <header>
-    
-  
-    <h1 class="title"><a href="/2015/02/18/article/">HEXOで作ったブログに公開されてるthemeをあてる</a></h1>
-  
-
-    
-      <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-    
-  </header>
-  <section class="entry">
-    
-      <p>HEXOで作ったブログページをGitHubPagesで公開することが何とか出来ました。</p>
-<p>それでは早速ナウいデザインのブログに変更します。1から作る男らしい選択肢も捨てがたいですが（白目）、ここはせっかくpublicに公開されているthemeファイルをDLして適用してみようかと思います。</p>
-<h2 id="テーマファイルの場所">テーマファイルの場所</h2><p>僕は<a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">こちらのページ</a>を散策させていただきました。<br>他にもページはあるのだろうか？</p>
-<p>中国の方がよく使われているようで、themeのセンスも若干それっぽいものものがチラホラ・・・・ww</p>
-<h2 id="テーマファイルのインストール">テーマファイルのインストール</h2><p>見つけたthemeファイルのリポジトリをクローンします。コピー先は「hexo init」したときに作成されたthemeディレクトリ。初期themeとして「landscape」がインストールされています。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cd theme&#10;$ git clone &#60;repository-URL&#62;</span><br></pre></td></tr></table></figure>
-<h2 id="設定">設定</h2><p>使用するthemeファイル名を_config.ymlファイルに記入するだけです。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># Extensions&#10;## Plugins: https://github.com/hexojs/hexo/wiki/Plugins&#10;## Themes: https://github.com/hexojs/hexo/wiki/Themes&#10;theme: &#60;theme folder&#39;s name&#62;</span><br></pre></td></tr></table></figure>
-<p>あとはgenerate, deployするだけ！やった―！</p>
-
-    
-  </section>
-  <footer>
-    
-    <div class="clearfix"></div>
-    
-      <div class="alignleft widget">
-        
-        
-          <time datetime="2015-02-18T13:08:06.000Z"><a href="/2015/02/18/article/">Feb 18 2015</a></time>
-        
-        
-
-        
-  
-  <a href="/tags/HEXO/">#HEXO</a>
-
 
       </div>
       
